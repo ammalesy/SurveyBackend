@@ -29,10 +29,32 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link href="<?php echo APP_PATH."assets/"; ?>css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo APP_PATH."assets/"; ?>css/jquery.dataTables.min.css" rel="stylesheet">
+   
 
 </head>
 
 <body>
+<!-- jQuery -->
+    <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#questionTable').DataTable({
+                "pagingType": "full_numbers"
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/raphael.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/morris.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/morris-data.js"></script>
+
 
     <div id="wrapper">
 
@@ -46,13 +68,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="<?php echo APP_PATH.'/index.php/'; ?>">Survey Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -79,10 +101,10 @@
                         }
                     ?>
                     <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
-                        <a href="QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
+                        <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
                     </li>
                     <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
-                        <a href="SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
+                        <a href="<?php echo APP_PATH.'/index.php/'; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                     </li>
                     
                 </ul>

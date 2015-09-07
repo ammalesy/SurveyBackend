@@ -14,16 +14,36 @@ class Tb_all_question extends CI_Model {
       $insert_id = $this->db->insert_id();
       return  $insert_id;
     }
-    function fetchAll(){
+    function update($array,$aq_id)
+    {
       $this->load->database();
-      $query = $this->db->query('select * from tb_all_question');
+      $this->db->where('aq_id', $aq_id);
+      $this->db->update('tb_all_question', $array); 
+    }
+    function fetchAll($isActive=TRUE){
+
+      if ($isActive == TRUE) {
+         $where = " WHERE active = 'Y'";
+      }else{
+         $where = "";
+      }
+
+      $this->load->database();
+      $query = $this->db->query("select * from tb_all_question".$where);
       return $query->result();
     }
-    // function update($array,$user_id)
-    // {
-    //   $this->load->database();
-    //   $this->db->where('user_id', $user_id);
-    //   $this->db->update('tb_user', $array); 
-    // }
+    function get($aq_id,$isActive=TRUE){
+
+      if ($isActive == TRUE) {
+         $where = " AND active = 'Y'";
+      }else{
+         $where = "";
+      }
+
+      $this->load->database();
+      $query = $this->db->query("select * from tb_all_question where aq_id = '".$aq_id."'".$where);
+      return $query->first_row();
+    }
+    
     
 }
