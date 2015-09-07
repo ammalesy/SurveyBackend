@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 05, 2015 at 06:57 PM
+-- Generation Time: Sep 07, 2015 at 04:29 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -27,24 +27,47 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tb_all_answer` (
-`aa_id` int(5) NOT NULL,
+`aa_id` int(20) NOT NULL,
   `aa_description` text NOT NULL,
   `aa_image` varchar(100) DEFAULT NULL,
-  `aq_id_ref` int(5) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+  `aq_id_ref` int(5) NOT NULL,
+  `type` int(2) NOT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'Y'
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_answer`
 --
 
-INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`) VALUES
-(1, 'I play the football with my friends every night.', NULL, 1),
-(2, 'I go to the beat with my family every year.', NULL, 1),
-(3, 'I do something with my girl friend!!', NULL, 1),
-(4, 'I don''t known because no the hobbies.', NULL, 1),
-(13, 'ans 1', 'image/path', 12),
-(14, 'ans 2', 'image/path', 12),
-(15, 'ans 3', 'image/path', 12);
+INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`, `type`, `active`) VALUES
+(97, 'ans 1', NULL, 12, 0, 'Y'),
+(98, 'ans 2', NULL, 12, 0, 'Y'),
+(99, 'ans 3', NULL, 12, 0, 'Y'),
+(100, 'dfqef', NULL, 12, 0, 'N'),
+(101, 'qefqefqefqef', NULL, 12, 0, 'N'),
+(102, 'I play the football with my friends every night2.', NULL, 1, 0, 'Y'),
+(103, 'I go to the beat with my family every year.', NULL, 1, 0, 'Y'),
+(104, 'I do something with my girl friend!!', NULL, 1, 0, 'Y'),
+(105, 'I don''t known because no the hobbies2.', NULL, 1, 0, 'Y'),
+(106, 'aaa', NULL, 1, 0, 'Y'),
+(107, 'bbb', NULL, 1, 0, 'Y'),
+(108, 'ccc', NULL, 1, 0, 'Y'),
+(109, 'ddd', NULL, 1, 0, 'Y'),
+(110, 'ans1', NULL, 13, 0, 'Y'),
+(111, 'ans2', NULL, 13, 0, 'Y'),
+(112, 'ans3', NULL, 13, 0, 'Y'),
+(113, 'ans4', NULL, 13, 0, 'Y'),
+(114, 'ans5', NULL, 13, 0, 'Y'),
+(129, 'ans1', NULL, 14, 0, 'Y'),
+(130, 'ans2', NULL, 14, 0, 'Y'),
+(131, 'ans3', NULL, 14, 0, 'Y'),
+(132, 'ans4', NULL, 14, 0, 'Y'),
+(133, 'ans1cc', NULL, 15, 0, 'Y'),
+(134, 'ans2cc', NULL, 15, 0, 'Y'),
+(135, 'ans3cc', NULL, 15, 0, 'Y'),
+(136, 'ans4cc', NULL, 15, 0, 'Y'),
+(137, 'ans5cc', NULL, 15, 0, 'Y'),
+(138, 'ans6cc', NULL, 15, 0, 'Y');
 
 -- --------------------------------------------------------
 
@@ -55,16 +78,20 @@ INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`)
 CREATE TABLE IF NOT EXISTS `tb_all_question` (
 `aq_id` int(5) NOT NULL,
   `aq_description` text NOT NULL,
-  `aq_image` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `aq_image` varchar(100) DEFAULT NULL,
+  `active` varchar(1) NOT NULL DEFAULT 'Y'
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_question`
 --
 
-INSERT INTO `tb_all_question` (`aq_id`, `aq_description`, `aq_image`) VALUES
-(1, 'What is your the hobbies?', NULL),
-(12, 'The the question form mobile', 'The image path');
+INSERT INTO `tb_all_question` (`aq_id`, `aq_description`, `aq_image`, `active`) VALUES
+(1, 'What is your the hobbies?', NULL, 'Y'),
+(12, 'The the question form mobile', 'The image path', 'Y'),
+(13, 'Test1', NULL, 'Y'),
+(14, 'Test2', NULL, 'Y'),
+(15, 'To sleepcc', NULL, 'Y');
 
 --
 -- Indexes for dumped tables
@@ -90,12 +117,12 @@ ALTER TABLE `tb_all_question`
 -- AUTO_INCREMENT for table `tb_all_answer`
 --
 ALTER TABLE `tb_all_answer`
-MODIFY `aa_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=139;
 --
 -- AUTO_INCREMENT for table `tb_all_question`
 --
 ALTER TABLE `tb_all_question`
-MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
