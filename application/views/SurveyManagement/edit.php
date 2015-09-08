@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Add Survey.
+                Edit Survey.
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>SurveyManagement">Show all</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Add
+                    <i class="fa fa-edit"></i> Edit
                 </li>
             </ol>
         </div>
@@ -21,24 +21,43 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH; ?>SurveyManagement/submit/null/added">
-                <label>STEP 1. Defind survey defination.</label>
+            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH; ?>SurveyManagement/submit/<?php echo $survey->sm_id; ?>/edited">
+                <label>Defind survey defination.</label>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <input name="sm_name" id="sm_name" class="form-control" placeholder="Survey name">
+                            <input name="sm_name" id="sm_name" class="form-control" placeholder="Survey name" value="<?php echo $survey->sm_name; ?>">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <textarea name="sm_description" class="form-control" rows="5" placeholder="Description"></textarea>
+                            <textarea name="sm_description" class="form-control" rows="5" placeholder="Description"><?php echo $survey->sm_description; ?></textarea>
                         </div>
                     </div>
                 </div>
-                <label>STEP 2. Add the questions.</label>
-                
+                <label>Question list.</label>
+                <?php $seq = 1; foreach ($exist_questions as $question): ?>
+                <div class="row" id="oldQuestionObject" data-seq="<?php echo $seq; ?>">
+                    
+                    <input type="hidden" value="<?php echo $question->aq_id; ?>" id="question_group" name="question_group[]" data-seq="<?php echo $seq; ?>">
+                    <div class="col-lg-11">
+                    <div class="form-group">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><?php echo $seq; ?></span>
+                            <input disabled id="question_message" value="<?php echo $question->aq_description; ?>" class="form-control">
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="col-lg-1" >
+                    <button type="button" onclick="onclick_delete_question(this);" id="delete" data-seq="<?php echo $seq; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+                <?php $seq++; endforeach; ?>
+
+                <label>Add more questions.</label>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -111,7 +130,7 @@
                 <td><?php echo $question->aq_description; ?></td>
                 <td class="dt-body-right">
                         <button type="button" id="view_button" data-aq-description="<?php echo $question->aq_description; ?>" data-aq-id="<?php echo $question->aq_id; ?>" data-toggle="modal" data-target="#detail_question_modal" class="btn btn-sm btn-primary">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Answers
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  Answers
                         </button>
 
                             <button data-dismiss="modal" type="button" onclick="onclick_plus_button(this);" data-aq-id="<?php echo $question->aq_id; ?>" data-aq-description="<?php echo $question->aq_description; ?>" class="btn btn-sm btn-success">
@@ -165,6 +184,10 @@
   </div>
 </div>
 <script>
+    function onclick_delete_question(button){
+        var seq = $(button).attr('data-seq');
+        $("div#oldQuestionObject[data-seq='"+seq+"']").remove();
+    }
     function onclick_select_question(button){
         var seq = $(button).attr('data-seq');
         $('div#detail_question_modal').attr('data-seq',seq);

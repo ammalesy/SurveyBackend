@@ -10,11 +10,11 @@
                         Edit Question.
                     </div>
                     <div class="col-lg-6 text-right">
-                        <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement/change_status_question/Y/<?php echo $question->aq_id; ?>">
+                        <a href="<?php echo APP_PATH; ?>QuestionManagement/change_status_question/Y/<?php echo $question->aq_id; ?>">
                         <button type="button" class="btn btn-sm btn-success" <?php echo ($question->active == 'Y')?'disabled':'';?>>
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ACTIVE
                         </button></a>
-                        <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement/change_status_question/N/<?php echo $question->aq_id; ?>">
+                        <a href="<?php echo APP_PATH; ?>QuestionManagement/change_status_question/N/<?php echo $question->aq_id; ?>">
                         <button type="button" class="btn btn-sm btn-danger" <?php echo ($question->active == 'N')?'disabled':'';?>>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> DEACTIVE
                         </button></a>
@@ -23,7 +23,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement">Show all</a>
+                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>QuestionManagement">Show all</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Edit
@@ -35,7 +35,7 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH.'index.php/'; ?>QuestionManagement/submit/<?php echo $question->aq_id; ?>/edited">
+            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH; ?>QuestionManagement/submit/<?php echo $question->aq_id; ?>/edited">
                 <div class="form-group">
                     <label>Question</label>
                     <input name="aq_description" class="form-control" placeholder="Question text" value="<?php echo $question->aq_description; ?>">

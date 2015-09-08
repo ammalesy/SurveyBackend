@@ -32,6 +32,11 @@ class Tb_all_question extends CI_Model {
       $query = $this->db->query("select * from tb_all_question".$where);
       return $query->result();
     }
+    function fetch_by_multiple_id($multiple_id){
+      $this->load->database();
+      $query = $this->db->query("select * from tb_all_question where aq_id IN (".$multiple_id.")");
+      return $query->result();
+    }
     function get($aq_id,$isActive=TRUE){
 
       if ($isActive == TRUE) {

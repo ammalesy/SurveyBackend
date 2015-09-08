@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement">Show all</a>
+                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>QuestionManagement">Show all</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> View

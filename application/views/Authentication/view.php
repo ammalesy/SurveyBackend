@@ -56,7 +56,7 @@
     
     <div class="col-md-4">
       <section class="login-form">
-        <form method="post" action="<?php echo APP_PATH."index.php/Authentication/login"; ?>" role="login">
+        <form method="post" action="<?php echo APP_PATH."Authentication/login"; ?>" role="login">
           <img src="<?php echo APP_PATH."assets/"; ?>images/logo.png" class="img-responsive" alt="" />
           <input type="text" name="a_user" placeholder="Username" required class="form-control input-lg" value="" />
           

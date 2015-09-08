@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement">Show all</a>
+                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>QuestionManagement">Show all</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Add
@@ -21,7 +21,7 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH.'index.php/'; ?>QuestionManagement/submit/null/added">
+            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH; ?>QuestionManagement/submit/null/added">
                 <div class="form-group">
                     <label>Question</label>
                     <input name="aq_description" class="form-control" placeholder="Question text" value="">

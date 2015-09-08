@@ -33,9 +33,15 @@
     <link href="<?php echo APP_PATH."assets/"; ?>css/jquery.dataTables.min.css" rel="stylesheet">
     <style>
         .modal.modal-wide .modal-dialog {
-          width: 70%;
+          width: 60%;
+        }.modal.modal-wide-mini .modal-dialog {
+          width: 50%;
         }
         .modal-wide .modal-body {
+          overflow-y: auto;
+        }
+        .modal-wide-mini .modal-body {
+          max-height: 450px;
           overflow-y: auto;
         }
     </style>
@@ -75,7 +81,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo APP_PATH.'/index.php/'; ?>">Survey Admin</a>
+                <a class="navbar-brand" href="<?php echo APP_PATH; ?>">Survey Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -98,7 +104,7 @@
                         </li>
                         <li class="divider"></li> -->
                         <li>
-                            <a href="<?php echo APP_PATH.'index.php/Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?php echo APP_PATH.'Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -112,10 +118,10 @@
                         }
                     ?>
                     <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
-                        <a href="<?php echo APP_PATH.'index.php/'; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
+                        <a href="<?php echo APP_PATH; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
                     </li>
                     <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
-                        <a href="<?php echo APP_PATH.'index.php/'; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
+                        <a href="<?php echo APP_PATH; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                     </li>
                     
                 </ul>

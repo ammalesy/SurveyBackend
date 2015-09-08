@@ -23,7 +23,7 @@ class Tb_survey_mapping extends CI_Model {
     function fetchAll(){
 
       $this->load->database();
-      $query = $this->db->query("select * from tb_survey_mapping");
+      $query = $this->db->query("select * from tb_survey_mapping order by sm_id DESC");
       return $query->result();
     }
     function get($sm_id){

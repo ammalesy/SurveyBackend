@@ -32,6 +32,17 @@ class SurveyManagement extends NZ_Controller {
    
     }
     public function edit($sm_id){
+        $this->load->model('tb_all_question');
+        $this->load->model('tb_all_answer');
+        $this->load->model('tb_survey_mapping');
+        $data['message_error_type'] = $this->message_error_type;
+        $data['message_error'] = $this->message_error;
+        $data['questions'] = $this->tb_all_question->fetchAll();
+        $survey = $this->tb_survey_mapping->get($sm_id);
+        $data['survey'] = $survey;
+        $data['exist_questions'] = $this->tb_all_question->fetch_by_multiple_id($survey->sm_order_column);
+        $data['page'] = "SurveyManagement";
+        $this->load->view('SurveyManagement/edit',$data);
 
     }
     public function submit($sm_id,$type){
@@ -40,12 +51,23 @@ class SurveyManagement extends NZ_Controller {
     	/*========================================*/
 	    /*=============== DATA ===================*/
 	   	/*========================================*/
-    	$sm_name = "Survey No. 4";
-	    $sm_description = "description of survay no. 4";
-	   	$question_group = array('12','1','122');
+    	$sm_name = $this->input->post('sm_name');
+	    $sm_description = $this->input->post('sm_description');
+	   	$question_group = @array_filter(@array_unique($this->input->post('question_group')));
 	   	/*========================================*/
 	    /*======= TRANSACTION START ==============*/
 	   	/*========================================*/
+        $survey_empty = ($sm_name == NULL || $sm_name == "")?TRUE:FALSE;
+        $question_group_empty = (count($question_group) <= 0)?TRUE:FALSE;
+        if ($survey_empty == TRUE || $question_group_empty == TRUE)
+        {
+            $this->message_error_type = "fail";
+            $this->message_error = "Survey name not empty / select question at least 1.";
+            $this->edit($sm_id);
+            return;
+        }
+        
+
 		$this->db->trans_start();
 		$msg_err = "Add";
     	if ($type == 'added') 
