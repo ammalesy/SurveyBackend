@@ -15,6 +15,11 @@ class QuestionManagement extends REST_Controller {
 
 		$this->response(array('res' => "สวัสดีชาวโลก"));
 	}
+	public function answers_get($aq_id_ref){
+		$this->load->model('tb_all_answer');
+		$result = $this->tb_all_answer->get($aq_id_ref);
+		$this->response($result,REST_Controller::HTTP_OK);
+	}
 	/*=== POST JSON FORMAT ===*/
     /*
 	{

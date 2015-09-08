@@ -17,25 +17,7 @@
             </ol>
         </div>
     </div>
-    <?php if($message_error_type == "success") { ?>
-    <div class="row">
-       <div class="col-lg-12">
-            <div class="alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Well done!</strong> <?php echo $message_error; ?>
-            </div>
-        </div>
-    </div>
-    <?php }else if($message_error_type == "fail"){ ?>
-    <div class="row">
-       <div class="col-lg-12">
-            <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Sorry </strong> <?php echo $message_error; ?>
-            </div>
-        </div>
-    </div>
-    <?php } ?>
+    <?php $ci->show_error_message($message_error_type,$message_error); ?>
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
@@ -49,7 +31,7 @@
                 
                 <div class="row">
                     <div class="col-lg-12">
-                        
+                        <div class="form-group">
                         <button type="button" class="btn btn-sm btn-primary" id="plus_more" onclick="increase();">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
@@ -58,8 +40,9 @@
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                         </button>
                     </div>
+                    </div>
                 </div>
-                <div class="space_add_more" style="padding-top: 13px">
+                <div class="space_add_more">
                     
                     <!-- <div class="row" style="padding-top: 13px">
                         <div class="col-lg-7">
@@ -134,10 +117,12 @@
                                $( "div#answerObject:last").remove();
                             }
                  </script>
-                <div class="row" style="padding-top: 13px">
+                 <div class="row">
                     <div class="col-lg-8">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-primary">Reset</button>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                        </div>
                     </div>
                 </div>
                     

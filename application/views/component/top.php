@@ -31,7 +31,14 @@
     <![endif]-->
     <link href="<?php echo APP_PATH."assets/"; ?>css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo APP_PATH."assets/"; ?>css/jquery.dataTables.min.css" rel="stylesheet">
-   
+    <style>
+        .modal.modal-wide .modal-dialog {
+          width: 70%;
+        }
+        .modal-wide .modal-body {
+          overflow-y: auto;
+        }
+    </style>
 
 </head>
 
@@ -74,9 +81,13 @@
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Administrator <b class="caret"></b></a>
+                    <?php
+                        $ci =& get_instance(); 
+                        $admin = $ci->get_session(); 
+                    ?>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;<?php echo $admin->a_name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li>
+<!--                         <li>
                             <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li>
@@ -85,9 +96,9 @@
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
-                        <li class="divider"></li>
+                        <li class="divider"></li> -->
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?php echo APP_PATH.'index.php/Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -101,10 +112,10 @@
                         }
                     ?>
                     <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
-                        <a href="<?php echo APP_PATH.'/index.php/'; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
+                        <a href="<?php echo APP_PATH.'index.php/'; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
                     </li>
                     <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
-                        <a href="<?php echo APP_PATH.'/index.php/'; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
+                        <a href="<?php echo APP_PATH.'index.php/'; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                     </li>
                     
                 </ul>
@@ -112,4 +123,26 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper">
+        <div id="page-wrapper"> <?php $ci->session_invalid(); ?>
+        <script>
+            /* center modal */
+            function centerModals($element) {
+              var $modals;
+              if ($element.length) {
+                $modals = $element;
+            } else {
+                $modals = $('.modal-vcenter:visible');
+            }
+            $modals.each( function(i) {
+                var $clone = $(this).clone().css('display', 'block').appendTo('body');
+                var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                top = top > 0 ? top : 0;
+                $clone.remove();
+                $(this).find('.modal-content').css("margin-top", top);
+            });
+        }
+        $('.modal-vcenter').on('show.bs.modal', function(e) {
+          centerModals($(this));
+        });
+        $(window).on('resize', centerModals);
+        </script>

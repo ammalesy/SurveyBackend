@@ -23,9 +23,9 @@ class Tb_all_question extends CI_Model {
     function fetchAll($isActive=TRUE){
 
       if ($isActive == TRUE) {
-         $where = " WHERE active = 'Y'";
+         $where = " WHERE active = 'Y' ORDER BY aq_id ASC";
       }else{
-         $where = "";
+         $where = " ORDER BY aq_id ASC";
       }
 
       $this->load->database();

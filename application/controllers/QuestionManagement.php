@@ -11,6 +11,7 @@ class QuestionManagement extends NZ_Controller {
         parent::__construct();
     }
     function index(){
+ 
     	$this->load->model('tb_all_question');
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
@@ -89,6 +90,7 @@ class QuestionManagement extends NZ_Controller {
     	/*============================*/
     	/*======= ADD SUBMITED =======*/
     	/*============================*/
+        $msg_err = "Add";
 		if($type == "added") 
 	   	{
 	   		if($aq_description == "" || $aq_description == NULL){
@@ -118,6 +120,7 @@ class QuestionManagement extends NZ_Controller {
     	/*=============================*/
     	else if ($type == "edited")
     	{
+            $msg_err = "Update";
     		if($aq_description == "" || $aq_description == NULL){
 	   			$this->message_error_type = "fail";
 				$this->message_error = "Your question message not empty.";
@@ -157,11 +160,11 @@ class QuestionManagement extends NZ_Controller {
 		if ($this->db->trans_status() === FALSE)
 		{
 		    $this->message_error_type = "fail";
-			$this->message_error = "Update question failure";
+			$this->message_error = $msg_err." question failure";
 			$this->edit($aq_id);
 		}else{
 			$this->message_error_type = "success";
-			$this->message_error = "Update question succesfully";
+			$this->message_error = $msg_err." question succesfully";
 			$this->edit($aq_id);
 		}
     }

@@ -17,25 +17,7 @@
             </ol>
         </div>
     </div>
-    <?php if($message_error_type == "success") { ?>
-    <div class="row">
-       <div class="col-lg-12">
-            <div class="alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Well done!</strong> <?php echo $message_error; ?>
-            </div>
-        </div>
-    </div>
-    <?php }else if($message_error_type == "fail"){ ?>
-    <div class="row">
-       <div class="col-lg-12">
-            <div class="alert alert-danger fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Sorry </strong> <?php echo $message_error; ?>
-            </div>
-        </div>
-    </div>
-    <?php } ?>
+    <?php $ci->show_error_message($message_error_type,$message_error); ?>
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
