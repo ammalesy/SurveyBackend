@@ -26,7 +26,7 @@ class Authentication extends NZ_Controller {
     		$this->make_session(array('a_id' => $admin->a_id,
     								  'a_user' => $admin->a_user,
     								  'a_name' => $admin->a_name));
-    		redirect('QuestionManagement');
+    		redirect('Dashboard');
     	}else{
     		$this->message_error_type = 'fail';
     		$this->message_error = 'Username or password not correct.';

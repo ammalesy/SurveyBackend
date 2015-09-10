@@ -26,13 +26,46 @@ class Tb_survey_mapping extends CI_Model {
       $query = $this->db->query("select * from tb_survey_mapping order by sm_id DESC");
       return $query->result();
     }
+    function count(){
+      return $this->db->count_all_results('tb_survey_mapping');
+    }
     function get($sm_id){
 
       $this->load->database();
       $query = $this->db->query("select * from tb_survey_mapping where sm_id = '".$sm_id."'");
       return $query->first_row();
     }
+    function get_on_table($sm_table_code,$id){
+
+      $this->load->database();
+      //SELECT ALL COLUMN NAME
+      $sql = "SELECT `COLUMN_NAME` 
+              FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+              WHERE `TABLE_SCHEMA`='".$this->db->database."' 
+              AND `TABLE_NAME`='".$sm_table_code."';";
+      $query = $this->db->query($sql);
+      $exist_columns = $query->result();
+
+      //GENERATE NORMAL ARRAY
+      $sql_column = 'id ';
+      $exist_columns_r = array();
+      for($i = 0; $i < count($exist_columns); $i++){
+        if($i == 0) continue;
+        $exist_columns_r[] = $exist_columns[$i]->COLUMN_NAME;
+        $sql_column .= ",`".$exist_columns[$i]->COLUMN_NAME."` as 'q_".$exist_columns[$i]->COLUMN_NAME."'";
+      }
+
+
+      $query = $this->db->query("select ".$sql_column." from ".$sm_table_code." where id = '".$id."'");
+   
+      return $query->first_row();
+    }
     
+    function fetch_all_on_table($sm_table_code){
+      $this->load->database();
+      $query = $this->db->query("select * from ".$sm_table_code." order by id DESC");
+      return $query->result();
+    }
     function create_table_survey($sm_table_code,$columns){
       $this->load->database();
 

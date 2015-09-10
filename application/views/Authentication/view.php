@@ -72,7 +72,7 @@
         </form>
         
         <div class="form-links">
-          <a href="#">www.survey.com</a>
+          <a href="#">version <?php echo VERSION; ?></a>
         </div>
       </section>  
       </div>

@@ -20,6 +20,9 @@ class Tb_all_question extends CI_Model {
       $this->db->where('aq_id', $aq_id);
       $this->db->update('tb_all_question', $array); 
     }
+    function count(){
+      return $this->db->count_all_results('tb_all_question');
+    }
     function fetchAll($isActive=TRUE){
 
       if ($isActive == TRUE) {
@@ -34,7 +37,23 @@ class Tb_all_question extends CI_Model {
     }
     function fetch_by_multiple_id($multiple_id){
       $this->load->database();
-      $query = $this->db->query("select * from tb_all_question where aq_id IN (".$multiple_id.")");
+      $multiple_id = explode(",",$multiple_id);
+      $where = "where active='Y' AND ";
+      $i = 0;
+      foreach ($multiple_id as $aq_id) {
+        if ($i == 0) {
+          $where .= "(";
+          $where .= " aq_id = ".$aq_id;
+        }else{
+          $where .= "|| aq_id = ".$aq_id;
+        }
+
+        
+        $i++;
+      }
+      $where .= ")";
+
+      $query = $this->db->query("select * from tb_all_question ".$where);
       return $query->result();
     }
     function get($aq_id,$isActive=TRUE){

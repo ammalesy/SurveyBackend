@@ -53,7 +53,7 @@
             <?php foreach ($list_all_question as $question) : ?>
             <tr>
                 <td><?php echo $question->aq_id; ?></td>
-                <td><?php echo $question->aq_description; ?></td>
+                <td><?php echo $ci->nullableTextIfEmptyData($question->aq_description); ?></td>
                 <td><?php echo $question->active; ?></td>
                 <td class="dt-body-right">
                     <!-- <a href="<?php echo APP_PATH; ?>QuestionManagement/view/<?php echo $question->aq_id; ?>"> -->

@@ -53,17 +53,25 @@ class SurveyManagement extends NZ_Controller {
 	   	/*========================================*/
     	$sm_name = $this->input->post('sm_name');
 	    $sm_description = $this->input->post('sm_description');
+        $ff = $this->input->post('question_group');
+
 	   	$question_group = @array_filter(@array_unique($this->input->post('question_group')));
 	   	/*========================================*/
 	    /*======= TRANSACTION START ==============*/
 	   	/*========================================*/
         $survey_empty = ($sm_name == NULL || $sm_name == "")?TRUE:FALSE;
-        $question_group_empty = (count($question_group) <= 0)?TRUE:FALSE;
+        $question_group_empty = (count($question_group) <= 0 || $question_group == NULL)?TRUE:FALSE;
+
         if ($survey_empty == TRUE || $question_group_empty == TRUE)
         {
             $this->message_error_type = "fail";
             $this->message_error = "Survey name not empty / select question at least 1.";
-            $this->edit($sm_id);
+            if ($type == 'added') 
+            {
+                $this->add();
+            }else{
+                $this->edit($sm_id);
+            }
             return;
         }
         

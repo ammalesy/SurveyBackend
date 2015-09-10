@@ -108,7 +108,7 @@
             <tbody>
             <?php foreach ($questions as $question) : ?>
             <tr>
-                <td><?php echo $question->aq_description; ?></td>
+                <td><?php echo $ci->nullableTextIfEmptyData($question->aq_description); ?></td>
                 <td class="dt-body-right">
                         <button type="button" id="view_button" data-aq-description="<?php echo $question->aq_description; ?>" data-aq-id="<?php echo $question->aq_id; ?>" data-toggle="modal" data-target="#detail_question_modal" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Answers
@@ -176,6 +176,8 @@
 
         $("input#question_message[data-seq='" + seq + "']").val(aq_description);
         $("input#question_group[data-seq='" + seq + "']").val(aq_id);
+        // $("span.input-group-addon[data-seq='" + seq + "']").css("background-color","#5cb85c");
+        // $("span.input-group-addon[data-seq='" + seq + "']").css("color","#FFFFFF");
     }
     function increase(){
 
@@ -211,7 +213,7 @@
         '<div class="col-lg-10">'+
         '   <div class="form-group">'+
         '        <div class="form-group input-group">'+
-        '            <span class="input-group-addon">'+(question_group_count+1)+'</span>'+
+        '            <span class="input-group-addon" data-seq="'+(question_group_count+1)+'">'+(question_group_count+1)+'</span>'+
         '            <input disabled id="question_message" data-seq="'+(question_group_count+1)+'" class="form-control" placeholder="Please select a question.">'+
         '        </div>  '+
         '    </div>'+

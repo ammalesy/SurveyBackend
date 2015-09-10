@@ -25,5 +25,4 @@ class SurveyManagement extends REST_Controller {
 
 		$this->response($questions);
 	}
-
 }

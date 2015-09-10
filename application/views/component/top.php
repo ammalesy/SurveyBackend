@@ -63,12 +63,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/raphael.min.js"></script>
-    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/morris.min.js"></script>
-    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/morris-data.js"></script>
-
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -81,7 +75,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo APP_PATH; ?>">Survey Admin</a>
+                <a class="navbar-brand" href="<?php echo APP_PATH; ?>Dashboard">Survey Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -117,6 +111,12 @@
 
                         }
                     ?>
+                    <li <?php echo ($page == "Dashboard")?"class=active":""; ?>>
+                        <a href="<?php echo APP_PATH; ?>Dashboard"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
+                    </li>
+                    <li <?php echo ($page == "SurveyResult")?"class=active":""; ?>>
+                        <a href="<?php echo APP_PATH; ?>SurveyResult"><i class="fa fa-fw fa-th-list"></i>Survey result</a>
+                    </li>
                     <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
                     </li>
@@ -124,7 +124,9 @@
                         <a href="<?php echo APP_PATH; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                     </li>
                     
+                    
                 </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </nav>
