@@ -9,6 +9,15 @@ class SurveyManagement extends REST_Controller {
     {
         parent::__construct();
     }
+    public function surveys_get(){
+    	$this->load->model('tb_survey_mapping');
+    	$surveys = $this->tb_survey_mapping->fetchAll();
+    	if(count($surveys) > 0){
+    		$this->response($surveys);
+    	}else{
+    		$this->response(array('Error' => 'Survey not found.'));
+    	}
+    }
 	public function survey_get($sm_id){
 		$this->load->model('tb_all_question');
 		$this->load->model('tb_all_answer');

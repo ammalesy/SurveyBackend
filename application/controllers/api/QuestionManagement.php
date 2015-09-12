@@ -12,8 +12,13 @@ class QuestionManagement extends REST_Controller {
 
 
 	public function questions_get(){
-
-		$this->response(array('res' => "สวัสดีชาวโลก"));
+		$this->load->model('tb_all_question');
+		$questions = $this->tb_all_question->fetchAll();
+		if(count($questions) > 0){
+			$this->response($questions);
+		}else{
+			$this->response(array('Error' => '404 not found.'),REST_Controller::HTTP_NOT_FOUND);
+		}
 	}
 	public function question_get($aq_id){
     	$this->load->model('tb_all_question');
@@ -43,34 +48,34 @@ class QuestionManagement extends REST_Controller {
 				     ]
 	}
 	*/
-    public function question_post()
-    {
-        $jsonData = $this->post('questionData');
+  //   public function question_post()
+  //   {
+  //       $jsonData = $this->post('questionData');
 
-		$this->load->database();
-		$this->db->trans_start();
+		// $this->load->database();
+		// $this->db->trans_start();
 
-		$this->load->model('tb_all_question');
-		$this->load->model('tb_all_answer');
+		// $this->load->model('tb_all_question');
+		// $this->load->model('tb_all_answer');
 
-		$aq_description = $jsonData['question'];
-		$aq_image = $jsonData['image'];
+		// $aq_description = $jsonData['question'];
+		// $aq_image = $jsonData['image'];
 
-		$insert_id = $this->tb_all_question->record(array('aq_description' => $aq_description,
-											 			  'aq_image' => $aq_image));
-		foreach ($jsonData['answer_list'] as $answer) {
-			$this->tb_all_answer->record(array('aa_description' => $answer['ans'],
-											   'aa_image' => $answer['img'],
-											   'aq_id_ref' => $insert_id));
-		}
-		$this->db->trans_complete();
+		// $insert_id = $this->tb_all_question->record(array('aq_description' => $aq_description,
+		// 									 			  'aq_image' => $aq_image));
+		// foreach ($jsonData['answer_list'] as $answer) {
+		// 	$this->tb_all_answer->record(array('aa_description' => $answer['ans'],
+		// 									   'aa_image' => $answer['img'],
+		// 									   'aq_id_ref' => $insert_id));
+		// }
+		// $this->db->trans_complete();
 
-		if ($this->db->trans_status() === FALSE)
-		{
-		    echo "Transaction error.";
-		}else{
-			$this->response($jsonData);
-		}
+		// if ($this->db->trans_status() === FALSE)
+		// {
+		//     echo "Transaction error.";
+		// }else{
+		// 	$this->response($jsonData);
+		// }
 
-    }
+  //   }
 }

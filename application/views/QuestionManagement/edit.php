@@ -10,6 +10,10 @@
                         Edit Question.
                     </div>
                     <div class="col-lg-6 text-right">
+                        <a href="QuestionManagement/add">
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
+                        </button></a>
                         <a href="<?php echo APP_PATH; ?>QuestionManagement/change_status_question/Y/<?php echo $question->aq_id; ?>">
                         <button type="button" class="btn btn-sm btn-success" <?php echo ($question->active == 'Y')?'disabled':'';?>>
                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> ACTIVE

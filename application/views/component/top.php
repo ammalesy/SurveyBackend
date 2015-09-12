@@ -55,7 +55,8 @@
     <script>
         $(document).ready(function() {
             $('#questionTable').DataTable({
-                "pagingType": "full_numbers"
+                "pagingType": "full_numbers",
+                 "order": [[ 0, "desc" ]]
             });
         });
     </script>
