@@ -10,7 +10,7 @@
                         Edit Question.
                     </div>
                     <div class="col-lg-6 text-right">
-                        <a href="QuestionManagement/add">
+                        <a href="<?php echo APP_PATH; ?>QuestionManagement/add">
                         <button type="button" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
                         </button></a>
