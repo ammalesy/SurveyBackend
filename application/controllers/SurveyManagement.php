@@ -40,7 +40,23 @@ class SurveyManagement extends NZ_Controller {
         $data['questions'] = $this->tb_all_question->fetchAll();
         $survey = $this->tb_survey_mapping->get($sm_id);
         $data['survey'] = $survey;
-        $data['exist_questions'] = $this->tb_all_question->fetch_by_multiple_id($survey->sm_order_column);
+
+        $sm_order_column = explode(",", $survey->sm_order_column);
+
+        $questions = $this->tb_all_question->fetch_by_multiple_id($survey->sm_order_column);
+        ///SOERTING
+        $sorted = array();
+        foreach ($sm_order_column as $column) {
+
+            foreach ($questions as $question) {
+                if($question->aq_id == $column){
+                    array_push($sorted, $question);
+                    break;
+                }
+            }
+        }
+        $data['exist_questions'] = $sorted;
+
         $data['page'] = "SurveyManagement";
         $this->load->view('SurveyManagement/edit',$data);
 

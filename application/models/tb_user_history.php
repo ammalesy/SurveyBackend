@@ -23,16 +23,16 @@ class Tb_user_history extends CI_Model {
     function fetchAll(){
 
       $this->load->database();
-      $query = $this->db->query("select * from tb_user_history order by h_id DESC");
+      $query = $this->db->query("select * from tb_user_history order by h_timestamp DESC");
       return $query->result();
     }
     function count(){
       return $this->db->count_all_results('tb_user_history');
     }
-    function fetch_by_sm_id($sm_id_ref){
+    function fetch_by_sm_id($sm_id_ref,$orderby = "h_timestamp DESC"){
 
       $this->load->database();
-      $query = $this->db->query("select * from tb_user_history where sm_id_ref = '".$sm_id_ref."' ORDER BY h_timestamp");
+      $query = $this->db->query("select * from tb_user_history where sm_id_ref = '".$sm_id_ref."' ORDER BY ".$orderby);
       return $query->result();
     }
     function get($h_id){

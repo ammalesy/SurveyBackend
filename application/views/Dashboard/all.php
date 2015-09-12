@@ -35,7 +35,7 @@
                                     
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $history_count; ?></div>
-                                        <div>All completed survey</div>
+                                        <div>All survey that was done</div>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 <div class="list-group">
                                     
                                     <?php foreach ($results as $result) : ?>
-                                    <a href="#" class="list-group-item">
+                                    <a href="<?php echo APP_PATH; ?>SurveyResult/view/<?php echo $survey->sm_id; ?>" class="list-group-item">
                                         <span class="badge"><?php echo $ci->time_elapsed_string($result->h_timestamp); ?></span>
                                         <i class="fa fa-fw fa-pencil"></i> <?php echo $result->user_info->u_firstname." ".$result->user_info->u_surname; ?> does a survey.
                                     </a>

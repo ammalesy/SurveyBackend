@@ -23,7 +23,9 @@ class SurveyManagement extends REST_Controller {
 		$this->load->model('tb_all_answer');
 		$this->load->model('tb_survey_mapping');
 
+
 		$survey = $this->tb_survey_mapping->get($sm_id);
+		$sm_order_column = explode(",", $survey->sm_order_column);
 		if ($survey == NULL) {
 			$this->response(array('Error' => 'Survey not found.'));
 		}
@@ -31,7 +33,21 @@ class SurveyManagement extends REST_Controller {
 		foreach ($questions as $question) {
 			$question->answers = $this->tb_all_answer->get($question->aq_id);
 		}
+		///SOERTING
+		$sorted = array();
+		foreach ($sm_order_column as $column) {
 
-		$this->response($questions);
+			foreach ($questions as $question) {
+				if($question->aq_id == $column){
+					array_push($sorted, $question);
+					break;
+				}
+			}
+		
+			
+		}
+
+
+		$this->response($sorted);
 	}
 }

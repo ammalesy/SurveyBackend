@@ -32,4 +32,13 @@ class Tb_user_info extends CI_Model {
       $query = $this->db->query("select * from tb_user_info where u_id = '".$u_id."'");
       return $query->first_row();
     }
+    function is_exist_user($firstname,$surname){
+      $this->load->database();
+      $query = $this->db->query("select * from tb_user_info where u_firstname = '".$firstname."' AND u_surname = '".$surname."'");
+      if(count($query->row()) == 0){
+        return FALSE;
+      }else{
+        return $query->first_row();
+      }
+    }
 }

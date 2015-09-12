@@ -14,6 +14,13 @@ class Tb_survey_mapping extends CI_Model {
       $insert_id = $this->db->insert_id();
       return  $insert_id;
     }
+    function record_survey_table($table,$array)
+    {
+      $this->load->database();
+      $this->db->insert($table, $array);
+      $insert_id = $this->db->insert_id();
+      return  $insert_id;
+    }
     function update($array,$sm_id)
     {
       $this->load->database();
@@ -113,8 +120,5 @@ class Tb_survey_mapping extends CI_Model {
           $this->db->query("ALTER TABLE `".$sm_table_code."` DROP `".$exist_columns_r[$i]."`;");
         }
       }
-
-
-
     }
 }

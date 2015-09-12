@@ -31,7 +31,7 @@ class SurveyResult extends NZ_Controller {
         $this->load->model('tb_user_info');
         
         $data['survey'] = $this->tb_survey_mapping->get($sm_id);
-        $user_histories = $this->tb_user_history->fetch_by_sm_id($sm_id);
+        $user_histories = $this->tb_user_history->fetch_by_sm_id($sm_id,"h_timestamp ASC");
         foreach ($user_histories as $user_history) {
             $user_history->user_info = $this->tb_user_info->get($user_history->u_id_ref);
             $sm_obj = $this->tb_survey_mapping->get($user_history->sm_id_ref);

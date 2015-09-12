@@ -35,7 +35,7 @@ class UserInfoManagement extends REST_Controller {
     		if($user_info_json == NULL){
     			$this->response([]);
     		}else{
-    			$this->tb_user_info->update($user_info_json,$u_id);
+    			$this->tb_user_info->update($user_info_json['data'],$u_id);
     			$this->response(array('Status' => 'success'),REST_Controller::HTTP_OK);
     		}
     	}
@@ -47,7 +47,7 @@ class UserInfoManagement extends REST_Controller {
     	if($user_info_json == NULL){
     		$this->response(array('Error' => '404 not found.'),REST_Controller::HTTP_NOT_FOUND);
     	}else{
-    		$insert_id = $this->tb_user_info->record($user_info_json);
+    		$insert_id = $this->tb_user_info->record($user_info_json['data']);
     		$this->response(array('Status' => 'success','insert_id' => $insert_id ),REST_Controller::HTTP_OK);
     	}
     }
