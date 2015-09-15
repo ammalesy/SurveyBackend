@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 10, 2015 at 01:08 PM
+-- Generation Time: Sep 15, 2015 at 02:04 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `Survey`
+-- Database: `SurveyNew`
 --
 
 -- --------------------------------------------------------
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `SV7` (
 `id` int(10) NOT NULL,
   `12` varchar(100) NOT NULL,
   `13` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `SV7`
@@ -72,7 +72,10 @@ CREATE TABLE IF NOT EXISTS `SV7` (
 
 INSERT INTO `SV7` (`id`, `12`, `13`) VALUES
 (1, '99', '110'),
-(2, '99,146', '110');
+(2, '99,146', '110'),
+(3, '99', '110'),
+(4, '99', '110'),
+(5, '99', '110');
 
 -- --------------------------------------------------------
 
@@ -83,8 +86,7 @@ INSERT INTO `SV7` (`id`, `12`, `13`) VALUES
 CREATE TABLE IF NOT EXISTS `SV8` (
 `id` int(10) NOT NULL,
   `1` varchar(100) NOT NULL,
-  `12` varchar(100) NOT NULL,
-  `122` varchar(100) NOT NULL
+  `12` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -96,8 +98,7 @@ CREATE TABLE IF NOT EXISTS `SV8` (
 CREATE TABLE IF NOT EXISTS `SV9` (
 `id` int(10) NOT NULL,
   `12` varchar(100) NOT NULL,
-  `1` varchar(100) NOT NULL,
-  `122` varchar(100) NOT NULL
+  `1` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -112,14 +113,15 @@ CREATE TABLE IF NOT EXISTS `SV10` (
   `1` varchar(100) NOT NULL,
   `13` varchar(100) NOT NULL,
   `14` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `SV10`
 --
 
 INSERT INTO `SV10` (`id`, `12`, `1`, `13`, `14`) VALUES
-(1, '97,98', '102', '110', '129,130,131');
+(1, '97,98', '102', '110', '129,130,131'),
+(2, '97', '102', '110', '129');
 
 -- --------------------------------------------------------
 
@@ -142,6 +144,51 @@ CREATE TABLE IF NOT EXISTS `SV11` (
 CREATE TABLE IF NOT EXISTS `SV12` (
 `id` int(10) NOT NULL,
   `12` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV13`
+--
+
+CREATE TABLE IF NOT EXISTS `SV13` (
+`id` int(10) NOT NULL,
+  `1` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV14`
+--
+
+CREATE TABLE IF NOT EXISTS `SV14` (
+`id` int(10) NOT NULL,
+  `12` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV15`
+--
+
+CREATE TABLE IF NOT EXISTS `SV15` (
+`id` int(10) NOT NULL,
+  `15` varchar(100) NOT NULL,
+  `13` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV16`
+--
+
+CREATE TABLE IF NOT EXISTS `SV16` (
+`id` int(10) NOT NULL,
+  `17` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -231,7 +278,7 @@ INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`,
 CREATE TABLE IF NOT EXISTS `tb_all_question` (
 `aq_id` int(5) NOT NULL,
   `aq_description` text NOT NULL,
-  `aq_image` varchar(100) DEFAULT NULL,
+  `aq_image` varchar(100) DEFAULT ' ',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
@@ -265,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `tb_survey_mapping` (
   `sm_table_code` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `sm_order_column` text NOT NULL,
   `sm_update_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_survey_mapping`
@@ -275,10 +322,14 @@ INSERT INTO `tb_survey_mapping` (`sm_id`, `sm_name`, `sm_description`, `sm_table
 (5, 'Survey No. 4', 'description of survay no. 4', 'SV5', '12,1,13', '2015-09-07 23:58:51'),
 (6, 'Survey No. 4', 'description of survay no. 4', 'SV6', '12,1,13', '2015-09-07 23:58:51'),
 (7, 'Survey No. 4', 'description of survay no. 4', 'SV7', '12,13', '2015-09-09 00:49:35'),
-(8, 'Survey No. 4', 'description of survay no. 4', 'SV8', '12,1,122', '2015-09-07 23:59:31'),
-(9, 'Survey No. 4', 'description of survay no. 4', 'SV9', '12,1,122', '2015-09-08 22:36:54'),
+(8, 'Survey No. 4', 'description of survay no. 4', 'SV8', '12,1', '2015-09-07 23:59:31'),
+(9, 'Survey No. 4', 'description of survay no. 4', 'SV9', '12,1', '2015-09-08 22:36:54'),
 (10, 'test_tonight4', 'test_tonight_detail4', 'SV10', '1,12,13,14', '2015-09-09 22:22:36'),
-(12, 'gg', '', 'SV12', '12', '2015-09-09 09:05:38');
+(12, 'gg', '', 'SV12', '12', '2015-09-09 09:05:38'),
+(13, 'Test On Mobile1', 'Test On Mobile1 description 1', 'SV13', '1', '2015-09-14 02:14:22'),
+(14, 'Test On Mobile2', 'Test On Mobile2 des', 'SV14', '12', '2015-09-14 02:14:36'),
+(15, 'Test On Mobile3', 'Test On Mobile3', 'SV15', '15,13', '2015-09-14 02:14:50'),
+(16, 'Test On Mobile4', 'Test On Mobile4 des', 'SV16', '17', '2015-09-14 02:15:08');
 
 -- --------------------------------------------------------
 
@@ -292,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_history` (
   `sm_id_ref` int(11) NOT NULL,
   `s_id_ref` int(10) NOT NULL,
   `h_timestamp` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user_history`
@@ -301,7 +352,11 @@ CREATE TABLE IF NOT EXISTS `tb_user_history` (
 INSERT INTO `tb_user_history` (`h_id`, `u_id_ref`, `sm_id_ref`, `s_id_ref`, `h_timestamp`) VALUES
 (1, 1, 10, 1, '2015-09-09 00:00:00'),
 (2, 2, 7, 1, '2015-09-09 00:00:00'),
-(3, 1, 7, 2, '2015-09-09 06:00:00');
+(3, 1, 7, 2, '2015-09-09 06:00:00'),
+(4, 1, 10, 2, '2015-05-09 11:20:10'),
+(5, 2, 7, 3, '2015-09-09 11:20:10'),
+(6, 3, 7, 4, '2015-09-09 11:20:10'),
+(7, 4, 7, 5, '2015-09-09 11:20:10');
 
 -- --------------------------------------------------------
 
@@ -317,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_info` (
   `u_age` int(3) NOT NULL,
   `u_email` varchar(50) DEFAULT NULL,
   `u_tel` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user_info`
@@ -325,7 +380,9 @@ CREATE TABLE IF NOT EXISTS `tb_user_info` (
 
 INSERT INTO `tb_user_info` (`u_id`, `u_firstname`, `u_surname`, `u_sex`, `u_age`, `u_email`, `u_tel`) VALUES
 (1, 'Ammales', 'Yamsompong', 0, 23, 'ammales.y@gmail.com', '0824832318'),
-(2, 'Apichaya', 'Boonsin', 1, 23, 'apichaya-2010@hotmail.com', '0824832317');
+(2, 'Apichaya', 'Boonsin', 1, 23, 'apichaya-2010@hotmail.com', '0824832317'),
+(3, 'NEW_USER1', 'NEW_USER1', 0, 0, '', ''),
+(4, 'NEW_USER2', 'NEW_USER2', 0, 0, '', '');
 
 --
 -- Indexes for dumped tables
@@ -377,6 +434,30 @@ ALTER TABLE `SV11`
 -- Indexes for table `SV12`
 --
 ALTER TABLE `SV12`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV13`
+--
+ALTER TABLE `SV13`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV14`
+--
+ALTER TABLE `SV14`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV15`
+--
+ALTER TABLE `SV15`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV16`
+--
+ALTER TABLE `SV16`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -433,7 +514,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `SV7`
 --
 ALTER TABLE `SV7`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `SV8`
 --
@@ -448,7 +529,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `SV10`
 --
 ALTER TABLE `SV10`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `SV11`
 --
@@ -458,6 +539,26 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `SV12`
 --
 ALTER TABLE `SV12`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `SV13`
+--
+ALTER TABLE `SV13`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `SV14`
+--
+ALTER TABLE `SV14`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `SV15`
+--
+ALTER TABLE `SV15`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `SV16`
+--
+ALTER TABLE `SV16`
 MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_admin`
@@ -478,17 +579,17 @@ MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 -- AUTO_INCREMENT for table `tb_survey_mapping`
 --
 ALTER TABLE `tb_survey_mapping`
-MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tb_user_history`
 --
 ALTER TABLE `tb_user_history`
-MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_user_info`
 --
 ALTER TABLE `tb_user_info`
-MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
