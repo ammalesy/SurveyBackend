@@ -75,10 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'SurveyNew',
+	'hostname' => 'us-cdbr-iron-east-02.cleardb.net',
+	'username' => 'b43b6aee599c80',
+	'password' => '2b68bfbe',
+	//'database' => 'SurveyNew',
+	'database' => 'ad_ba1a9132b6b7b1b',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
