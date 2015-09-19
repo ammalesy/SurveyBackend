@@ -69,16 +69,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
-*/
+*/  
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'SurveyNew',
+	'hostname' => 'us-cdbr-iron-east-02.cleardb.net',
+	'username' => 'b21f1aa65d1f29',
+	'password' => 'cba084c2',
+	//'database' => 'SurveyNew',
+	'database' => 'ad_a9076bee88c3994',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
