@@ -47,6 +47,30 @@ class SyncDataManager extends REST_Controller {
                                                           'u_tel' => $tel));
             }else{
                 $u_id = $exist->u_id;
+                $shouldUpdate = FALSE;
+                $infoUpdate = array();
+                if($sex != NULL && $sex != ""){
+                	$shouldUpdate = TRUE;
+                	$infoUpdate['u_sex'] = $sex;
+                }
+                if($age != NULL && $age != ""){
+                	$shouldUpdate = TRUE;
+                	$infoUpdate['u_age'] = $age;
+                }
+                if($email != NULL && $email != ""){
+                	$shouldUpdate = TRUE;
+                	$infoUpdate['u_email'] = $email;
+                }
+                if($tel != NULL && $tel != ""){
+                	$shouldUpdate = TRUE;
+                	$infoUpdate['u_tel'] = $tel;
+                }
+                
+                if($shouldUpdate == TRUE){
+                	$this->load->model('tb_user_info');
+                	$this->tb_user_info->update($infoUpdate,$u_id);
+                }
+                
             }
 
             $result_filter = array();

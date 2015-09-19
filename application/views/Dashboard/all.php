@@ -35,7 +35,7 @@
                                     
                                     <div class="col-xs-9 text-right">
                                         <div class="huge"><?php echo $history_count; ?></div>
-                                        <div>All survey that was done</div>
+                                        <div>All survey completed</div>
                                     </div>
                                 </div>
                             </div>

@@ -24,6 +24,7 @@
             <table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Since date</th>
                     <th>Name</th>
                     <th>Sex</th>
@@ -35,6 +36,7 @@
             <tbody>
             <?php foreach ($user_histories as $user_history) : ?>
             <tr>
+                <td><?php echo $user_history->h_id;?></td>
                 <td><span class="badge"><?php echo $ci->time_elapsed_string($user_history->h_timestamp); ?></span></td>
                 <td><?php echo $user_history->user_info->u_firstname." ".$user_history->user_info->u_surname; ?></td>
                 <td><?php echo $ci->sex($user_history->user_info->u_sex,'th'); ?></td>
