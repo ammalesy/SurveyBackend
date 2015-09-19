@@ -18,8 +18,8 @@ define('VERSION', '1.1');
 
 $protocal = isset($_SERVER['HTTPS'])? 'https://':'http://';
 $domain_server = $_SERVER['SERVER_NAME'];
-//$app_name = "/Survey/";
-$app_name = "/";
+$app_name = "/Survey/";
+//$app_name = "/";
 $full_server_name = $protocal.$domain_server.$app_name;
 
 define('PATHDOMAIN', $protocal.$domain_server);
