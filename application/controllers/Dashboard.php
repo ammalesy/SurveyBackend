@@ -11,6 +11,7 @@ class Dashboard extends NZ_Controller {
         parent::__construct();
     }
     function index(){
+        
         $data['page'] = "Dashboard";
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;

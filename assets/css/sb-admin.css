@@ -32,15 +32,7 @@ body {
     line-height: normal; 
 }
 
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 225px; 
-    }
 
-    #page-wrapper {
-        padding: 10px;
-    }
-}
 
 /* Top Navigation */
 
@@ -70,6 +62,7 @@ body {
 }
 
 .top-nav>.open>.dropdown-menu {
+
     float: left;
     position: absolute;
     margin-top: 0;
@@ -80,8 +73,12 @@ body {
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
+.dropdown-menu {
+    width: 250px !important;
+}
 
 .top-nav>.open>.dropdown-menu>li>a {
+
     white-space: normal;
 }
 
@@ -89,7 +86,8 @@ ul.message-dropdown {
     padding: 0;
     max-height: 250px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto; 
+
 }
 
 li.message-preview {

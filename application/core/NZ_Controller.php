@@ -4,6 +4,14 @@ class Admin {
 	var $a_id = NULL;
 	var $a_user = NULL;
 	var $a_name = NULL;
+    var $permission = NULL;
+    var $database_selected = NULL;
+}
+class Permission {
+    var $quesion_mgnt = NULL;
+    var $survey_mgnt = NULL;
+    var $survey_result_mgnt = NULL;
+    var $admin_mgnt = NULL;
 }
 
 class NZ_Controller extends CI_Controller{
@@ -14,17 +22,25 @@ class NZ_Controller extends CI_Controller{
     {
         parent::__construct();
         date_default_timezone_set('Asia/Bangkok');
-        
+
     }
     public function make_session($info){
     	$sessionData = array(
                    'a_id' => $info['a_id'],
                    'a_user' =>  $info['a_user'],
-                   'a_name' => $info['a_name']
+                   'a_name' => $info['a_name'],
+                   'quesion_mgnt' => $info['quesion_mgnt'],
+                   'survey_mgnt' => $info['survey_mgnt'],
+                   'survey_result_mgnt' => $info['survey_result_mgnt'],
+                   'admin_mgnt' => $info['admin_mgnt']
         );
 
 		$this->session->set_userdata($sessionData);
 		$this->refresh_session();
+    }
+    public function selectProject($database_name){
+        $this->session->set_userdata(array('database_selected' => $database_name));
+        $this->refresh_session();
     }
     public function remove_session(){
     	$this->admin = NULL;
@@ -35,13 +51,30 @@ class NZ_Controller extends CI_Controller{
     	$this->admin->a_id = $this->session->userdata('a_id');
     	$this->admin->a_user = $this->session->userdata('a_user');
     	$this->admin->a_name = $this->session->userdata('a_name');
+        $this->admin->database_selected = $this->session->userdata('database_selected');
+
+        $permission = new Permission();
+        $permission->question_mgnt = $this->session->userdata('question_mgnt');;
+        $permission->survey_mgnt = $this->session->userdata('survey_mgnt');;
+        $permission->survey_result_mgnt = $this->session->userdata('survey_result_mgnt');;
+        $permission->admin_mgnt = $this->session->userdata('admin_mgnt');;
+        $this->admin->permission = $permission;
+        
     	return $this->admin;
     }
     public function refresh_session(){
     	$this->admin = new Admin();
-    	$this->admin->a_id = $this->session->userdata('a_id');
-    	$this->admin->a_user = $this->session->userdata('a_user');
-    	$this->admin->a_name = $this->session->userdata('a_name');
+        $this->admin->a_id = $this->session->userdata('a_id');
+        $this->admin->a_user = $this->session->userdata('a_user');
+        $this->admin->a_name = $this->session->userdata('a_name');
+        $this->admin->database_selected = $this->session->userdata('database_selected');
+
+        $permission = new Permission();
+        $permission->question_mgnt = $this->session->userdata('question_mgnt');;
+        $permission->survey_mgnt = $this->session->userdata('survey_mgnt');;
+        $permission->survey_result_mgnt = $this->session->userdata('survey_result_mgnt');;
+        $permission->admin_mgnt = $this->session->userdata('admin_mgnt');;
+        $this->admin->permission = $permission;
     }
     public function session_invalid(){
     	if($this->session->userdata('a_id') == NULL){

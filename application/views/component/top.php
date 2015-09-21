@@ -44,6 +44,29 @@
           max-height: 450px;
           overflow-y: auto;
         }
+
+        <?php if($page=="PreviewSurvey") { ?>
+        @media(min-width:768px) {
+            #wrapper {
+               
+            }
+
+            #page-wrapper {
+                padding: 10px;
+            }
+        }
+        <?php }else{ ?>
+            @media(min-width:768px) {
+            #wrapper {
+                padding-left: 225px; 
+            }
+
+            #page-wrapper {
+                padding: 10px;
+            }
+        }
+        <?php } ?>
+
     </style>
 
 </head>
@@ -98,6 +121,18 @@
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li> -->
+                        <?php
+                            $pm_admin_mgnt =  $ci->get_session()->permission->admin_mgnt;
+
+                            if($pm_admin_mgnt == "rw" || $pm_admin_mgnt == "r"){
+
+                        ?>
+                        <li>
+                            <a href="<?php echo APP_PATH.'UserManagement'; ?>"><i class="fa fa-fw fa-user"></i>User management</a>
+                        </li>
+                        <?php
+                            }
+                        ?>
                         <li>
                             <a href="<?php echo APP_PATH.'Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
@@ -105,13 +140,10 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <?php if($page != "PreviewSurvey") { ?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <?php 
-                        if($page == "QuestionManagement"){
 
-                        }
-                    ?>
                     <li <?php echo ($page == "Dashboard")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>Dashboard"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
                     </li>
@@ -129,10 +161,11 @@
                 </ul>
 
             </div>
+            <?php } ?>
             <!-- /.navbar-collapse -->
         </nav>
 
-        <div id="page-wrapper"> <?php $ci->session_invalid(); ?>
+        <div id="page-wrapper" > <?php $ci->session_invalid(); ?>
         <script>
             /* center modal */
             function centerModals($element) {

@@ -2,27 +2,27 @@
 
 class Tb_admin extends CI_Model {
 
+    var $db = NULL;
+
     function __construct()
     {
         // Call the Model constructor
         parent::__construct();
+        $this->db = $this->load->database("common",TRUE);
     }
     function record($array)
     {
-      $this->load->database();
       $this->db->insert('tb_admin', $array);
       $insert_id = $this->db->insert_id();
       return  $insert_id;
     }
     function update($array,$a_id)
     {
-      $this->load->database();
       $this->db->where('a_id', $a_id);
       $this->db->update('tb_admin', $array); 
     }
     function get($a_user,$a_pass){
 
-      $this->load->database();
       $query = $this->db->query("select * from tb_admin where a_user = '".$a_user."' AND a_pass = '".$a_pass."'");
       return $query->first_row();
     }
