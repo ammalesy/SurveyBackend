@@ -26,6 +26,16 @@ class Tb_admin extends CI_Model {
       $query = $this->db->query("select * from tb_admin where a_user = '".$a_user."' AND a_pass = '".$a_pass."'");
       return $query->first_row();
     }
+    function get_by_id($a_id){
+
+      $query = $this->db->query("select * from tb_admin where a_id = '".$a_id."'");
+      return $query->first_row();
+    }
+    function fetchAll(){
+
+      $query = $this->db->query("select * from tb_admin");
+      return $query->result();
+    }
     function authentication($a_user,$a_pass){
       $results = $this->get($a_user,$a_pass);
       if(count($results) == 1){
