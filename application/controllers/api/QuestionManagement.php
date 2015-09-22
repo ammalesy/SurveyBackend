@@ -8,6 +8,7 @@ class QuestionManagement extends REST_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->initDB(); 
     }
 	public function questions_get(){
 		$this->load->model('tb_all_question');

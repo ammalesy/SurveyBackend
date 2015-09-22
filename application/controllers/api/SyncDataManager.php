@@ -8,6 +8,7 @@ class SyncDataManager extends REST_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->initDB(); 
     }
     public function sync_post(){
         $this->load->model('tb_user_info');

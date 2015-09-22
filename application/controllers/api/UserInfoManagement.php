@@ -8,6 +8,7 @@ class UserInfoManagement extends REST_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->initDB(); 
     }
 
 
