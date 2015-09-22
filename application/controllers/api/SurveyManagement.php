@@ -8,8 +8,10 @@ class SurveyManagement extends REST_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->initDB();       
     }
     public function surveys_get(){
+    	
     	$this->load->model('tb_all_question');
 		$this->load->model('tb_all_answer');
     	$this->load->model('tb_survey_mapping');

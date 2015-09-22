@@ -2106,5 +2106,9 @@ abstract class REST_Controller extends CI_Controller {
             ->get($this->config->item('rest_access_table'))
             ->num_rows() > 0;
     }
+    protected function initDB(){
+        $this->request_type = REQUEST_FROM_MOBILE;
+        $this->db_name = $this->get('project_name'); 
+    }
 
 }

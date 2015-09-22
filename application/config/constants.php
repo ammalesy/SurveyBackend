@@ -25,6 +25,9 @@ $full_server_name = $protocal.$domain_server.$app_name;
 define('PATHDOMAIN', $protocal.$domain_server);
 define('APP_PATH', $full_server_name);
 
+define('REQUEST_FROM_MOBILE', "M");
+define('REQUEST_FROM_WEB', "W");
+
 define('FILE_READ_MODE', 0644);
 define('FILE_WRITE_MODE', 0666);
 define('DIR_READ_MODE', 0755);

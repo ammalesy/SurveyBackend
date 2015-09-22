@@ -17,6 +17,8 @@ class Permission {
 class NZ_Controller extends CI_Controller{
 
 	var $admin = NULL;
+    var $request_type = REQUEST_FROM_WEB;
+    var $db_name = NULL;
 
 	function __construct()
     {

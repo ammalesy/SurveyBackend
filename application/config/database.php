@@ -72,6 +72,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */  
 $ci =& get_instance();
 
+if($ci->request_type == REQUEST_FROM_MOBILE){
+	$db_name = $ci->db_name;
+}else{
+	$db_name = $ci->get_session()->database_selected;
+}
+
+
 $active_group = 'default';
 $query_builder = TRUE;
 
@@ -80,7 +87,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => $ci->get_session()->database_selected,
+	'database' => $db_name,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
