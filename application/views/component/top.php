@@ -130,11 +130,14 @@
                         <li>
                             <a href="<?php echo APP_PATH.'UserManagement'; ?>"><i class="fa fa-fw fa-user"></i>User management</a>
                         </li>
+                        <li>
+                            <a href="<?php echo APP_PATH.'RoleManagement'; ?>"><i class="fa fa-fw fa-flag"></i>Role management</a>
+                        </li>
                         <?php
                             }
                         ?>
                         <li>
-                            <a href="<?php echo APP_PATH.'Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?php echo APP_PATH.'Authentication/logout'; ?>"><i class="fa fa-fw fa-power-off"></i> Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -156,7 +159,12 @@
                     <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                     </li>
-                    
+                     <li <?php echo ($page == "RoleManagement")?"class=active":""; ?>>
+                        <a href="<?php echo APP_PATH; ?>RoleManagement"><i class="fa fa-fw fa-flag"></i>Role Management</a>
+                    </li>
+                     <li <?php echo ($page == "UserManagement")?"class=active":""; ?>>
+                        <a href="<?php echo APP_PATH; ?>UserManagement"><i class="fa fa-fw fa-user"></i>User Management</a>
+                    </li>
                     
                 </ul>
 

@@ -18,8 +18,13 @@ class Tb_permission extends CI_Model {
     }
     function update($array,$pm_id)
     {
-      $this->db->where('pm_id', $a_id);
+      $this->db->where('pm_id', $pm_id);
       $this->db->update('tb_permission', $array); 
+    }
+    function fetchAll(){
+
+      $query = $this->db->query("select * from tb_permission");
+      return $query->result();
     }
     function get($pm_id){
 
