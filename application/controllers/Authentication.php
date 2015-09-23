@@ -35,6 +35,7 @@ class Authentication extends NZ_Controller {
                                       'survey_mgnt' => $permission->survey_mgnt,
                                       'survey_result_mgnt' => $permission->survey_result_mgnt,
                                       'admin_mgnt' => $permission->admin_mgnt,
+                                      'project_mgnt' => $permission->project_mgnt,
                                       'database_seleted'=>NULL));
     		redirect('PreviewSurvey');
     	}else{

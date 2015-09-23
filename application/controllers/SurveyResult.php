@@ -12,6 +12,9 @@ class SurveyResult extends NZ_Controller {
         if(check_permission($this->page,"n")){
             $this->goFailPage();
         }
+        if($this->isSelectedProject() == FALSE){
+            redirect("PreviewSurvey");
+        }
 
         //$this->output->enable_profiler(TRUE);
     }

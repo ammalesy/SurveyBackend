@@ -11,10 +11,12 @@
                         Survey Management
                     </div>
                     <div class="col-lg-6 text-right">
+                    <?php if(check_permission($page,"rw")) { ?>
                         <a href="<?php echo APP_PATH; ?>SurveyManagement/add">
                         <button type="button" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Survey
                         </button></a>
+                    <?php } ?>
                     </div>
                 </div>
             </h1>
@@ -62,10 +64,12 @@
                         <button type="button" id="view_button" data-sm-name="<?php echo $survey->sm_name; ?>" data-sm-id="<?php echo $survey->sm_id; ?>" data-toggle="modal" data-target="#list_survey_modal" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> View survey
                         </button>
+                <?php if(check_permission($page,"rw")) { ?>
                     <a href="<?php echo APP_PATH; ?>SurveyManagement/edit/<?php echo $survey->sm_id; ?>">
                     <button type="button" class="btn btn-sm btn-success">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                     </button></a>
+                <?php } ?>
                 </td>
             </tr> 
             <?php endforeach; ?>    
@@ -135,7 +139,7 @@
             return;
         }
 
-        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
            var list_survey_html = '';
             for (var i = 0; i < data.length; i++) {
                 var question = data[i];
@@ -180,7 +184,7 @@ $("button#refresh").click(function(){
         var sm_id = $(this).attr("data-sm-id");
         var sm_name = $(this).attr("data-sm-name");
         $("h4#sm_name").html(sm_name);
-        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
        
            var list_survey_html = '';
             for (var i = 0; i < data.length; i++) {

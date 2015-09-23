@@ -10,6 +10,7 @@
                         Edit Question.
                     </div>
                     <div class="col-lg-6 text-right">
+                    <?php if(check_permission($page,"rw")) { ?>
                         <a href="<?php echo APP_PATH; ?>QuestionManagement/add">
                         <button type="button" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
@@ -22,6 +23,7 @@
                         <button type="button" class="btn btn-sm btn-danger" <?php echo ($question->active == 'N')?'disabled':'';?>>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> DEACTIVE
                         </button></a>
+                    <?php } ?>
                     </div>
                 </div>
             </h1>

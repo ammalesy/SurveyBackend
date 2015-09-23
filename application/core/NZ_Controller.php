@@ -12,6 +12,7 @@ class Permission {
     var $survey_mgnt = NULL;
     var $survey_result_mgnt = NULL;
     var $admin_mgnt = NULL;
+    var $project_mgnt = NULL;
 }
 
 class NZ_Controller extends CI_Controller{
@@ -52,7 +53,8 @@ class NZ_Controller extends CI_Controller{
                    'question_mgnt' => $info['question_mgnt'],
                    'survey_mgnt' => $info['survey_mgnt'],
                    'survey_result_mgnt' => $info['survey_result_mgnt'],
-                   'admin_mgnt' => $info['admin_mgnt']
+                   'admin_mgnt' => $info['admin_mgnt'],
+                   'project_mgnt' => $info['project_mgnt']
         );
 
 		$this->session->set_userdata($sessionData);
@@ -61,6 +63,13 @@ class NZ_Controller extends CI_Controller{
     public function selectProject($database_name){
         $this->session->set_userdata(array('database_selected' => $database_name));
         $this->refresh_session();
+    }
+    public function isSelectedProject(){
+    	if($this->get_session()->database_selected == "" || $this->get_session()->database_selected == NULL){
+    		return FALSE;
+    	}else{
+    		return TRUE;
+    	}
     }
     public function remove_session(){
     	$this->admin = NULL;
@@ -74,10 +83,11 @@ class NZ_Controller extends CI_Controller{
         $this->admin->database_selected = $this->session->userdata('database_selected');
 
         $permission = new Permission();
-        $permission->question_mgnt = $this->session->userdata('question_mgnt');;
-        $permission->survey_mgnt = $this->session->userdata('survey_mgnt');;
-        $permission->survey_result_mgnt = $this->session->userdata('survey_result_mgnt');;
-        $permission->admin_mgnt = $this->session->userdata('admin_mgnt');;
+        $permission->question_mgnt = $this->session->userdata('question_mgnt');
+        $permission->survey_mgnt = $this->session->userdata('survey_mgnt');
+        $permission->survey_result_mgnt = $this->session->userdata('survey_result_mgnt');
+        $permission->admin_mgnt = $this->session->userdata('admin_mgnt');
+        $permission->project_mgnt = $this->session->userdata('project_mgnt');
         $this->admin->permission = $permission;
         
     	return $this->admin;
@@ -90,10 +100,11 @@ class NZ_Controller extends CI_Controller{
         $this->admin->database_selected = $this->session->userdata('database_selected');
 
         $permission = new Permission();
-        $permission->question_mgnt = $this->session->userdata('question_mgnt');;
-        $permission->survey_mgnt = $this->session->userdata('survey_mgnt');;
-        $permission->survey_result_mgnt = $this->session->userdata('survey_result_mgnt');;
-        $permission->admin_mgnt = $this->session->userdata('admin_mgnt');;
+        $permission->question_mgnt = $this->session->userdata('question_mgnt');
+        $permission->survey_mgnt = $this->session->userdata('survey_mgnt');
+        $permission->survey_result_mgnt = $this->session->userdata('survey_result_mgnt');
+        $permission->admin_mgnt = $this->session->userdata('admin_mgnt');
+        $permission->project_mgnt = $this->session->userdata('project_mgnt');
         $this->admin->permission = $permission;
     }
     public function session_invalid(){
@@ -102,7 +113,7 @@ class NZ_Controller extends CI_Controller{
     	}	
     }
     public function goFailPage(){
-        $this->remove_session();
+        //$this->remove_session();
         redirect('/errors');
     }
     public function dateThai($strDate)
@@ -176,5 +187,14 @@ class NZ_Controller extends CI_Controller{
 
         if (!$full) $string = array_slice($string, 0, 1);
         return $string ? implode(', ', $string) . ' ago' : 'just now';
+    }
+    public function upload_config($file_name){
+    	$config['upload_path'] = 'images_upload/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '999999';
+        $config['max_width']  = '3000';
+        $config['max_height']  = '3000';
+        $config['file_name'] = $file_name;
+        return $config;
     }
 }

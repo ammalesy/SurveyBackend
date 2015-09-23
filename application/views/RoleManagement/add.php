@@ -82,6 +82,18 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Project page</div>
+                            <div class="panel-body">
+                                <div class="radio">
+                                    <label><input type="radio" name="project_mgnt" value="r" checked>Read</label><br>
+                                    <label><input type="radio" name="project_mgnt" value="rw">Read & Write</label><br>
+                                    <label><input type="radio" name="project_mgnt" value="n">Not allow</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                  <div class="row">
                     <div class="col-lg-8">

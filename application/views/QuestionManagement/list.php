@@ -11,10 +11,12 @@
                         Question Management
                     </div>
                     <div class="col-lg-6 text-right">
+                    <?php if(check_permission($page,"rw")) { ?>
                         <a href="QuestionManagement/add">
                         <button type="button" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
                         </button></a>
+                    <?php } ?>
                     </div>
                 </div>
             </h1>
@@ -36,6 +38,7 @@
                 <th>Question ID</th>
                 <th>Question</th>
                 <th>Active</th>
+
                 <th class="dt-head-right">Command</th>
             </tr>
         </thead>
@@ -55,7 +58,9 @@
                 <td><?php echo $question->aq_id; ?></td>
                 <td><?php echo $ci->nullableTextIfEmptyData($question->aq_description); ?></td>
                 <td><?php echo $question->active; ?></td>
+                
                 <td class="dt-body-right">
+                
                     <!-- <a href="<?php echo APP_PATH; ?>QuestionManagement/view/<?php echo $question->aq_id; ?>"> -->
                         <button id="view_button" data-aq-description="<?php echo $question->aq_description; ?>" 
                             data-aq-id="<?php echo $question->aq_id; ?>" 
@@ -64,11 +69,14 @@
                             data-target="#detail_question_modal" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span> View answers
                         </button> <!-- </a> -->
+                <?php if(check_permission($page,"rw")) { ?>
                     <a href="<?php echo APP_PATH; ?>QuestionManagement/edit/<?php echo $question->aq_id; ?>">
                     <button type="button" class="btn btn-sm btn-success">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                     </button></a>
+                <?php } ?>
                 </td>
+                
             </tr> 
             <?php endforeach; ?>    
         </tbody>
@@ -139,7 +147,7 @@ $("button#view_button").click(function(){
             return;
         }
         
-        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/question/"+aq_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/question/"+aq_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
             var question = data;
             var answers = question.answers;
             var list_q_html = '';
@@ -168,7 +176,7 @@ $("button#refresh").click(function(){
         $("div#space-list-answer").html('');
         $("div#space-preload").css("display","inline");
         var aq_id = $(this).attr("data-aq-id");
-        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/question/"+aq_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/question/"+aq_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
             var question = data;
             var answers = question.answers;
             var list_q_html = '';

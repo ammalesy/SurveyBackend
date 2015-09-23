@@ -2,20 +2,49 @@
 <!-- <link href="<?php echo APP_PATH; ?>assets/css/2-col-portfolio.css" rel="stylesheet"> -->
 <!-- Page Content -->
     <div class="container">
+    <?php
+        $pm = check_permission("ProjectManagement","rw");
+    ?>
 
         <!-- Page Header -->
         <div class="row">
+            <?php if($pm == TRUE) { ?>
+            <div class="col-lg-6">
+            <?php }else{ ?>
             <div class="col-lg-12">
+            <?php } ?>
                 <h1 class="page-header">All project
                     <small>please select a project.</small>
                 </h1>
             </div>
+            <?php if($pm == TRUE) { ?>
+            <div class="col-lg-6 text-right">
+            <h1 class="page-header">
+                    
+                        <a href="ProjectManagement/add">
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project
+                        </button></a>
+                        <a href="ProjectManagement">
+                        <button type="button" class="btn btn-sm btn-success">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Project management
+                        </button></a>
+                    
+            </h1>
+            </div>
+            <?php } ?>
         </div>
         <!-- /.row -->
 
         <!-- Projects Row -->
-        <div class="row">
-            <?php foreach ($projects as $project) : ?>
+        
+        <?php $i=1; foreach ($projects as $project) : ?>
+            <?php
+                if(($i % 3 == 0) || $i == 1){
+                    echo '<div class="row">';
+                }
+            ?>
+            
             <div class="col-md-4 portfolio-item">
                 <a href="<?php echo APP_PATH."PreviewSurvey/select/".$project->pj_id; ?>">
                     <img class="img-responsive" src="<?php echo APP_PATH."images_upload/".$project->pj_image; ?>" alt="">
@@ -25,8 +54,15 @@
                 </h3>
                 <p><?php echo $project->pj_description; ?></p>
             </div>
-            <?php endforeach; ?>
+            <?php
+                if(($i % 3 == 0) || $i == 3){
+                    echo '</div>';
+                }
+            ?>
+            
+        <?php $i++; endforeach; ?>
         </div>
+        
         <!-- /.row -->
 
         <!-- Projects Row -->

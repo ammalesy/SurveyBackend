@@ -1,4 +1,6 @@
 <?php include("application/views/component/top.php"); ?>
+<!-- Page Content -->
+<div class="container">
 <?php $ci =& get_instance(); ?>
 
 <div class="container-fluid">
@@ -8,13 +10,17 @@
             <h1 class="page-header">
                 <div class="row">
                     <div class="col-lg-6">
-                        Role Management
+                        Project Management
                     </div>
                     <div class="col-lg-6 text-right">
                     <?php if(check_permission($page,"rw")) { ?>
-                        <a href="<?php echo APP_PATH; ?>RoleManagement/add">
+                        <a href="<?php echo APP_PATH; ?>ProjectManagement/add">
                         <button type="button" class="btn btn-sm btn-primary">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Role
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add project
+                        </button></a>
+                        <a href="<?php echo APP_PATH; ?>PreviewSurvey">
+                        <button type="button" class="btn btn-sm btn-warning">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Project list
                         </button></a>
                     <?php } ?>
                     </div>
@@ -22,7 +28,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>RoleManagement">Show all</a>
+                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>ProjectManagement">Show all</a>
                 </li>
                 <!-- <li class="active">
                     <i class="fa fa-edit"></i> Forms
@@ -35,12 +41,8 @@
     <table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Role name</th>
-                <th>Question page</th>
-                <th>Survey page</th>
-                <th>Result page</th>
-                <th>Admin page</th>
-                <th>Project page</th>
+                <th>Project name</th>
+                <th>Description</th>
                 <?php if(check_permission($page,"rw")) { ?>
                 <th class="dt-head-right">Command</th>
                 <?php } ?>
@@ -48,18 +50,14 @@
         </thead>
 
         <tbody>
-            <?php foreach ($permissions as $permission) : ?>
+            <?php foreach ($projects as $project) : ?>
             <tr>
-                <td><?php echo $permission->pm_name; ?></td>
-                <td><?php echo $ci->pm_toString($permission->question_mgnt); ?></td>
-                <td><?php echo $ci->pm_toString($permission->survey_mgnt); ?></td>
-                <td><?php echo $ci->pm_toString($permission->survey_result_mgnt); ?></td>
-                <td><?php echo $ci->pm_toString($permission->admin_mgnt); ?></td>
-                <td><?php echo $ci->pm_toString($permission->project_mgnt); ?></td>
+                <td><?php echo $project->pj_name; ?></td>
+                <td><?php echo $project->pj_description; ?></td>
                 <?php if(check_permission($page,"rw")) { ?>
                 <td class="dt-body-right">
 
-                    <a href="<?php echo APP_PATH; ?>RoleManagement/edit/<?php echo $permission->pm_id; ?>">
+                    <a href="<?php echo APP_PATH; ?>ProjectManagement/edit/<?php echo $project->pj_id; ?>">
                     <button type="button" class="btn btn-sm btn-success">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                     </button></a>
@@ -71,4 +69,5 @@
     </table>
 </div>
 <!-- /.container-fluid -->
+</div>
 <?php include("application/views/component/foot.php"); ?>

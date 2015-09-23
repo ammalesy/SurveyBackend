@@ -9,6 +9,9 @@ class Dashboard extends NZ_Controller {
 	function __construct()
     {
         parent::__construct();
+        if($this->isSelectedProject() == FALSE){
+            redirect("PreviewSurvey");
+        }
     }
     function index(){
         

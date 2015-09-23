@@ -66,6 +66,7 @@ class RoleManagement extends NZ_Controller {
         $survey_mgnt = $this->input->post('survey_mgnt');
         $survey_result_mgnt = $this->input->post('survey_result_mgnt');
         $admin_mgnt = $this->input->post('admin_mgnt');
+        $project_mgnt = $this->input->post('project_mgnt');
 
         // /*============================*/
         // /*======= ADD SUBMITED =======*/
@@ -84,7 +85,8 @@ class RoleManagement extends NZ_Controller {
                                                         'question_mgnt' => $question_mgnt,
                                                         'survey_mgnt' => $survey_mgnt,
                                                         'survey_result_mgnt' => $survey_result_mgnt,
-                                                        'admin_mgnt' => $admin_mgnt));
+                                                        'admin_mgnt' => $admin_mgnt,
+                                                        'project_mgnt' => $project_mgnt));
          }
         // /*=============================*/
         // /*======= EDIT SUBMITED =======*/
@@ -103,7 +105,8 @@ class RoleManagement extends NZ_Controller {
                                                  'question_mgnt' => $question_mgnt,
                                                  'survey_mgnt' => $survey_mgnt,
                                                  'survey_result_mgnt' => $survey_result_mgnt,
-                                                 'admin_mgnt' => $admin_mgnt),$pm_id);
+                                                 'admin_mgnt' => $admin_mgnt,
+                                                 'project_mgnt' => $project_mgnt),$pm_id);
          }
 
         /*==================================*/

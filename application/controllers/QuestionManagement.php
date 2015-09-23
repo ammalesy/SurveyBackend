@@ -12,6 +12,10 @@ class QuestionManagement extends NZ_Controller {
         if(check_permission($this->page,"n")){
             $this->goFailPage();
         }
+        if($this->isSelectedProject() == FALSE){
+            redirect("PreviewSurvey");
+        }
+
     }
     function index(){
  

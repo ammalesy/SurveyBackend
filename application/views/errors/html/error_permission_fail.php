@@ -41,7 +41,7 @@ body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAA
                     Sorry, an error has occured, your permission not allow at page!
                 </div>
                 <div class="error-actions">
-                    <a href="<?php echo APP_PATH."Authentication"; ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                    <a href="<?php echo APP_PATH."PreviewSurvey"; ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
                         Take Me Home </a><a href="mailto:ammales.y@gmail.com"  class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
                 </div>
             </div>

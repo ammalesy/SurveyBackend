@@ -25,6 +25,7 @@
     <!-- /.row -->
 
                 <div class="row">
+                    <?php if(check_permission("SurveyResult","r") || check_permission("SurveyResult","rw")) { ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -48,6 +49,8 @@
                             </a>
                         </div>
                     </div>
+                    <?php } ?>
+                    <?php if(check_permission("SurveyManagement","r") || check_permission("SurveyManagement","rw")) { ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="panel panel-green">
                             <div class="panel-heading">
@@ -70,6 +73,8 @@
                             </a>
                         </div>
                     </div>
+                    <?php } ?>
+                    <?php if(check_permission("QuestionManagement","r") || check_permission("QuestionManagement","rw")) { ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="panel panel-yellow">
                             <div class="panel-heading">
@@ -92,8 +97,10 @@
                             </a>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
                 <!-- /.row -->
+                <?php if(check_permission("SurveyResult","r") || check_permission("SurveyResult","rw")) { ?>
                 <h1 class="page-header">
                 <div class="row">
                     <div class="col-lg-6">
@@ -129,6 +136,7 @@
                     </div>
                     <?php endforeach; ?>
                 </div>
+                <?php } ?>
 </div>
 
 <!-- /.container-fluid -->

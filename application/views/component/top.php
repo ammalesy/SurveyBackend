@@ -46,7 +46,7 @@
           overflow-y: auto;
         }
 
-        <?php if($page=="PreviewSurvey") { ?>
+        <?php if($page=="PreviewSurvey" || $page=="ProjectManagement") { ?>
         @media(min-width:768px) {
             #wrapper {
                
@@ -100,7 +100,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo APP_PATH; ?>Dashboard">Survey Admin</a>
+                <a class="navbar-brand" href="<?php echo APP_PATH; ?>PreviewSurvey">Survey Admin</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -122,11 +122,12 @@
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li> -->
-                        <?php
-
-                            if(check_permission('RoleManagement',"rw")){
-
-                        ?>
+                        <?php if(check_permission('ProjectManagement',"rw") || check_permission('ProjectManagement',"r")){ ?>
+                        <li>
+                            <a href="<?php echo APP_PATH.'ProjectManagement'; ?>"><i class="fa fa-fw fa-star"></i>Project management</a>
+                        </li>
+                        <?php } ?>
+                        <?php if(check_permission('RoleManagement',"rw") || check_permission('RoleManagement',"r")){ ?>
                         <li>
                             <a href="<?php echo APP_PATH.'UserManagement'; ?>"><i class="fa fa-fw fa-user"></i>User management</a>
                         </li>
@@ -143,7 +144,7 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php if($page != "PreviewSurvey") { ?>
+            <?php if($page != "PreviewSurvey" && $page != "ProjectManagement") { ?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 
@@ -151,25 +152,25 @@
                         <a href="<?php echo APP_PATH; ?>Dashboard"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
                     </li>
                     <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('SurveyResult',"rw")) { ?>
+                    <?php if(check_permission('SurveyResult',"rw") || check_permission('SurveyResult',"r")) { ?>
                         <li <?php echo ($page == "SurveyResult")?"class=active":""; ?>>
                             <a href="<?php echo APP_PATH; ?>SurveyResult"><i class="fa fa-fw fa-th-list"></i>Survey result</a>
                         </li>
                     <?php } ?>
                      <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('QuestionManagement',"rw")) { ?>
+                    <?php if(check_permission('QuestionManagement',"rw") || check_permission('QuestionManagement',"r")) { ?>
                         <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
                             <a href="<?php echo APP_PATH; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
                         </li>
                     <?php } ?>
                      <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('SurveyManagement',"rw")) { ?>
+                    <?php if(check_permission('SurveyManagement',"rw") || check_permission('SurveyManagement',"r")) { ?>
                         <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
                             <a href="<?php echo APP_PATH; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                         </li>
                     <?php } ?>
                     <!-- CHECK PERMISISON -->
-                    <?php if(check_permission('RoleManagement',"rw")) { ?>
+                    <?php if(check_permission('RoleManagement',"rw") || check_permission('RoleManagement',"r")) { ?>
                         <li <?php echo ($page == "RoleManagement")?"class=active":""; ?>>
                             <a href="<?php echo APP_PATH; ?>RoleManagement"><i class="fa fa-fw fa-flag"></i>Role Management</a>
                         </li>

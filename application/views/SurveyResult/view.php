@@ -147,7 +147,7 @@
         //     return;
         // }
 
-        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
            var list_survey_html = '';
             for (var i = 0; i < data.length; i++) {
                 var question = data[i];
@@ -225,7 +225,7 @@ $("button#refresh").click(function(){
             list_q[component[0]] = component[1].split(",");
         }
         $("h4#sm_name").html(sm_name);
-        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
        
            var list_survey_html = '';
             for (var i = 0; i < data.length; i++) {

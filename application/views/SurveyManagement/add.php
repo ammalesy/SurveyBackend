@@ -264,7 +264,7 @@
             return;
         }
 
-        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/answers/"+aq_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/answers/"+aq_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
            var list_ans_html = '';
             for (var i = 0; i < data.length; i++) {
                 var answer = data[i];
@@ -295,7 +295,7 @@ $("button#refresh").click(function(){
         var aq_id = $(this).attr("data-aq-id");
         var aq_description = $(this).attr("data-aq-description");
         $("h4#aq_description").html(aq_description);
-        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/answers/"+aq_id, function(data, status){
+        $.get("<?php echo APP_PATH; ?>api/QuestionManagement/answers/"+aq_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
            var list_ans_html = '';
             for (var i = 0; i < data.length; i++) {
                 var answer = data[i];

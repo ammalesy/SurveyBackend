@@ -14,6 +14,9 @@ class SurveyManagement extends NZ_Controller {
         if(check_permission($this->page,"n")){
             $this->goFailPage();
         }
+        if($this->isSelectedProject() == FALSE){
+            redirect("PreviewSurvey");
+        }
     }
     function index(){
     	$data['page'] = $this->page;

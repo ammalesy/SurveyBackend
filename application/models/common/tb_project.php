@@ -17,7 +17,7 @@ class Tb_project extends CI_Model {
     }
     function update($array,$pj_id)
     {
-      $this->db->where('pj_id', $a_id);
+      $this->db->where('pj_id', $pj_id);
       $this->db->update('tb_project', $array); 
     }
     function get($pj_id){
