@@ -9,6 +9,11 @@ class RoleManagement extends NZ_Controller {
 	function __construct()
     {
         parent::__construct();
+        $pm = $this->get_session()->permission->admin_mgnt;
+        if($pm == "n"){
+            $this->remove_session();
+            redirect("/Authentication");
+        }
     }
     function index(){
     	$data['page'] = "RoleManagement";

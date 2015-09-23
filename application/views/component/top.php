@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,6 +109,7 @@
                     <?php
                         $ci =& get_instance(); 
                         $admin = $ci->get_session(); 
+                        $pm_admin_mgnt =  $ci->get_session()->permission->admin_mgnt;
                     ?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;<?php echo $admin->a_name; ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -122,9 +124,8 @@
                         </li>
                         <li class="divider"></li> -->
                         <?php
-                            $pm_admin_mgnt =  $ci->get_session()->permission->admin_mgnt;
 
-                            if($pm_admin_mgnt == "rw" || $pm_admin_mgnt == "r"){
+                            if(check_permisison('RoleManagement')){
 
                         ?>
                         <li>
@@ -153,18 +154,21 @@
                     <li <?php echo ($page == "SurveyResult")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>SurveyResult"><i class="fa fa-fw fa-th-list"></i>Survey result</a>
                     </li>
+                    
                     <li <?php echo ($page == "QuestionManagement")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>QuestionManagement"><i class="fa fa-fw fa-table"></i>Questions management</a>
                     </li>
                     <li <?php echo ($page == "SurveyManagement")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>SurveyManagement"><i class="fa fa-fw fa-edit"></i>Survey management</a>
                     </li>
+                    <?php if(check_permisison('RoleManagement')) { ?>
                      <li <?php echo ($page == "RoleManagement")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>RoleManagement"><i class="fa fa-fw fa-flag"></i>Role Management</a>
                     </li>
                      <li <?php echo ($page == "UserManagement")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>UserManagement"><i class="fa fa-fw fa-user"></i>User Management</a>
                     </li>
+                    <?php } ?>
                     
                 </ul>
 

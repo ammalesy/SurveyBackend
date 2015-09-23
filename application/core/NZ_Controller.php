@@ -31,7 +31,7 @@ class NZ_Controller extends CI_Controller{
                    'a_id' => $info['a_id'],
                    'a_user' =>  $info['a_user'],
                    'a_name' => $info['a_name'],
-                   'quesion_mgnt' => $info['quesion_mgnt'],
+                   'question_mgnt' => $info['question_mgnt'],
                    'survey_mgnt' => $info['survey_mgnt'],
                    'survey_result_mgnt' => $info['survey_result_mgnt'],
                    'admin_mgnt' => $info['admin_mgnt']
