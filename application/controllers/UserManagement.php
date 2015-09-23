@@ -3,20 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class UserManagement extends NZ_Controller {
 
-	var $message_error_type = "";
-	var $message_error = "";
-
 	function __construct()
     {
         parent::__construct();
-        $pm = $this->get_session()->permission->admin_mgnt;
-        if($pm == "n"){
-            $this->remove_session();
-            redirect("/Authentication");
+
+        $this->page = "UserManagement";
+
+        if(check_permission($this->page,"n")){
+            $this->goFailPage();
         }
     }
     function index(){
-    	$data['page'] = "UserManagement";
+    	$data['page'] = $this->page;
 
     	$this->load->model('common/tb_permission');
         $this->load->model('common/tb_admin');
@@ -32,10 +30,13 @@ class UserManagement extends NZ_Controller {
     	$this->load->view('UserManagement/list',$data);
     }
     public function add(){
+
+        parent::add();
+
         $this->load->model('common/tb_permission');
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
-        $data['page'] = "UserManagement";
+        $data['page'] = $this->page;
 
         $data['permissions'] = $this->tb_permission->fetchAll();
 
@@ -43,11 +44,14 @@ class UserManagement extends NZ_Controller {
    
     }
     public function edit($a_id){
+
+        parent::edit($a_id);
+
         $this->load->model('common/tb_permission');
         $this->load->model('common/tb_admin');
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
-        $data['page'] = "UserManagement";
+        $data['page'] = $this->page;
 
         $admin = $this->tb_admin->get_by_id($a_id);
 
@@ -58,6 +62,8 @@ class UserManagement extends NZ_Controller {
 
     } 
     public function submit($a_id = NULL,$type){
+
+        parent::submit($a_id,$type);
 
         $this->load->model('common/tb_permission');
         $this->load->model('common/tb_admin');

@@ -3,16 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SurveyResult extends NZ_Controller {
 
-	var $message_error_type = "";
-	var $message_error = "";
-
 	function __construct()
     {
         parent::__construct();
+
+        $this->page = "SurveyResult";
+
+        if(check_permission($this->page,"n")){
+            $this->goFailPage();
+        }
+
         //$this->output->enable_profiler(TRUE);
     }
     function index(){
-    	$data['page'] = "SurveyResult";
+    	$data['page'] = $this->page;
 
     	$this->load->model('tb_survey_mapping');
     	$data['message_error_type'] = $this->message_error_type;
@@ -22,7 +26,7 @@ class SurveyResult extends NZ_Controller {
     	$this->load->view('SurveyResult/list',$data);
     }
     function view($sm_id){
-        $data['page'] = "SurveyResult";
+        $data['page'] = $this->page;
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
 

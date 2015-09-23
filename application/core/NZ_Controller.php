@@ -19,12 +19,30 @@ class NZ_Controller extends CI_Controller{
 	var $admin = NULL;
     var $request_type = REQUEST_FROM_WEB;
     var $db_name = NULL;
+    var $page = NULL;
+    var $message_error_type = "";
+    var $message_error = "";
 
 	function __construct()
     {
         parent::__construct();
         date_default_timezone_set('Asia/Bangkok');
 
+    }
+    public function add(){
+        if(check_permission($this->page,"r") || check_permission($this->page,"n")){
+            $this->goFailPage();
+        }
+    }
+    public function edit($pm_id){
+        if(check_permission($this->page,"r") || check_permission($this->page,"n")){
+            $this->goFailPage();
+        }
+    }
+    public function submit($pm_id = NULL,$type){
+        if(check_permission($this->page,"r") || check_permission($this->page,"n")){
+            $this->goFailPage();
+        }
     }
     public function make_session($info){
     	$sessionData = array(
@@ -80,8 +98,12 @@ class NZ_Controller extends CI_Controller{
     }
     public function session_invalid(){
     	if($this->session->userdata('a_id') == NULL){
-    		redirect('/Authentication'); 
+    		redirect('/errors/session_expire');
     	}	
+    }
+    public function goFailPage(){
+        $this->remove_session();
+        redirect('/errors');
     }
     public function dateThai($strDate)
     {

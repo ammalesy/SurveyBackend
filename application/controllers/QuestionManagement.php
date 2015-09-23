@@ -3,19 +3,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class QuestionManagement extends NZ_Controller {
 
-	var $message_error_type = "";
-	var $message_error = "";
-
 	function __construct()
     {
         parent::__construct();
+
+        $this->page = "QuestionManagement";
+
+        if(check_permission($this->page,"n")){
+            $this->goFailPage();
+        }
     }
     function index(){
  
     	$this->load->model('tb_all_question');
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
-    	$data['page'] = "QuestionManagement";
+    	$data['page'] = $this->page;
     	$data['list_all_question'] = $this->tb_all_question->fetchAll(FALSE);
     	$this->load->view('QuestionManagement/list',$data);
     }
@@ -27,22 +30,28 @@ class QuestionManagement extends NZ_Controller {
     	$data['message_error'] = $this->message_error;
     	$data['question'] = $this->tb_all_question->get($aq_id,FALSE);
     	$data['answers'] = $this->tb_all_answer->get($aq_id,FALSE);
-    	$data['page'] = "QuestionManagement";
+    	$data['page'] = $this->page;
     	$this->load->view('QuestionManagement/view',$data);
     }
     public function add(){
+
+        parent::add();
+
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
-    	$data['page'] = "QuestionManagement";
+    	$data['page'] = $this->page;
     	$this->load->view('QuestionManagement/add',$data);
     }
     public function edit($aq_id){
+
+        parent::edit($aq_id);
+
     	$this->load->model('tb_all_question');
     	$this->load->model('tb_all_answer');
 
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
-    	$data['page'] = "QuestionManagement";
+    	$data['page'] = $this->page;
     	$data['question'] = $this->tb_all_question->get($aq_id,FALSE);
     	$data['answers'] = $this->tb_all_answer->get($aq_id,FALSE);
     	$this->load->view('QuestionManagement/edit',$data);
@@ -73,6 +82,9 @@ class QuestionManagement extends NZ_Controller {
 		}
     }
     public function submit($aq_id = NULL,$type){
+
+        parent::submit($aq_id,$type);
+
     	$this->load->model('tb_all_question');
     	$this->load->model('tb_all_answer');
 

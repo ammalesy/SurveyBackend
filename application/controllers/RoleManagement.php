@@ -3,20 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class RoleManagement extends NZ_Controller {
 
-	var $message_error_type = "";
-	var $message_error = "";
-
 	function __construct()
     {
         parent::__construct();
-        $pm = $this->get_session()->permission->admin_mgnt;
-        if($pm == "n"){
-            $this->remove_session();
-            redirect("/Authentication");
+
+        $this->page = "RoleManagement";
+
+        if(check_permission($this->page,"n")){
+            $this->goFailPage();
         }
     }
     function index(){
-    	$data['page'] = "RoleManagement";
+    	$data['page'] = $this->page;
 
     	$this->load->model('common/tb_permission');
     	$data['message_error_type'] = $this->message_error_type;
@@ -26,19 +24,25 @@ class RoleManagement extends NZ_Controller {
     	$this->load->view('RoleManagement/list',$data);
     }
     public function add(){
+
+        parent::add();
+
         $this->load->model('common/tb_permission');
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
-        $data['page'] = "RoleManagement";
+        $data['page'] = $this->page;
 
         $this->load->view('RoleManagement/add',$data);
    
     }
     public function edit($pm_id){
+
+        parent::edit($pm_id);
+
         $this->load->model('common/tb_permission');
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
-        $data['page'] = "RoleManagement";
+        $data['page'] = $this->page;
 
         $data["permission"] = $this->tb_permission->get($pm_id);
 
@@ -46,6 +50,8 @@ class RoleManagement extends NZ_Controller {
 
     } 
     public function submit($pm_id = NULL,$type){
+
+        parent::submit($pm_id,$type);
 
         $this->load->model('common/tb_permission');
 

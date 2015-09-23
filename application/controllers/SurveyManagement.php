@@ -3,16 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class SurveyManagement extends NZ_Controller {
 
-	var $message_error_type = "";
-	var $message_error = "";
 	var $prefix_table_name = "SV";
 
 	function __construct()
     {
         parent::__construct();
+
+        $this->page = "SurveyManagement";
+
+        if(check_permission($this->page,"n")){
+            $this->goFailPage();
+        }
     }
     function index(){
-    	$data['page'] = "SurveyManagement";
+    	$data['page'] = $this->page;
 
     	$this->load->model('tb_survey_mapping');
     	$data['message_error_type'] = $this->message_error_type;
@@ -22,16 +26,22 @@ class SurveyManagement extends NZ_Controller {
     	$this->load->view('SurveyManagement/list',$data);
     }
     public function add(){
+
+        parent::add();
+
     	$this->load->model('tb_all_question');
     	$this->load->model('tb_all_answer');
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
     	$data['questions'] = $this->tb_all_question->fetchAll();
-    	$data['page'] = "SurveyManagement";
+    	$data['page'] = $this->page;
     	$this->load->view('SurveyManagement/add',$data);
    
     }
     public function edit($sm_id){
+
+        parent::edit($sm_id);
+
         $this->load->model('tb_all_question');
         $this->load->model('tb_all_answer');
         $this->load->model('tb_survey_mapping');
@@ -57,11 +67,14 @@ class SurveyManagement extends NZ_Controller {
         }
         $data['exist_questions'] = $sorted;
 
-        $data['page'] = "SurveyManagement";
+        $data['page'] = $this->page;
         $this->load->view('SurveyManagement/edit',$data);
 
     }
     public function submit($sm_id,$type){
+
+        parent::submit($sm_id,$type);
+
     	$this->load->database();
     	$this->load->model('tb_survey_mapping');
     	/*========================================*/
