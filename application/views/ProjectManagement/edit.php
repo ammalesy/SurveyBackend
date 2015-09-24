@@ -15,7 +15,7 @@
                     <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>ProjectManagement">Show all</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Add
+                    <i class="fa fa-edit"></i> Edit
                 </li>
             </ol>
         </div>
@@ -33,14 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <label>Database name (Provide new database.)</label>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <input name="pj_db_ref" id="pj_db_ref" class="form-control" placeholder="Database name" value="<?php echo $project->pj_db_ref; ?>">
-                        </div>
-                    </div>
-                </div>
+
                  <label>Description</label>
                 <div class="row">
                     <div class="col-lg-12">

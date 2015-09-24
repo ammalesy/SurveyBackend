@@ -9,8 +9,15 @@ class Authentication extends NZ_Controller {
 	function __construct()
     {
         parent::__construct();
+        
     }
     function index(){
+        $isExpire = $this->session_invalid(TRUE);
+        if($isExpire == FALSE){
+            redirect("PreviewSurvey");
+            return;
+        }
+
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
     	$this->load->view('Authentication/view',$data);

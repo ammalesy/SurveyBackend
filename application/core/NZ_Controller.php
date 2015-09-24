@@ -107,10 +107,18 @@ class NZ_Controller extends CI_Controller{
         $permission->project_mgnt = $this->session->userdata('project_mgnt');
         $this->admin->permission = $permission;
     }
-    public function session_invalid(){
-    	if($this->session->userdata('a_id') == NULL){
-    		redirect('/errors/session_expire');
-    	}	
+    public function session_invalid($notRedirect=FALSE){
+        if($notRedirect == FALSE){
+            if($this->session->userdata('a_id') == NULL){
+                redirect('/errors/session_expire');
+            }
+        }else{
+            if($this->session->userdata('a_id') == NULL){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
     }
     public function goFailPage(){
         //$this->remove_session();

@@ -114,21 +114,18 @@ class ProjectManagement extends NZ_Controller {
          else if ($type == "edited")
          {
             $msg_err = "Update";
-               if($pj_name == "" || $pj_name == NULL ||
-               $pj_db_ref == "" || $pj_db_ref == NULL){
+               if($pj_name == "" || $pj_name == NULL){
                     $this->message_error_type = "fail";
-                    $this->message_error = "Your project name / Database name is not empty.";
+                    $this->message_error = "Your project name is not empty.";
                     $this->edit($pj_id);
                     return;
                 }
             if($pj_image == ""){
                 $this->tb_project->update(array('pj_name' => $pj_name,
-                                            'pj_description' => $pj_description,
-                                            'pj_db_ref' => $pj_db_ref),$pj_id);
+                                            'pj_description' => $pj_description),$pj_id);
             }else{
                 $this->tb_project->update(array('pj_name' => $pj_name,
                                             'pj_description' => $pj_description,
-                                            'pj_db_ref' => $pj_db_ref,
                                             'pj_image' => $pj_image),$pj_id);
             }
             
