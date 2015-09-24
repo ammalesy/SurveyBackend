@@ -9,6 +9,7 @@ define("SURVEY_RESULT_PAGE", "SurveyResult");
 define("QUESTION_PAGE", "QuestionManagement");
 define("PROJECT_PAGE", "ProjectManagement");
 define("DASHBOARD_PAGE", "Dashboard");
+define("ASSIGN_PAGE", "AssignProject");
 
 if ( ! function_exists('check_permission'))
 {
@@ -50,6 +51,12 @@ if ( ! function_exists('check_permission'))
 			}
 		}else if($page == PROJECT_PAGE){
 			if($permissionObject->project_mgnt == $expect_pm){
+				return TRUE;
+			}else{
+				return FALSE;
+			}
+		}else if($page == ASSIGN_PAGE){
+			if($permissionObject->admin_mgnt == $expect_pm){
 				return TRUE;
 			}else{
 				return FALSE;

@@ -4,35 +4,34 @@
     <div class="container">
     <?php
         $pm = check_permission("ProjectManagement","rw");
+        $pm2 = check_permission("UserManagement","rw");
     ?>
 
         <!-- Page Header -->
         <div class="row">
-            <?php if($pm == TRUE) { ?>
-            <div class="col-lg-6">
-            <?php }else{ ?>
             <div class="col-lg-12">
-            <?php } ?>
                 <h1 class="page-header">All project
                     <small>please select a project.</small>
+                    <div class="text-left">
+                    <?php if($pm2 == TRUE) { ?>
+                            <a href="AssignProject">
+                            <button type="button" class="btn btn-sm btn-primary">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Assign Project
+                            </button></a>
+                    <?php } ?>
+                    <?php if($pm == TRUE) { ?>
+                            <a href="ProjectManagement/add" >
+                            <button type="button" class="btn btn-sm btn-warning">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project
+                            </button></a>
+                            <a href="ProjectManagement">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Project management
+                            </button></a>
+                    <?php } ?>
+                    </div>
                 </h1>
             </div>
-            <?php if($pm == TRUE) { ?>
-            <div class="col-lg-6 text-right">
-            <h1 class="page-header">
-                    
-                        <a href="ProjectManagement/add">
-                        <button type="button" class="btn btn-sm btn-primary">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project
-                        </button></a>
-                        <a href="ProjectManagement">
-                        <button type="button" class="btn btn-sm btn-success">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Project management
-                        </button></a>
-                    
-            </h1>
-            </div>
-            <?php } ?>
         </div>
         <!-- /.row -->
 
@@ -40,14 +39,20 @@
         
         <?php $i=1; foreach ($projects as $project) : ?>
             <?php
-                if(($i % 3 == 0) || $i == 1){
+                if(($i % 3 == 1)){
                     echo '<div class="row">';
                 }
             ?>
-            
+            <style type="text/css">
+                img {
+                    height: 270px;
+                    width: 100%;
+                    object-fit: cover; // here
+                }
+            </style>
             <div class="col-md-4 portfolio-item">
                 <a href="<?php echo APP_PATH."PreviewSurvey/select/".$project->pj_id; ?>">
-                    <img class="img-responsive" src="<?php echo APP_PATH."images_upload/".$project->pj_image; ?>" alt="">
+                    <img  class="image-responsive" width="360" height="270" src="<?php echo APP_PATH."images_upload/".$project->pj_image; ?>" alt="">
                 </a>
                 <h3>
                     <a href="<?php echo APP_PATH."PreviewSurvey/select/".$project->pj_id; ?>"><?php echo $project->pj_name; ?></a>
@@ -55,7 +60,7 @@
                 <p><?php echo $project->pj_description; ?></p>
             </div>
             <?php
-                if(($i % 3 == 0) || $i == 3){
+                if(($i % 3 == 0)){
                     echo '</div>';
                 }
             ?>

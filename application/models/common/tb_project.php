@@ -30,5 +30,14 @@ class Tb_project extends CI_Model {
       $query = $this->db->query("select * from tb_project");
       return $query->result();
     }
+    function fetch_allowed_only(){
+
+      $query = $this->db->query("SELECT * 
+                                 FROM tb_project,(SELECT * 
+                                                  FROM `tb_owner` 
+                                                  WHERE a_id_ref = '".get_instance()->get_session()->a_id."') as owner
+                                 WHERE pj_id = pj_id_ref");
+      return $query->result();
+    }
     
 }

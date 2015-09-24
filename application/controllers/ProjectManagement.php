@@ -93,12 +93,20 @@ class ProjectManagement extends NZ_Controller {
                 return;
             }
 
-            $pj_id = $this->tb_project->record(array('pj_name' => $pj_name,
+            
+            $this->load->model('common/database');
+            $result = $this->database->create($pj_db_ref);
+            if($result == FALSE){
+                $this->message_error_type = "fail";
+                $this->message_error = "Create Database Error. ensure your database name is not exist.";
+                $this->add();
+                return;
+            }else{
+                $pj_id = $this->tb_project->record(array('pj_name' => $pj_name,
                                                     'pj_description' => $pj_description,
                                                     'pj_db_ref' => $pj_db_ref,
                                                     'pj_image' => $pj_image));
-            $this->load->model('common/database');
-            $this->database->create($pj_name);
+            }
          }
         // /*=============================*/
         // /*======= EDIT SUBMITED =======*/

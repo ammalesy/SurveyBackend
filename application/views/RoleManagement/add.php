@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">Admin page</div>
+                            <div class="panel-heading">Admin page / Assign project page</div>
                             <div class="panel-body">
                                 <div class="radio">
                                     <label><input type="radio" name="admin_mgnt" value="r" checked>Read</label><br>

@@ -46,7 +46,7 @@
           overflow-y: auto;
         }
 
-        <?php if($page=="PreviewSurvey" || $page=="ProjectManagement") { ?>
+        <?php if($page=="PreviewSurvey" || $page=="ProjectManagement" || $page=="AssignProject") { ?>
         @media(min-width:768px) {
             #wrapper {
                
@@ -127,6 +127,11 @@
                             <a href="<?php echo APP_PATH.'ProjectManagement'; ?>"><i class="fa fa-fw fa-star"></i>Project management</a>
                         </li>
                         <?php } ?>
+                        <?php if(check_permission('UserManagement',"rw") || check_permission('UserManagement',"r")){ ?>
+                        <li>
+                            <a href="<?php echo APP_PATH.'AssignProject'; ?>"><i class="fa fa-fw fa-plus"></i>Assign Project</a>
+                        </li>
+                        <?php } ?>
                         <?php if(check_permission('RoleManagement',"rw") || check_permission('RoleManagement',"r")){ ?>
                         <li>
                             <a href="<?php echo APP_PATH.'UserManagement'; ?>"><i class="fa fa-fw fa-user"></i>User management</a>
@@ -144,7 +149,7 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <?php if($page != "PreviewSurvey" && $page != "ProjectManagement") { ?>
+            <?php if($page != "PreviewSurvey" && $page != "ProjectManagement" && $page != "AssignProject") { ?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
 

@@ -9,7 +9,7 @@ class PreviewSurvey extends NZ_Controller {
     }
     function index(){
     	$this->load->model("common/tb_project");
-        $data['projects'] = $this->tb_project->fetchAll();
+        $data['projects'] = $this->tb_project->fetch_allowed_only();
     	$data['page'] = "PreviewSurvey";
     	$this->load->view('PreviewSurvey/view',$data);
     }

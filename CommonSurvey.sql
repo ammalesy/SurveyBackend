@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 23, 2015 at 07:14 PM
+-- Generation Time: Sep 24, 2015 at 07:36 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tb_admin` (
 --
 
 INSERT INTO `tb_admin` (`a_id`, `a_user`, `a_pass`, `a_name`, `a_permission`) VALUES
-(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'superadmin', '1'),
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'Lead Administrator', '1'),
 (2, 'manager', '5f4dcc3b5aa765d61d8327deb882cf99', 'Manager', '2'),
 (3, 'user1', '5f4dcc3b5aa765d61d8327deb882cf99', 'User No.1', '3'),
 (4, 'user2', '5f4dcc3b5aa765d61d8327deb882cf99', 'User No.2', '3');
@@ -54,14 +54,24 @@ CREATE TABLE IF NOT EXISTS `tb_owner` (
   `w_id` int(10) NOT NULL,
   `a_id_ref` int(10) NOT NULL,
   `pj_id_ref` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_owner`
 --
 
 INSERT INTO `tb_owner` (`w_id`, `a_id_ref`, `pj_id_ref`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(8, 2, 13),
+(9, 3, 13),
+(10, 2, 12),
+(12, 1, 12),
+(13, 2, 1),
+(14, 3, 1),
+(15, 4, 1),
+(16, 1, 13),
+(17, 1, 11),
+(21, 2, 11);
 
 -- --------------------------------------------------------
 
@@ -101,14 +111,17 @@ CREATE TABLE IF NOT EXISTS `tb_project` (
   `pj_db_ref` varchar(32) NOT NULL,
   `pj_image` varchar(100) DEFAULT 'default.png',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_project`
 --
 
 INSERT INTO `tb_project` (`pj_id`, `pj_name`, `pj_description`, `pj_db_ref`, `pj_image`, `active`) VALUES
-(1, 'The real condo', 'The real condo survey. if you are manager you can manages the role user and add some question.', 'SurveyNew', 'banner_1.png', 'Y');
+(1, 'The real condo', 'The real condo survey. if you are manager you can manages the role user and add some question.', 'SurveyNew', 'banner_1.png', 'Y'),
+(11, 'TestPJ', 'TestPJ', 'TestPJ', 'TestPJ1443114923.jpg', 'Y'),
+(12, 'TestPJ2', 'TestPJ2', 'TestPJ', 'TestPJ1443114998.jpg', 'Y'),
+(13, 'TestPJ3', 'TestPJ3', 'TestPJ3', 'TestPJ31443107071.jpg', 'Y');
 
 --
 -- Indexes for dumped tables
@@ -151,7 +164,7 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_owner`
 --
 ALTER TABLE `tb_owner`
-  MODIFY `w_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `w_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tb_permission`
 --
@@ -161,7 +174,7 @@ ALTER TABLE `tb_permission`
 -- AUTO_INCREMENT for table `tb_project`
 --
 ALTER TABLE `tb_project`
-  MODIFY `pj_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `pj_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
