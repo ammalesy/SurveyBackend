@@ -12,6 +12,12 @@ class ProjectManagement extends NZ_Controller {
         if(check_permission($this->page,"n")){
             $this->goFailPage();
         }
+
+    }
+    function test(){
+
+        $this->load->helper('file');
+        echo $queryString = read_file('./database_import/project_db.sql');
     }
     function index(){
     	$data['page'] = $this->page;
@@ -91,6 +97,8 @@ class ProjectManagement extends NZ_Controller {
                                                     'pj_description' => $pj_description,
                                                     'pj_db_ref' => $pj_db_ref,
                                                     'pj_image' => $pj_image));
+            $this->load->model('common/database');
+            $this->database->create($pj_name);
          }
         // /*=============================*/
         // /*======= EDIT SUBMITED =======*/
