@@ -17,6 +17,8 @@
 
     <!-- Custom CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo APP_PATH."assets/"; ?>css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo APP_PATH."assets/"; ?>css/bootstrap-formhelpers.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/plugins/morris.css" rel="stylesheet">
@@ -76,6 +78,7 @@
 <!-- jQuery -->
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap-formhelpers.js"></script>
     <script>
         $(document).ready(function() {
             $('#questionTable').DataTable({
