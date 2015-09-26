@@ -50,7 +50,7 @@
                 <label>Answer list</label>
                 <input type="hidden" name="count_answers" value="<?php echo count($answers); ?>">
                 <? $seq = 1; foreach ($answers as $answer) : ?> 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-lg-10">
                         <div class="form-group">
                             <div class="form-group input-group">
@@ -66,6 +66,91 @@
                             <option <?php echo ($answer->active == "N")?'selected':''; ?>>Deactive</option>
                         </select>
                     </div>
+                </div> -->
+                <div class="row">
+                <div class="col-lg-8">
+                <div class="panel panel-success">
+                <div class="panel-heading">Answer : <?php echo $seq; ?></div>
+                <div class="panel-body">
+
+                <label>Answer detail.</label>
+                <div class="row">
+                    <div class="col-lg-9">
+                       <div class="form-group">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><?php echo $seq; ?></span>
+                                <input name="aa_description[]" data-event="<?php echo $seq-1; ?>" id="aa_description" class="form-control" placeholder="Label text" value="<?php echo $answer->aa_description; ?>">
+                                <input name="aa_id[]" id="aa_id" type="hidden" value="<?php echo $answer->aa_id; ?>">
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <select class="form-control" name="aa_active[]" id="active" data-event="<?php echo $seq-1; ?>">
+                                    <option <?php echo ($answer->active == "Y")?'selected':''; ?>>Active</option>
+                                    <option <?php echo ($answer->active == "N")?'selected':''; ?>>Deactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label>Answer style.</label>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <select class="form-control" name="type[]" id="type" data-event="<?php echo $seq-1; ?>">
+                            <option value='0' <?php echo ($answer->type == "0")?'selected':''; ?>>checkbox</option>
+                            <option value='1' <?php echo ($answer->type == "1")?'selected':''; ?>>Text box</option>
+                            <option value='2' <?php echo ($answer->type == "2")?'selected':''; ?>>Radio button</option>
+                        </select>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" class="form-control" id="color" name="color[]" value="<?php echo $answer->aa_color; ?>" data-event="<?php echo $seq-1; ?>" />
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                                    
+                </div>
+
+                <div class="col-lg-4">
+                <div class="panel panel-info">
+                <div class="panel-heading">Preview</div>
+                <div class="panel-body">
+                <div class="space_preview<?php echo ($seq-1); ?>">
+                <div class="row">
+                <div class="col-lg-1">
+                <div id="component">
+
+                <?php 
+                    if($answer->type == 0) { 
+                        echo "<input id=checkbox type=checkbox>";
+                    }else if($answer->type == 1){
+                        echo "<input type=text id=text  placeholder=' example' style='background-color:".$answer->aa_color."'>";
+                    }else if($answer->type == 2){
+                        echo "<input id=radio type=radio>";
+                    }
+
+                ?>
+                
+                </div>
+
+                </div>
+
+                <div class="col-lg-6">
+                <div id="label" style="color:<?php if($answer->aa_color=="#FFFFFF"){echo "#000000"; } echo $answer->aa_color; ?>">
+                    <?php
+                        if($answer->type != 1) {
+                            echo " ".$answer->aa_description;
+                        }
+                    ?>
+                </div>
+                </div>
+
+                </div>
+             
+                </div>
+                </div>
+                </div>
+                </div>
                 </div>
                 <?php $seq++; endforeach; ?>
                 <div class="row">
@@ -124,21 +209,69 @@
                                     return;
                                }
 
-                               var html = 
+                                var html = 
                                 '<div class="row" id="answerObject">'+
-                                '<div class="col-lg-10">'+
-                                '   <div class="form-group">'+
-                                '        <div class="form-group input-group">'+
-                                '            <span class="input-group-addon">'+(aa_description_count+1)+'</span>'+
-                                '            <input name="aa_description[]" id="aa_description" class="form-control" placeholder="Answer text">'+
-                                '        </div>  '+
-                                '    </div>'+
+                                '<div class="col-lg-8">'+
+                                    '<div class="panel panel-success">'+
+                                    '<div class="panel-heading">Answer : '+(aa_description_count+1)+'</div>'+
+                                    '<div class="panel-body">'+
+
+                                    '<label>Answer detail.</label>'+
+                                    '<div class="row">'+
+                                    '<div class="col-lg-9">'+
+                                    '   <div class="form-group">'+
+                                    '        <div class="form-group input-group">'+
+                                    '            <span class="input-group-addon">'+(aa_description_count+1)+'</span>'+
+                                    '            <input data-event='+aa_description_count+' name="aa_description[]" id="aa_description" class="form-control" placeholder="Label text">'+
+                                    '        </div>  '+
+                                    '    </div>'+
+                                    '</div>'+
+                                    '<div class="col-lg-3">'+
+                                    '<select class="form-control" id="aa_active" name="aa_active[]" data-event='+aa_description_count+'>'+
+                                    '    <option selected>Active</option>'+
+                                    '    <option>Deactive</option>'+
+                                    '</select>'+
+                                    '</div>'+
+                                    '</div>'+
+
+                                    '<label>Answer style.</label>'+
+                                    '<div class="row">'+
+                                    '<div class="col-lg-9">'+
+                                    '<select class="form-control" id="type" name="type[]" data-event='+aa_description_count+'>'+
+                                    '    <option value=0 selected>checkbox</option>'+
+                                    '    <option value=1>Text box</option>'+
+                                    '    <option value=2>Radio button</option>'+
+                                    '</select>'+
+                                    '</div>'+
+                                    '<div class="col-lg-3">'+
+                                    '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
+                                    '</div>'+
+                                    '</div>'+
+
+                                    '</div>'+
+                                    '</div>'+
                                 '</div>'+
-                                '<div class="col-lg-2">'+
-                                '<select class="form-control" name="aa_active[]">'+
-                                '    <option selected>Active</option>'+
-                                '    <option>Deactive</option>'+
-                                '</select>'+
+
+                                '<div class="col-lg-4">'+
+                                '<div class="panel panel-info">'+
+                                '<div class="panel-heading">Preview</div>'+
+                                '<div class="panel-body">'+
+                                '<div class="space_preview'+aa_description_count+'">'+
+
+                                '<div class="row">'+
+                                '<div class="col-lg-1">'+
+                                '<div id="component"><input type="checkbox"></div>'+
+                                '</div>'+
+
+                                '<div class="col-lg-6">'+
+                                '<div id="label"> example</div>'+
+                                '</div>'+
+
+                                '</div>'+
+             
+                                '</div>'+
+                                '</div>'+
+                                '</div>'+
                                 '</div>'+
                                 '</div>';
                                
@@ -155,6 +288,67 @@
 
                                $( "div#answerObject:last").remove();
                             }
+
+
+                            $(document).ready(function() {
+
+                                var checkbox_identifier = "0";
+                                var textbox_identifier = "1";
+                                var radio_identifier = "2";
+
+                                $('div').on('keyup', 'input#aa_description', function () { 
+                                    var seq = $(this).attr("data-event");
+                                    var type = $("#type[data-event='"+seq+"']").val();
+                                   
+                                    if(type !== textbox_identifier){
+                                        var text = $(this).val();
+                                        var label = $('.space_preview'+seq+' div#label');
+                                        label.html(text);
+                                    }
+           
+                                                                        
+                                });
+                                $('div').on('change', 'select#type', function () { 
+                                     var seq = $(this).attr("data-event");
+                                     var text = $(this).val();
+                                     if(text === "0")
+                                     {
+                                        $('.space_preview'+seq+' div#component').html("<input id=checkbox type=checkbox>");
+                                        var val = $('.space_preview'+seq+' div#label').html();
+                                        if(val === ""){
+                                            $('.space_preview'+seq+' div#label').html("example");
+                                        }
+                                     }
+                                     else if(text === textbox_identifier)
+                                     {
+
+                                        $('.space_preview'+seq+' div#component').html("<input type=text id=text  placeholder=' example'>");
+                                        $('.space_preview'+seq+' div#label').html("");
+
+                                     }
+                                     else if(text === radio_identifier)
+                                     {
+                                        $('.space_preview'+seq+' div#component').html("<input id=radio type=radio>");
+                                        var val = $('.space_preview'+seq+' div#label').html();
+                                        if(val === ""){
+                                            $('.space_preview'+seq+' div#label').html("example");
+                                        }
+                                     }
+                                     $('space_preview'+seq).html('type');
+                                });
+                                $('div').on('keyup', 'input#color', function () { 
+                                     var seq = $(this).attr("data-event");
+                                     var val = $(this).val();
+
+                                     $('.space_preview'+seq+' div#component').find('input#text').css("background-color",val);
+                                     $('.space_preview'+seq+' div#label').css("color",val);
+
+
+
+                                });
+                            });
+
+
                  </script>
                  <div class="row">
                     <div class="col-lg-8">

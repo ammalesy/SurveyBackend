@@ -17,8 +17,8 @@
 
     <!-- Custom CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/sb-admin.css" rel="stylesheet">
-    <link href="<?php echo APP_PATH."assets/"; ?>css/sb-admin.css" rel="stylesheet">
-    <link href="<?php echo APP_PATH."assets/"; ?>css/bootstrap-formhelpers.css" rel="stylesheet">
+    <!-- <link href="<?php echo APP_PATH."assets/"; ?>module/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet"> -->
+    <!-- <link href="<?php echo APP_PATH."assets/"; ?>module/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet"> -->
 
     <!-- Morris Charts CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/plugins/morris.css" rel="stylesheet">
@@ -78,15 +78,26 @@
 <!-- jQuery -->
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap-formhelpers.js"></script>
+    <!-- <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.js"></script> -->
+    <!-- <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.min.js"></script> -->
     <script>
         $(document).ready(function() {
             $('#questionTable').DataTable({
                 "pagingType": "full_numbers",
                  "order": [[ 0, "desc" ]]
             });
+            // $(function(){
+            //     $('.demo1').colorpicker();
+            // });
+
+        
+
         });
+
+
+
     </script>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>

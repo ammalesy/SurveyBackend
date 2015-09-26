@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2015 at 07:37 PM
+-- Generation Time: Sep 26, 2015 at 08:41 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `TestPJ3`
+-- Database: `the_sk_condo`
 --
 
 -- --------------------------------------------------------
@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `tb_all_answer` (
   `aa_image` varchar(100) DEFAULT NULL,
   `aq_id_ref` int(5) NOT NULL,
   `type` int(2) NOT NULL,
-  `active` varchar(1) NOT NULL DEFAULT 'Y'
+  `active` varchar(1) NOT NULL DEFAULT 'Y',
+  `aa_color` varchar(10) NOT NULL DEFAULT '#FFFFFF'
 ) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2015 at 07:36 PM
+-- Generation Time: Sep 26, 2015 at 08:40 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `TestPJ`
+-- Database: `batman_condo`
 --
 
 -- --------------------------------------------------------
@@ -32,16 +32,9 @@ CREATE TABLE IF NOT EXISTS `tb_all_answer` (
   `aa_image` varchar(100) DEFAULT NULL,
   `aq_id_ref` int(5) NOT NULL,
   `type` int(2) NOT NULL,
-  `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_all_answer`
---
-
-INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`, `type`, `active`) VALUES
-(148, 'Test answer', NULL, 22, 0, 'Y'),
-(149, 'Test answers', NULL, 22, 0, 'Y');
+  `active` varchar(1) NOT NULL DEFAULT 'Y',
+  `aa_color` varchar(10) NOT NULL DEFAULT '#FFFFFF'
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -54,14 +47,7 @@ CREATE TABLE IF NOT EXISTS `tb_all_question` (
   `aq_description` text NOT NULL,
   `aq_image` varchar(100) DEFAULT ' ',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_all_question`
---
-
-INSERT INTO `tb_all_question` (`aq_id`, `aq_description`, `aq_image`, `active`) VALUES
-(22, 'Testq', ' ', 'Y');
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -155,12 +141,12 @@ ALTER TABLE `tb_user_info`
 -- AUTO_INCREMENT for table `tb_all_answer`
 --
 ALTER TABLE `tb_all_answer`
-  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=150;
+  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=148;
 --
 -- AUTO_INCREMENT for table `tb_all_question`
 --
 ALTER TABLE `tb_all_question`
-  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tb_survey_mapping`
 --

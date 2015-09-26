@@ -79,6 +79,7 @@ class ProjectManagement extends NZ_Controller {
             $data = array('upload_data' => $this->upload->data());
             $pj_image = $data['upload_data']['file_name'];
         }
+
         // /*============================*/
         // /*======= ADD SUBMITED =======*/
         // /*============================*/
@@ -120,7 +121,10 @@ class ProjectManagement extends NZ_Controller {
                     $this->edit($pj_id);
                     return;
                 }
-            if($pj_image == ""){
+            $upload_data = $this->upload->data();
+            $isUpload = ($upload_data['file_size'] > 0)?TRUE:FALSE;
+
+            if(!$isUpload){
                 $this->tb_project->update(array('pj_name' => $pj_name,
                                             'pj_description' => $pj_description),$pj_id);
             }else{

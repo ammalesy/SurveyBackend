@@ -102,6 +102,8 @@ class QuestionManagement extends NZ_Controller {
     	$aq_description = $this->input->post('aq_description');
     	$aa_descriptions = array_filter($this->input->post('aa_description'));
     	$aa_actives = $this->input->post('aa_active');
+        $colors = $this->input->post('color');
+        $types = $this->input->post('type');
 
     	/*============================*/
     	/*======= ADD SUBMITED =======*/
@@ -127,6 +129,8 @@ class QuestionManagement extends NZ_Controller {
     		foreach ($aa_descriptions as $aa_description) {
     			$this->tb_all_answer->record(array('aa_description' => $aa_description,
     											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N',
+                                                   'type' => $types[$i],
+                                                   'aa_color' => $colors[$i],
     											   'aq_id_ref' => $aq_id));
     			$i++;
     		}
@@ -158,13 +162,17 @@ class QuestionManagement extends NZ_Controller {
     		$count_answers = $this->input->post('count_answers');
     		for($i = 0; $i < $count_answers; $i++){
     			$this->tb_all_answer->update(array('aa_description' => $aa_descriptions[$i],
-    											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N' ),$aa_ids[$i]);
+    											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N',
+                                                   'type' => $types[$i],
+                                                   'aa_color' => $colors[$i]),$aa_ids[$i]);
     		}
 
     		//INSERT NEW ANSWERS
     		for($i = $count_answers; $i < count($aa_descriptions); $i++){
     			$this->tb_all_answer->record(array('aa_description' => $aa_descriptions[$i],
     											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N',
+                                                   'type' => $types[$i],
+                                                   'aa_color' => $colors[$i],
     											   'aq_id_ref' => $aq_id));
     		}
 	    }

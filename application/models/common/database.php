@@ -41,12 +41,13 @@ class Database extends CI_Model {
           /*=========================*/
           $tb_all_answer = "CREATE TABLE IF NOT EXISTS `tb_all_answer` (
                 `aa_id` int(20) NOT NULL,
-                  `aa_description` text NOT NULL,
-                  `aa_image` varchar(100) DEFAULT NULL,
-                  `aq_id_ref` int(5) NOT NULL,
-                  `type` int(2) NOT NULL,
-                  `active` varchar(1) NOT NULL DEFAULT 'Y'
-                ) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;";
+                `aa_description` text NOT NULL,
+                `aa_image` varchar(100) DEFAULT NULL,
+                `aq_id_ref` int(5) NOT NULL,
+                `type` int(2) NOT NULL,
+                `active` varchar(1) NOT NULL DEFAULT 'Y',
+                `aa_color` varchar(10) NOT NULL DEFAULT '#FFFFFF'
+              ) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;";
           $base->query($tb_all_answer);
 
           $tb_all_question = "CREATE TABLE IF NOT EXISTS `tb_all_question` (

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 23, 2015 at 07:14 PM
+-- Generation Time: Sep 26, 2015 at 08:41 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -315,64 +315,71 @@ CREATE TABLE IF NOT EXISTS `tb_all_answer` (
   `aa_image` varchar(100) DEFAULT NULL,
   `aq_id_ref` int(5) NOT NULL,
   `type` int(2) NOT NULL,
-  `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
+  `active` varchar(1) NOT NULL DEFAULT 'Y',
+  `aa_color` varchar(10) NOT NULL DEFAULT '#FFFFFF'
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_answer`
 --
 
-INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`, `type`, `active`) VALUES
-(97, 'ans 1', NULL, 12, 0, 'Y'),
-(98, 'ans 2', NULL, 12, 0, 'Y'),
-(99, 'ans 3', NULL, 12, 0, 'Y'),
-(100, 'dfqef', NULL, 12, 0, 'N'),
-(101, 'qefqefqefqef', NULL, 12, 0, 'N'),
-(102, 'I play the football with my friends every night2.', NULL, 1, 0, 'Y'),
-(103, 'I go to the beat with my family every year.', NULL, 1, 0, 'Y'),
-(104, 'I do something with my girl friend!!', NULL, 1, 0, 'Y'),
-(105, 'I don''t known because no the hobbies2.', NULL, 1, 0, 'Y'),
-(106, 'aaa', NULL, 1, 0, 'Y'),
-(107, 'bbb', NULL, 1, 0, 'Y'),
-(108, 'ccc', NULL, 1, 0, 'Y'),
-(109, 'ddd', NULL, 1, 0, 'Y'),
-(110, 'ans1', NULL, 13, 0, 'Y'),
-(111, 'ans2', NULL, 13, 0, 'Y'),
-(112, 'ans3', NULL, 13, 0, 'Y'),
-(113, 'ans4', NULL, 13, 0, 'Y'),
-(114, 'ans5', NULL, 13, 0, 'Y'),
-(129, 'ans1', NULL, 14, 0, 'Y'),
-(130, 'ans2', NULL, 14, 0, 'Y'),
-(131, 'ans3', NULL, 14, 0, 'Y'),
-(132, 'ans4', NULL, 14, 0, 'Y'),
-(133, 'ans1cc', NULL, 15, 0, 'Y'),
-(134, 'ans2cc', NULL, 15, 0, 'Y'),
-(135, 'ans3cc', NULL, 15, 0, 'Y'),
-(136, 'ans4cc', NULL, 15, 0, 'Y'),
-(137, 'ans5cc', NULL, 15, 0, 'Y'),
-(138, 'ans6cc', NULL, 15, 0, 'Y'),
-(139, '1', NULL, 16, 0, 'Y'),
-(140, '4', NULL, 17, 0, 'Y'),
-(141, 'test', NULL, 1, 0, 'Y'),
-(142, 'tt', NULL, 18, 0, 'Y'),
-(143, 'sdfsdf', NULL, 19, 0, 'Y'),
-(144, 'sfgsfg', NULL, 20, 0, 'Y'),
-(145, 'wrgwrgwrg', NULL, 21, 0, 'Y'),
-(146, 't1', NULL, 12, 0, 'Y'),
-(147, 'gggg', NULL, 1, 0, 'Y'),
-(148, 'r', NULL, 22, 0, 'Y'),
-(149, 'v', NULL, 23, 0, 'Y'),
-(150, 'b', NULL, 24, 0, 'Y'),
-(151, 'n', NULL, 25, 0, 'Y'),
-(152, 'gt', NULL, 26, 0, 'Y'),
-(153, 'er', NULL, 27, 0, 'Y'),
-(154, 'nb', NULL, 28, 0, 'Y'),
-(155, 'ert', NULL, 29, 0, 'Y'),
-(156, 'tre', NULL, 30, 0, 'Y'),
-(157, 'qret', NULL, 31, 0, 'Y'),
-(158, 'a', NULL, 32, 0, 'Y'),
-(159, 's', NULL, 32, 0, 'Y'),
-(160, 'z', NULL, 32, 0, 'Y');
+INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`, `type`, `active`, `aa_color`) VALUES
+(97, 'ans 1', NULL, 12, 0, 'Y', '#FFFFFF'),
+(98, 'ans 2', NULL, 12, 0, 'Y', '#FFFFFF'),
+(99, 'ans 3', NULL, 12, 0, 'Y', '#FFFFFF'),
+(100, 'dfqef', NULL, 12, 0, 'N', '#FFFFFF'),
+(101, 'qefqefqefqef', NULL, 12, 0, 'N', '#FFFFFF'),
+(102, 'I play the football with my friends every night2.', NULL, 1, 0, 'Y', '#FFFFFF'),
+(103, 'I go to the beat with my family every year.', NULL, 1, 0, 'Y', '#FFFFFF'),
+(104, 'I do something with my girl friend!!', NULL, 1, 0, 'Y', '#FFFFFF'),
+(105, 'I don''t known because no the hobbies2.', NULL, 1, 0, 'Y', '#FFFFFF'),
+(106, 'aaa', NULL, 1, 0, 'Y', '#FFFFFF'),
+(107, 'bbb', NULL, 1, 0, 'Y', '#FFFFFF'),
+(108, 'ccc', NULL, 1, 0, 'Y', '#FFFFFF'),
+(109, 'ddd', NULL, 1, 0, 'Y', '#FFFFFF'),
+(110, 'ans1', NULL, 13, 0, 'Y', '#FFFFFF'),
+(111, 'ans2', NULL, 13, 0, 'Y', '#FFFFFF'),
+(112, 'ans3', NULL, 13, 0, 'Y', '#FFFFFF'),
+(113, 'ans4', NULL, 13, 0, 'Y', '#FFFFFF'),
+(114, 'ans5', NULL, 13, 0, 'Y', '#FFFFFF'),
+(129, 'ans1', NULL, 14, 0, 'Y', '#FFFFFF'),
+(130, 'ans2', NULL, 14, 0, 'Y', '#FFFFFF'),
+(131, 'ans3', NULL, 14, 0, 'Y', '#FFFFFF'),
+(132, 'ans4', NULL, 14, 0, 'Y', '#FFFFFF'),
+(133, 'ans1cc', NULL, 15, 0, 'Y', '#FFFFFF'),
+(134, 'ans2cc', NULL, 15, 0, 'Y', '#FFFFFF'),
+(135, 'ans3cc', NULL, 15, 0, 'Y', '#FFFFFF'),
+(136, 'ans4cc', NULL, 15, 0, 'Y', '#FFFFFF'),
+(137, 'ans5cc', NULL, 15, 0, 'Y', '#FFFFFF'),
+(138, 'ans6cc', NULL, 15, 0, 'Y', '#FFFFFF'),
+(139, '1', NULL, 16, 0, 'Y', '#FFFFFF'),
+(140, '4', NULL, 17, 0, 'Y', '#FFFFFF'),
+(141, 'test', NULL, 1, 0, 'Y', '#FFFFFF'),
+(142, 'tt', NULL, 18, 0, 'Y', '#FFFFFF'),
+(143, 'sdfsdf', NULL, 19, 0, 'Y', '#FFFFFF'),
+(144, 'sfgsfg', NULL, 20, 0, 'Y', '#FFFFFF'),
+(145, 'wrgwrgwrg', NULL, 21, 0, 'Y', '#FFFFFF'),
+(146, 't1', NULL, 12, 0, 'Y', '#FFFFFF'),
+(147, 'gggg', NULL, 1, 0, 'Y', '#FFFFFF'),
+(148, 'r', NULL, 22, 0, 'Y', '#FFFFFF'),
+(149, 'v', NULL, 23, 0, 'Y', '#FFFFFF'),
+(150, 'b', NULL, 24, 0, 'Y', '#FFFFFF'),
+(151, 'n', NULL, 25, 0, 'Y', '#FFFFFF'),
+(152, 'gt', NULL, 26, 0, 'Y', '#FFFFFF'),
+(153, 'er', NULL, 27, 0, 'Y', '#FFFFFF'),
+(154, 'nb', NULL, 28, 0, 'Y', '#FFFFFF'),
+(155, 'ert', NULL, 29, 0, 'Y', '#FFFFFF'),
+(156, 'tre', NULL, 30, 0, 'Y', '#FFFFFF'),
+(157, 'qret', NULL, 31, 0, 'Y', '#FFFFFF'),
+(158, 'a', NULL, 32, 0, 'Y', '#FFFFFF'),
+(159, 's', NULL, 32, 0, 'Y', '#FFFFFF'),
+(160, 'z', NULL, 32, 0, 'Y', '#FFFFFF'),
+(161, 'the test textbook', NULL, 34, 1, 'Y', '#FFFFFF'),
+(162, 'the test checkbox', NULL, 34, 0, 'Y', '#FFFFFF'),
+(163, 'the test radio', NULL, 34, 2, 'Y', '#FFFFFF'),
+(164, 'testcheckbox', NULL, 35, 1, 'Y', '#CCCCCC'),
+(165, 'heckbox', NULL, 35, 0, 'Y', '#DD8899'),
+(166, 'radiotest', NULL, 35, 2, 'Y', '#98877');
 
 -- --------------------------------------------------------
 
@@ -385,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `tb_all_question` (
   `aq_description` text NOT NULL,
   `aq_image` varchar(100) DEFAULT ' ',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_question`
@@ -413,7 +420,9 @@ INSERT INTO `tb_all_question` (`aq_id`, `aq_description`, `aq_image`, `active`) 
 (29, 'ert', ' ', 'Y'),
 (30, 'tre', ' ', 'Y'),
 (31, 'qrt', ' ', 'Y'),
-(32, 'testq', ' ', 'Y');
+(32, 'testq', ' ', 'Y'),
+(34, 'question_test', ' ', 'Y'),
+(35, 'component test', ' ', 'Y');
 
 -- --------------------------------------------------------
 
@@ -750,12 +759,12 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_all_answer`
 --
 ALTER TABLE `tb_all_answer`
-  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=161;
+  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=167;
 --
 -- AUTO_INCREMENT for table `tb_all_question`
 --
 ALTER TABLE `tb_all_question`
-  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `tb_survey_mapping`
 --
