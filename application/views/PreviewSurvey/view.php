@@ -66,7 +66,8 @@
             ?>
             
         <?php $i++; endforeach; ?>
-        </div>
+        <?php if(count($projects) > 3) { echo '</div>'; }?>
+        
         
         <!-- /.row -->
 
