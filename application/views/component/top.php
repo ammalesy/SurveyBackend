@@ -17,8 +17,8 @@
 
     <!-- Custom CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/sb-admin.css" rel="stylesheet">
-    <!-- <link href="<?php echo APP_PATH."assets/"; ?>module/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet"> -->
-    <!-- <link href="<?php echo APP_PATH."assets/"; ?>module/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet"> -->
+    <link href="<?php echo APP_PATH."assets/"; ?>module/colorpicker/css/bootstrap-colorpicker.css" rel="stylesheet"> 
+    <link href="<?php echo APP_PATH."assets/"; ?>module/colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="<?php echo APP_PATH."assets/"; ?>css/plugins/morris.css" rel="stylesheet">
@@ -34,6 +34,9 @@
     <![endif]-->
     <link href="<?php echo APP_PATH."assets/"; ?>css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo APP_PATH."assets/"; ?>css/jquery.dataTables.min.css" rel="stylesheet">
+
+
+    <!-- <link rel="stylesheet" href="<?php echo APP_PATH."assets/"; ?>css/pick-a-color-1.2.3.min.css"> -->
     <style>
         .modal.modal-wide .modal-dialog {
           width: 60%;
@@ -72,14 +75,19 @@
 
     </style>
 
+
+
 </head>
 
 <body>
 <!-- jQuery -->
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.dataTables.min.js"></script>
-    <!-- <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.js"></script> -->
-    <!-- <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.min.js"></script> -->
+    <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.min.js"></script>
+
+   
+
     <script>
         $(document).ready(function() {
             $('#questionTable').DataTable({

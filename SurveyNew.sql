@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 26, 2015 at 08:41 PM
+-- Generation Time: Sep 27, 2015 at 05:51 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `SV6` (
 --
 
 INSERT INTO `SV6` (`id`, `1`, `12`, `13`) VALUES
-(1, '', '', ''),
-(2, '', '', '');
+(1, '[]', '[]', '[]'),
+(2, '[]', '[]', '[]');
 
 -- --------------------------------------------------------
 
@@ -71,11 +71,11 @@ CREATE TABLE IF NOT EXISTS `SV7` (
 --
 
 INSERT INTO `SV7` (`id`, `12`, `13`) VALUES
-(1, '', '110'),
-(2, '99,146', '110'),
-(3, '99', '110'),
-(4, '99', '110'),
-(5, '99', '110');
+(1, '[]', '[{"aa_id":"110"}]'),
+(2, '[{"aa_id":"99"},{"aa_id":"146"}]', '[{"aa_id":"110"}]'),
+(3, '[{"aa_id":"99"}]', '[{"aa_id":"110"}]'),
+(4, '[{"aa_id":"99"}]', '[{"aa_id":"110"}]'),
+(5, '[{"aa_id":"99"}]', '[{"aa_id":"110"}]');
 
 -- --------------------------------------------------------
 
@@ -120,10 +120,10 @@ CREATE TABLE IF NOT EXISTS `SV10` (
 --
 
 INSERT INTO `SV10` (`id`, `12`, `1`, `13`, `14`) VALUES
-(1, '97,98', '102', '110', '129,130,131'),
-(2, '97', '102', '110', '129'),
-(3, '98', '102,103', '110,111', '130'),
-(4, '97,98', '102,103,104,105,107', '111', '130');
+(1, '[{"aa_id":"97"},{"aa_id":"98"}]', '[{"aa_id":"102"}]', '[{"aa_id":"110"}]', '[{"aa_id":"129"},{"aa_id":"130"},{"aa_id":"131"}]'),
+(2, '[{"aa_id":"97"}]', '[{"aa_id":"102"}]', '[{"aa_id":"110"}]', '[{"aa_id":"129"}]'),
+(3, '[{"aa_id":"98"}]', '[{"aa_id":"102"},{"aa_id":"103"}]', '[{"aa_id":"110"},{"aa_id":"111"}]', '[{"aa_id":"130"}]'),
+(4, '[{"aa_id":"97"},{"aa_id":"98"}]', '[{"aa_id":"102"},{"aa_id":"103"},{"aa_id":"104"},{"aa_id":"105"},{"aa_id":"107"}]', '[{"aa_id":"111"}]', '[{"aa_id":"130"}]');
 
 -- --------------------------------------------------------
 
@@ -198,11 +198,11 @@ CREATE TABLE IF NOT EXISTS `SV16` (
 --
 
 INSERT INTO `SV16` (`id`, `17`) VALUES
-(1, '140'),
-(2, '140'),
-(3, '140'),
-(4, '140'),
-(5, '140');
+(1, '[{"aa_id":"140"}]'),
+(2, '[{"aa_id":"140"}]'),
+(3, '[{"aa_id":"140"}]'),
+(4, '[{"aa_id":"140"}]'),
+(5, '[{"aa_id":"140"}]');
 
 -- --------------------------------------------------------
 
@@ -212,7 +212,7 @@ INSERT INTO `SV16` (`id`, `17`) VALUES
 
 CREATE TABLE IF NOT EXISTS `SV17` (
   `id` int(10) NOT NULL,
-  `1` varchar(100) NOT NULL
+  `1` varchar(100) NOT NULL DEFAULT '[]'
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
@@ -220,10 +220,10 @@ CREATE TABLE IF NOT EXISTS `SV17` (
 --
 
 INSERT INTO `SV17` (`id`, `1`) VALUES
-(1, ''),
-(2, ''),
-(3, '102,103'),
-(4, '102,103');
+(1, '[]'),
+(2, '[]'),
+(3, '[{"aa_id":"102"},{"aa_id":"103"}]'),
+(4, '[{"aa_id":"102"},{"aa_id":"103"}]');
 
 -- --------------------------------------------------------
 
@@ -241,9 +241,9 @@ CREATE TABLE IF NOT EXISTS `SV18` (
 --
 
 INSERT INTO `SV18` (`id`, `12`) VALUES
-(1, '97,98'),
-(2, '97,98'),
-(3, '97');
+(1, '[{"aa_id":"97"},{"aa_id":"98"}]'),
+(2, '[{"aa_id":"97"},{"aa_id":"98"}]'),
+(3, '[{"aa_id":"97"}]');
 
 -- --------------------------------------------------------
 
@@ -275,13 +275,41 @@ CREATE TABLE IF NOT EXISTS `SV19` (
   `31` varchar(100) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `SV19`
+-- Table structure for table `SV20`
 --
 
-INSERT INTO `SV19` (`id`, `1`, `18`, `15`, `12`, `14`, `13`, `21`, `20`, `16`, `19`, `17`, `24`, `23`, `30`, `29`, `22`, `28`, `25`, `26`, `31`) VALUES
-(1, '102,103', '142', '135', '99,146', '130', '112,113', '145', '144', '', '143', '', '150', '', '156', '', '148', '154', '151', '152', '157'),
-(2, '102', '142', '135,137', '146', '129,130', '110', '145', '', '139', '143', '140', '', '', '156', '155', '148', '154', '', '152', '157');
+CREATE TABLE IF NOT EXISTS `SV20` (
+  `id` int(10) NOT NULL,
+  `35` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SV20`
+--
+
+INSERT INTO `SV20` (`id`, `35`) VALUES
+(1, '[{"aa_id":"164","text":"test the system"},{"aa_id":"165"},{"aa_id":"166"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV21`
+--
+
+CREATE TABLE IF NOT EXISTS `SV21` (
+  `id` int(10) NOT NULL,
+  `35` varchar(250) NOT NULL DEFAULT '[]'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SV21`
+--
+
+INSERT INTO `SV21` (`id`, `35`) VALUES
+(1, '[]');
 
 -- --------------------------------------------------------
 
@@ -316,68 +344,68 @@ CREATE TABLE IF NOT EXISTS `tb_all_answer` (
   `aq_id_ref` int(5) NOT NULL,
   `type` int(2) NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'Y',
-  `aa_color` varchar(10) NOT NULL DEFAULT '#FFFFFF'
-) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
+  `aa_color` varchar(10) NOT NULL DEFAULT '#000000'
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_answer`
 --
 
 INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`, `type`, `active`, `aa_color`) VALUES
-(97, 'ans 1', NULL, 12, 0, 'Y', '#FFFFFF'),
-(98, 'ans 2', NULL, 12, 0, 'Y', '#FFFFFF'),
-(99, 'ans 3', NULL, 12, 0, 'Y', '#FFFFFF'),
-(100, 'dfqef', NULL, 12, 0, 'N', '#FFFFFF'),
-(101, 'qefqefqefqef', NULL, 12, 0, 'N', '#FFFFFF'),
-(102, 'I play the football with my friends every night2.', NULL, 1, 0, 'Y', '#FFFFFF'),
-(103, 'I go to the beat with my family every year.', NULL, 1, 0, 'Y', '#FFFFFF'),
-(104, 'I do something with my girl friend!!', NULL, 1, 0, 'Y', '#FFFFFF'),
-(105, 'I don''t known because no the hobbies2.', NULL, 1, 0, 'Y', '#FFFFFF'),
-(106, 'aaa', NULL, 1, 0, 'Y', '#FFFFFF'),
-(107, 'bbb', NULL, 1, 0, 'Y', '#FFFFFF'),
-(108, 'ccc', NULL, 1, 0, 'Y', '#FFFFFF'),
-(109, 'ddd', NULL, 1, 0, 'Y', '#FFFFFF'),
-(110, 'ans1', NULL, 13, 0, 'Y', '#FFFFFF'),
-(111, 'ans2', NULL, 13, 0, 'Y', '#FFFFFF'),
-(112, 'ans3', NULL, 13, 0, 'Y', '#FFFFFF'),
-(113, 'ans4', NULL, 13, 0, 'Y', '#FFFFFF'),
-(114, 'ans5', NULL, 13, 0, 'Y', '#FFFFFF'),
-(129, 'ans1', NULL, 14, 0, 'Y', '#FFFFFF'),
-(130, 'ans2', NULL, 14, 0, 'Y', '#FFFFFF'),
-(131, 'ans3', NULL, 14, 0, 'Y', '#FFFFFF'),
-(132, 'ans4', NULL, 14, 0, 'Y', '#FFFFFF'),
-(133, 'ans1cc', NULL, 15, 0, 'Y', '#FFFFFF'),
-(134, 'ans2cc', NULL, 15, 0, 'Y', '#FFFFFF'),
-(135, 'ans3cc', NULL, 15, 0, 'Y', '#FFFFFF'),
-(136, 'ans4cc', NULL, 15, 0, 'Y', '#FFFFFF'),
-(137, 'ans5cc', NULL, 15, 0, 'Y', '#FFFFFF'),
-(138, 'ans6cc', NULL, 15, 0, 'Y', '#FFFFFF'),
-(139, '1', NULL, 16, 0, 'Y', '#FFFFFF'),
-(140, '4', NULL, 17, 0, 'Y', '#FFFFFF'),
-(141, 'test', NULL, 1, 0, 'Y', '#FFFFFF'),
-(142, 'tt', NULL, 18, 0, 'Y', '#FFFFFF'),
-(143, 'sdfsdf', NULL, 19, 0, 'Y', '#FFFFFF'),
-(144, 'sfgsfg', NULL, 20, 0, 'Y', '#FFFFFF'),
-(145, 'wrgwrgwrg', NULL, 21, 0, 'Y', '#FFFFFF'),
-(146, 't1', NULL, 12, 0, 'Y', '#FFFFFF'),
-(147, 'gggg', NULL, 1, 0, 'Y', '#FFFFFF'),
-(148, 'r', NULL, 22, 0, 'Y', '#FFFFFF'),
-(149, 'v', NULL, 23, 0, 'Y', '#FFFFFF'),
-(150, 'b', NULL, 24, 0, 'Y', '#FFFFFF'),
-(151, 'n', NULL, 25, 0, 'Y', '#FFFFFF'),
-(152, 'gt', NULL, 26, 0, 'Y', '#FFFFFF'),
-(153, 'er', NULL, 27, 0, 'Y', '#FFFFFF'),
-(154, 'nb', NULL, 28, 0, 'Y', '#FFFFFF'),
-(155, 'ert', NULL, 29, 0, 'Y', '#FFFFFF'),
-(156, 'tre', NULL, 30, 0, 'Y', '#FFFFFF'),
-(157, 'qret', NULL, 31, 0, 'Y', '#FFFFFF'),
-(158, 'a', NULL, 32, 0, 'Y', '#FFFFFF'),
-(159, 's', NULL, 32, 0, 'Y', '#FFFFFF'),
-(160, 'z', NULL, 32, 0, 'Y', '#FFFFFF'),
-(161, 'the test textbook', NULL, 34, 1, 'Y', '#FFFFFF'),
-(162, 'the test checkbox', NULL, 34, 0, 'Y', '#FFFFFF'),
-(163, 'the test radio', NULL, 34, 2, 'Y', '#FFFFFF'),
-(164, 'testcheckbox', NULL, 35, 1, 'Y', '#CCCCCC'),
+(97, 'ans 1', NULL, 12, 0, 'Y', '#000000'),
+(98, 'ans 2', NULL, 12, 0, 'Y', '#000000'),
+(99, 'ans 3', NULL, 12, 0, 'Y', '#000000'),
+(100, 'dfqef', NULL, 12, 0, 'N', '#000000'),
+(101, 'qefqefqefqef', NULL, 12, 0, 'N', '#000000'),
+(102, 'I play the football with my friends every night2.', NULL, 1, 0, 'Y', '#000000'),
+(103, 'I go to the beat with my family every year.', NULL, 1, 0, 'Y', '#000000'),
+(104, 'I do something with my girl friend!!', NULL, 1, 0, 'Y', '#000000'),
+(105, 'I don''t known because no the hobbies2.', NULL, 1, 0, 'Y', '#000000'),
+(106, 'aaa', NULL, 1, 0, 'Y', '#000000'),
+(107, 'bbb', NULL, 1, 0, 'Y', '#000000'),
+(108, 'ccc', NULL, 1, 0, 'Y', '#000000'),
+(109, 'ddd', NULL, 1, 0, 'Y', '#000000'),
+(110, 'ans1', NULL, 13, 0, 'Y', '#000000'),
+(111, 'ans2', NULL, 13, 0, 'Y', '#000000'),
+(112, 'ans3', NULL, 13, 0, 'Y', '#000000'),
+(113, 'ans4', NULL, 13, 0, 'Y', '#000000'),
+(114, 'ans5', NULL, 13, 0, 'Y', '#000000'),
+(129, 'ans1', NULL, 14, 0, 'Y', '#000000'),
+(130, 'ans2', NULL, 14, 0, 'Y', '#000000'),
+(131, 'ans3', NULL, 14, 0, 'Y', '#000000'),
+(132, 'ans4', NULL, 14, 0, 'Y', '#000000'),
+(133, 'ans1cc', NULL, 15, 0, 'Y', '#000000'),
+(134, 'ans2cc', NULL, 15, 0, 'Y', '#000000'),
+(135, 'ans3cc', NULL, 15, 0, 'Y', '#000000'),
+(136, 'ans4cc', NULL, 15, 0, 'Y', '#000000'),
+(137, 'ans5cc', NULL, 15, 0, 'Y', '#000000'),
+(138, 'ans6cc', NULL, 15, 0, 'Y', '#000000'),
+(139, '1', NULL, 16, 0, 'Y', '#000000'),
+(140, '4', NULL, 17, 0, 'Y', '#000000'),
+(141, 'test', NULL, 1, 0, 'Y', '#000000'),
+(142, 'tt', NULL, 18, 0, 'Y', '#000000'),
+(143, 'sdfsdf', NULL, 19, 0, 'Y', '#000000'),
+(144, 'sfgsfg', NULL, 20, 0, 'Y', '#000000'),
+(145, 'wrgwrgwrg', NULL, 21, 0, 'Y', '#000000'),
+(146, 't1', NULL, 12, 0, 'Y', '#000000'),
+(147, 'gggg', NULL, 1, 0, 'Y', '#000000'),
+(148, 'r', NULL, 22, 0, 'Y', '#000000'),
+(149, 'v', NULL, 23, 0, 'Y', '#000000'),
+(150, 'b', NULL, 24, 0, 'Y', '#000000'),
+(151, 'n', NULL, 25, 0, 'Y', '#000000'),
+(152, 'gt', NULL, 26, 0, 'Y', '#000000'),
+(153, 'er', NULL, 27, 0, 'Y', '#000000'),
+(154, 'nb', NULL, 28, 0, 'Y', '#000000'),
+(155, 'ert', NULL, 29, 0, 'Y', '#000000'),
+(156, 'tre', NULL, 30, 0, 'Y', '#000000'),
+(157, 'qret', NULL, 31, 0, 'Y', '#000000'),
+(158, 'a', NULL, 32, 0, 'Y', '#000000'),
+(159, 's', NULL, 32, 0, 'Y', '#000000'),
+(160, 'z', NULL, 32, 0, 'Y', '#000000'),
+(161, 'the test textbook', NULL, 34, 1, 'Y', '#000000'),
+(162, 'the test checkbox', NULL, 34, 0, 'Y', '#000000'),
+(163, 'the test radio', NULL, 34, 2, 'Y', '#000000'),
+(164, 'testcheckbox', NULL, 35, 1, 'Y', '#363499'),
 (165, 'heckbox', NULL, 35, 0, 'Y', '#DD8899'),
 (166, 'radiotest', NULL, 35, 2, 'Y', '#98877');
 
@@ -392,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `tb_all_question` (
   `aq_description` text NOT NULL,
   `aq_image` varchar(100) DEFAULT ' ',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_question`
@@ -437,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `tb_survey_mapping` (
   `sm_table_code` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `sm_order_column` text NOT NULL,
   `sm_update_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_survey_mapping`
@@ -457,7 +485,9 @@ INSERT INTO `tb_survey_mapping` (`sm_id`, `sm_name`, `sm_description`, `sm_table
 (16, 'Test On Mobile4', 'Test On Mobile4 des', 'SV16', '17', '2015-09-14 02:15:08'),
 (17, 'testsurvey', 'The survey', 'SV17', '1', '2015-09-19 18:21:25'),
 (18, 'testsurvey2', 'testsurvey2', 'SV18', '12', '2015-09-19 19:31:16'),
-(19, 'testOverflow', 'testOverflow', 'SV19', '1,18,15,12,14,13,21,20,16,19,17,24,23,30,29,22,28,25,26,31', '2015-09-19 21:39:05');
+(19, 'testOverflow', 'testOverflow', 'SV19', '1,18,15,12,14,13,21,20,16,19,17,24,23,30,29,22,28,25,26,31', '2015-09-19 21:39:05'),
+(20, 'test multiple type', 'multiple type', 'SV20', '35', '2015-09-27 15:01:20'),
+(21, 'TestSurvey_component', 'TestSurvey_component', 'SV21', '35', '2015-09-27 21:02:16');
 
 -- --------------------------------------------------------
 
@@ -471,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_history` (
   `sm_id_ref` int(11) NOT NULL,
   `s_id_ref` int(10) NOT NULL,
   `h_timestamp` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user_history`
@@ -498,9 +528,9 @@ INSERT INTO `tb_user_history` (`h_id`, `u_id_ref`, `sm_id_ref`, `s_id_ref`, `h_t
 (18, 7, 18, 2, '2015-09-19 19:42:20'),
 (19, 8, 18, 3, '2015-09-19 19:42:57'),
 (20, 9, 17, 4, '2015-09-19 19:52:08'),
-(21, 10, 19, 1, '2015-09-19 23:31:50'),
-(22, 11, 19, 2, '2015-09-19 23:42:30'),
-(23, 12, 10, 4, '2015-09-20 12:23:30');
+(23, 12, 10, 4, '2015-09-20 12:23:30'),
+(24, 1, 20, 1, '2015-09-22 00:00:00'),
+(25, 1, 21, 1, '2015-09-02 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -631,6 +661,18 @@ ALTER TABLE `SV19`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `SV20`
+--
+ALTER TABLE `SV20`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV21`
+--
+ALTER TABLE `SV21`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
@@ -751,6 +793,16 @@ ALTER TABLE `SV18`
 ALTER TABLE `SV19`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT for table `SV20`
+--
+ALTER TABLE `SV20`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `SV21`
+--
+ALTER TABLE `SV21`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `tb_admin`
 --
 ALTER TABLE `tb_admin`
@@ -759,22 +811,22 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_all_answer`
 --
 ALTER TABLE `tb_all_answer`
-  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=167;
+  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=188;
 --
 -- AUTO_INCREMENT for table `tb_all_question`
 --
 ALTER TABLE `tb_all_question`
-  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `tb_survey_mapping`
 --
 ALTER TABLE `tb_survey_mapping`
-  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `tb_user_history`
 --
 ALTER TABLE `tb_user_history`
-  MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tb_user_info`
 --

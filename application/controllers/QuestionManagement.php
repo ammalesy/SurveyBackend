@@ -100,7 +100,7 @@ class QuestionManagement extends NZ_Controller {
 
 		$MAX_ANSWER = 20;
     	$aq_description = $this->input->post('aq_description');
-    	$aa_descriptions = array_filter($this->input->post('aa_description'));
+    	$aa_descriptions = $this->input->post('aa_description');//array_filter($this->input->post('aa_description'));
     	$aa_actives = $this->input->post('aa_active');
         $colors = $this->input->post('color');
         $types = $this->input->post('type');

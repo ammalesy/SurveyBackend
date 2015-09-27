@@ -46,7 +46,7 @@ class Database extends CI_Model {
                 `aq_id_ref` int(5) NOT NULL,
                 `type` int(2) NOT NULL,
                 `active` varchar(1) NOT NULL DEFAULT 'Y',
-                `aa_color` varchar(10) NOT NULL DEFAULT '#FFFFFF'
+                `aa_color` varchar(10) NOT NULL DEFAULT '#000000'
               ) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;";
           $base->query($tb_all_answer);
 

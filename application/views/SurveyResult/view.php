@@ -46,9 +46,9 @@
                     $list_aa_id = '';
                     foreach ($user_history->ans_info as $key => $value) {
                        if ($key == "id") continue;
-                       $list_aa_id .= substr($key,2).":".$value."|";
+                       $list_aa_id .= substr($key,2)."->".str_replace('"', "'", $value)."|";
                     }
-                    $list_aa_id = rtrim($list_aa_id, "|")
+                    $list_aa_id = rtrim($list_aa_id, "|");
                 ?>
                 <td class="dt-body-right">
                         <input type="hidden" id="h_id" data-h-id="<?php echo $user_history->h_id; ?>" value="<?php echo $list_aa_id; ?>">
@@ -128,14 +128,29 @@
         var sm_name = $(this).attr("data-sm-name");
         var h_id = $(this).attr("data-h-id");
         var data_f = $("input[data-h-id='"+h_id+"']").val();
+
         if(data_f === null) data_f = "";
         var list_s_id = data_f.split("|");
 
+
+
         var list_q = [];
         for(var i = 0; i < list_s_id.length; i++){
-            var component = list_s_id[i].split(":");
+           
+            var component = list_s_id[i].split("->");
+
+            var jsonFormat = component[1].replace(/\'/g, '"');
+
+            var answerJson = JSON.parse(jsonFormat);
+
             if (component[1] === "" || component[1] === null || typeof(component[1]) === "undefined"  ) continue;
-            list_q[component[0]] = component[1].split(",");
+
+            // var list_answer_converter = [];
+            // for(var j = 0; j < answerJson.length; j++){
+            //     list_answer_converter[j] = answerJson[j].aa_id;
+            // }
+            list_q[component[0]] = answerJson;
+            
         }
 
         $("h4#sm_name").html(sm_name);
@@ -161,11 +176,22 @@
                 var list_answer_html = '';
                 for(var j = 0; j < answers.length; j++){
 
+                    var type = answers[j].type;
+                    var color = answers[j].aa_color;
                     var green = '';
+                    var checked = '';
 
                     if(bypass === false){
                         for(var c = 0; c < list_ans_exist.length; c++){
-                            if(answers[j].aa_id === list_ans_exist[c]){
+                            if(answers[j].aa_id === list_ans_exist[c].aa_id){
+
+                                if(type == "0"){
+                                    checked = 'checked'
+                                }else if(type == "1"){
+                                    checked = 'value='+list_ans_exist[c].text
+                                }else if(type == "2"){
+                                    checked = 'checked'
+                                }
                                 green = 'list-group-item-success';
                                 break;
                             }
@@ -174,8 +200,20 @@
                     
 
 
+                    if(type == "0"){
 
-                    list_answer_html += '<li class="list-group-item '+green+'">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
+                        list_answer_html += '<li class="list-group-item '+green+' " ><b>'+(j+1)+'.</b> '+'<input type="checkbox" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+
+                    }else if(type == "1"){
+
+                        list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="text" '+checked+' placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+
+                    }else if(type == "2"){
+
+                        list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="radio" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    }
+
+                    // list_answer_html += '<li class="list-group-item '+green+'">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
                 }
                 list_survey_html += 
                 '<div class="panel panel-default">'+
@@ -218,11 +256,23 @@ $("button#refresh").click(function(){
         if(data_f === null) data_f = "";
         var list_s_id = data_f.split("|");
 
-        var list_q = [];
+       var list_q = [];
         for(var i = 0; i < list_s_id.length; i++){
-            var component = list_s_id[i].split(":");
+           
+            var component = list_s_id[i].split("->");
+
+            var jsonFormat = component[1].replace(/\'/g, '"');
+
+            var answerJson = JSON.parse(jsonFormat);
+
             if (component[1] === "" || component[1] === null || typeof(component[1]) === "undefined"  ) continue;
-            list_q[component[0]] = component[1].split(",");
+
+            // var list_answer_converter = [];
+            // for(var j = 0; j < answerJson.length; j++){
+            //     list_answer_converter[j] = answerJson[j].aa_id;
+            // }
+            list_q[component[0]] = answerJson;
+            
         }
         $("h4#sm_name").html(sm_name);
         $.get("<?php echo APP_PATH; ?>api/SurveyManagement/survey/"+sm_id+"?project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
@@ -240,16 +290,41 @@ $("button#refresh").click(function(){
                 for(var j = 0; j < answers.length; j++){
 
                     var green = '';
+                    var type = answers[j].type;
+                    var color = answers[j].aa_color;
+                    var checked = '';
 
-                    if(bypass === false){
+                     if(bypass === false){
                         for(var c = 0; c < list_ans_exist.length; c++){
-                            if(answers[j].aa_id === list_ans_exist[c]){
+                            if(answers[j].aa_id === list_ans_exist[c].aa_id){
+
+                                if(type == "0"){
+                                    checked = 'checked'
+                                }else if(type == "1"){
+                                    checked = 'value='+list_ans_exist[c].text
+                                }else if(type == "2"){
+                                    checked = 'checked'
+                                }
                                 green = 'list-group-item-success';
                                 break;
                             }
                         }
                     }
-                    list_answer_html += '<li class="list-group-item '+green+'"">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
+
+                    
+                    if(type == "0"){
+
+                        list_answer_html += '<li class="list-group-item '+green+' " ><b>'+(j+1)+'.</b> '+'<input type="checkbox" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+
+                    }else if(type == "1"){
+
+                        list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="text" '+checked+' placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+
+                    }else if(type == "2"){
+
+                        list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="radio" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    }
+                    // list_answer_html += '<li class="list-group-item '+green+'"">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
                 }
                 list_survey_html += 
                 '<div class="panel panel-default">'+

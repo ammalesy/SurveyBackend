@@ -268,7 +268,24 @@
            var list_ans_html = '';
             for (var i = 0; i < data.length; i++) {
                 var answer = data[i];
-                list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+answer.aa_description+'</li>';  
+                // list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+answer.aa_description+'</li>';  
+
+                var type = answer.type;
+                var color = answer.aa_color;
+                    if(type == "0"){
+
+                        list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answer.aa_description+'</font></li>';
+
+                    }else if(type == "1"){
+
+                        list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="text" placeholder="'+' '+answer.aa_description+'" style="color:'+color+'"></li>';
+
+                    }else if(type == "2"){
+
+                        list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answer.aa_description+'</font></li>';
+                    }
+
+
             }
             var html = 
             '<div id="space-list-answer">'+
@@ -299,7 +316,22 @@ $("button#refresh").click(function(){
            var list_ans_html = '';
             for (var i = 0; i < data.length; i++) {
                 var answer = data[i];
-                list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+answer.aa_description+'</li>';  
+                // list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+answer.aa_description+'</li>';  
+
+                var type = answer.type;
+                var color = answer.aa_color;
+                    if(type == "0"){
+
+                        list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answer.aa_description+'</font></li>';
+
+                    }else if(type == "1"){
+
+                        list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="text" placeholder="'+' '+answer.aa_description+'" style="color:'+color+'"></li>';
+
+                    }else if(type == "2"){
+
+                        list_ans_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answer.aa_description+'</font></li>';
+                    }
             }
             var html = 
             '<div id="space-list-answer">'+

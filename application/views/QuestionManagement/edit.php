@@ -49,6 +49,7 @@
                 </div>
                 <label>Answer list</label>
                 <input type="hidden" name="count_answers" value="<?php echo count($answers); ?>">
+
                 <? $seq = 1; foreach ($answers as $answer) : ?> 
                 <!-- <div class="row">
                     <div class="col-lg-10">
@@ -102,7 +103,8 @@
                         </select>
                         </div>
                         <div class="col-lg-3">
-                            <input type="text" class="form-control" id="color" name="color[]" value="<?php echo $answer->aa_color; ?>" data-event="<?php echo $seq-1; ?>" />
+                            <input type="text" class="form-control colorpicker-element" id="color" name="color[]" value="<?php echo $answer->aa_color; ?>" data-event="<?php echo $seq-1; ?>" />
+                            
                         </div>
                         </div>
                     </div>
@@ -124,7 +126,7 @@
                     if($answer->type == 0) { 
                         echo "<input id=checkbox type=checkbox>";
                     }else if($answer->type == 1){
-                        echo "<input type=text id=text  placeholder=' example' style='background-color:".$answer->aa_color."'>";
+                        echo "<input type=text id=text placeholder=' ".$answer->aa_description."' style='color:".$answer->aa_color."'>";
                     }else if($answer->type == 2){
                         echo "<input id=radio type=radio>";
                     }
@@ -300,10 +302,13 @@
                                     var seq = $(this).attr("data-event");
                                     var type = $("#type[data-event='"+seq+"']").val();
                                    
+                                    var text = $(this).val();
                                     if(type !== textbox_identifier){
-                                        var text = $(this).val();
+                                        
                                         var label = $('.space_preview'+seq+' div#label');
                                         label.html(text);
+                                    }else{
+                                        $('.space_preview'+seq+' div#component').find('input#text').attr("placeholder", text);   
                                     }
            
                                                                         
@@ -340,11 +345,21 @@
                                      var seq = $(this).attr("data-event");
                                      var val = $(this).val();
 
-                                     $('.space_preview'+seq+' div#component').find('input#text').css("background-color",val);
+                                     $('.space_preview'+seq+' div#component').find('input#text').css("color",val);
                                      $('.space_preview'+seq+' div#label').css("color",val);
 
 
 
+                                });
+                                $('div').on('click', 'input#color', function () { 
+                                    $(this).colorpicker().on('changeColor.colorpicker', function(event){
+                                        var seq = $(this).attr("data-event");
+                                        var val = $(this).val();
+
+                                        $('.space_preview'+seq+' div#component').find('input#text').css("color",val);
+                                        $('.space_preview'+seq+' div#label').css("color",val);
+                                    });  
+                                    $(this).colorpicker('show');
                                 });
                             });
 

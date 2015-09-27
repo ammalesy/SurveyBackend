@@ -28,7 +28,6 @@
                     <p class="help-block">Question message text text here.</p>
                 </div>
                 <label>Answer list</label>
-                
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -64,6 +63,8 @@
                 </div>
                  <script>
                             function increase(){
+
+                                
                                
                                var MAX_NUMBER_OF_ANSWER = 20;
 
@@ -120,7 +121,8 @@
                                     '</select>'+
                                     '</div>'+
                                     '<div class="col-lg-3">'+
-                                    '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
+                                    '<input type="text" data-event='+aa_description_count+' id="color" name="color[]" value="#ffaa00" class="form-control demo colorpicker-element" />'+
+                                    // '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
                                     '</div>'+
                                     '</div>'+
 
@@ -176,11 +178,14 @@
                                 $('div.space_add_more').on('keyup', 'input#aa_description', function () { 
                                     var seq = $(this).attr("data-event");
                                     var type = $("#type[data-event='"+seq+"']").val();
-                                   
+                                    var text = $(this).val();
+
                                     if(type !== textbox_identifier){
-                                        var text = $(this).val();
+                                        
                                         var label = $('.space_preview'+seq+' div#label');
                                         label.html(text);
+                                    }else{
+                                        $('.space_preview'+seq+' div#component').find('input#text').attr("placeholder", text);   
                                     }
            
                                                                         
@@ -217,12 +222,22 @@
                                      var seq = $(this).attr("data-event");
                                      var val = $(this).val();
 
-                                     $('.space_preview'+seq+' div#component').find('input#text').css("background-color",val);
+                                     $('.space_preview'+seq+' div#component').find('input#text').css("color",val);
                                      $('.space_preview'+seq+' div#label').css("color",val);
 
-
-
                                 });
+
+                                 $('div').on('click', 'input#color', function () { 
+                                    $(this).colorpicker().on('changeColor.colorpicker', function(event){
+                                        var seq = $(this).attr("data-event");
+                                        var val = $(this).val();
+
+                                        $('.space_preview'+seq+' div#component').find('input#text').css("color",val);
+                                        $('.space_preview'+seq+' div#label').css("color",val);
+                                    });  
+                                    $(this).colorpicker('show');
+                                });
+
                             });
 
 

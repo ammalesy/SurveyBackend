@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | always be used to set the mode correctly.
 |
 */
-define('VERSION', '1.2');
+define('VERSION', '1.2.1');
 
 $protocal = isset($_SERVER['HTTPS'])? 'https://':'http://';
 $domain_server = $_SERVER['SERVER_NAME'];

@@ -35,6 +35,7 @@
     <table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">
         <thead>
             <tr>
+                <th>Survey ID</th>
                 <th>Table name</th>
                 <th>Name</th>
                 <th>Description</th>
@@ -55,6 +56,7 @@
         <tbody>
             <?php foreach ($surveys as $survey) : ?>
             <tr>
+                <td><?php echo $survey->sm_id; ?></td>
                 <td><?php echo $survey->sm_table_code; ?></td>
                 <td><?php echo $ci->nullableTextIfEmptyData($survey->sm_name); ?></td>
                 <td><?php echo $ci->nullableTextIfEmptyData($survey->sm_description); ?></td>
@@ -146,7 +148,20 @@
                 var answers = question.answers;
                 var list_answer_html = '';
                 for(var j = 0; j < answers.length; j++){
-                    list_answer_html += '<li class="list-group-item">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
+                    var type = answers[j].type;
+                    var color = answers[j].aa_color;
+                    if(type == "0"){
+
+                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+
+                    }else if(type == "1"){
+
+                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+
+                    }else if(type == "2"){
+
+                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    }
                 }
                 list_survey_html += 
                 '<div class="panel panel-default">'+
@@ -192,7 +207,23 @@ $("button#refresh").click(function(){
                 var answers = question.answers;
                 var list_answer_html = '';
                 for(var j = 0; j < answers.length; j++){
-                    list_answer_html += '<li class="list-group-item">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
+
+                    var type = answers[j].type;
+                    var color = answers[j].aa_color;
+                    if(type == "0"){
+
+                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+
+                    }else if(type == "1"){
+
+                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+
+                    }else if(type == "2"){
+
+                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    }
+
+                   
                 }
                 list_survey_html += 
                 '<div class="panel panel-default">'+
