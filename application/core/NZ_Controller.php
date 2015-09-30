@@ -29,7 +29,7 @@ class NZ_Controller extends CI_Controller{
         parent::__construct();
         date_default_timezone_set('Asia/Bangkok');
 
-         // $this->output->enable_profiler(TRUE);
+         $this->output->enable_profiler(TRUE);
 
     }
     public function add(){

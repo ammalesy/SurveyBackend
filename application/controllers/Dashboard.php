@@ -3,19 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends NZ_Controller {
 
-	var $message_error_type = "";
-	var $message_error = "";
-
 	function __construct()
     {
         parent::__construct();
+
+        $this->page = "Dashboard";
+
         if($this->isSelectedProject() == FALSE){
             redirect("PreviewSurvey");
         }
     }
     function index(){
         
-        $data['page'] = "Dashboard";
+        $data['page'] = $this->page;
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
  
@@ -37,6 +37,29 @@ class Dashboard extends NZ_Controller {
         $data['survey_count'] = $this->tb_survey_mapping->count();
         $data['surveys'] = $surveys;
     	$this->load->view('Dashboard/all',$data);
+    }
+    public function state(){
+        $data['page'] = $this->page;
+        $this->load->model('tb_survey_mapping');
+        $data['message_error_type'] = $this->message_error_type;
+        $data['message_error'] = $this->message_error;
+
+        $data['surveys'] = $this->tb_survey_mapping->fetchAll();
+
+        $this->load->view('Dashboard/list',$data);
+
+    }
+    public function view_state($sm_id){
+        $this->load->model('tb_survey_mapping');
+        $max_question = $this->tb_survey_mapping->max_question_that_user_doing($sm_id);
+        $max_answer = $this->tb_survey_mapping->max_answer_that_user_doing($sm_id,$max_question['aq_id']);
+        $max_survey = $this->tb_survey_mapping->count_survey_that_user_doing();
+
+        // print_r($max_question);
+        // print_r($max_answer);
+        // echo "<br>";
+        print_r($max_survey);
+
     }
     private function survery_result($sm_id){
         $LIMIT = 10;

@@ -10,6 +10,14 @@
                     <div class="col-lg-6">
                         Overview
                     </div>
+                    <div class="col-lg-6 text-right">
+                    <?php if(check_permission($page,"rw")) { ?>
+                        <a href="Dashboard/state">
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <span class="glyphicon glyphicon-signal" aria-hidden="true"></span> Watch state
+                        </button></a>
+                    <?php } ?>
+                    </div>
                 </div>
             </h1>
             <ol class="breadcrumb">

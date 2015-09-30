@@ -67,7 +67,6 @@ class Tb_survey_mapping extends CI_Model {
    
       return $query->first_row();
     }
-    
     function fetch_all_on_table($sm_table_code){
       $this->load->database();
       $query = $this->db->query("select * from ".$sm_table_code." order by id DESC");
@@ -120,5 +119,105 @@ class Tb_survey_mapping extends CI_Model {
           $this->db->query("ALTER TABLE `".$sm_table_code."` DROP `".$exist_columns_r[$i]."`;");
         }
       }
+    }
+    function fetch_all_on_column($column,$table_name){
+      $this->load->database();
+      $query = $this->db->query("select id,`".$column."` as 'column'  from ".$table_name."");
+      return $query->result();
+    }
+    function max_survey_that_user_doing(){
+
+    }
+    function max_question_that_user_doing($sm_id){
+
+      $survey_map = $this->get($sm_id);
+      $table_name = $survey_map->sm_table_code;
+      $colums  = explode(",", $survey_map->sm_order_column);
+
+      $column_max = "";
+      $curent_max = "";
+      foreach ($colums as $column) {
+        $column_objects = $this->fetch_all_on_column($column,$table_name);
+
+        $count = 0;
+        $current_column = $column;
+        foreach ($column_objects as $object) {
+
+           if($object->column == "[]" || $object->column == "[ ]" || $object->column == ""){
+              continue;
+           }else{
+              $count++;
+           }
+        }
+
+        if($count > $curent_max){
+          $curent_max = $count;
+          $column_max = $current_column;
+        }
+      }
+
+      return array('aq_id' => $column_max,'count'=>$curent_max,'table_name'=>$table_name );
+
+    }
+    function max_answer_that_user_doing($sm_id,$aq_id){
+      $survey_map = $this->get($sm_id);
+      $table_name = $survey_map->sm_table_code;
+      $object_question = $this->max_question_that_user_doing($sm_id);
+      $result = $this->fetch_all_on_column($aq_id,$table_name);
+
+      $merge_array = array();
+      foreach ($result as $object) {
+        $jsonAnswer = $object->column;
+        $jsonDecode = json_decode($jsonAnswer);
+        
+        foreach ($jsonDecode as $json) {
+          array_push($merge_array, $json->aa_id);
+        }
+
+      }
+      $group = array_count_values($merge_array);
+
+      $value_max = 0;
+      $key_max = "";
+      foreach ($group as $key => $value) {
+        if($value > $value_max){
+          $key_max = $key;
+          $value_max = $value;
+        }
+      }
+
+
+      return array('aa_id' => $key_max,'count'=>$value_max);
+
+    }
+    function count_survey_that_user_doing(){
+
+      $surveys = $this->fetchAll();
+      $merge_array = array();
+
+
+      $max_count = 0;
+      $maxs_index = array();
+      $max_val = 0;
+
+      $i = 0;
+      foreach ($surveys as $survey) {
+        $count = $this->db->count_all_results($survey->sm_table_code);
+        if($count >= $max_count){
+          array_push($maxs_index, $i);
+          $max_count = $count;
+        }
+        $i++;
+      }
+
+      $objectReturn = array();
+      foreach ($maxs_index as $key => $value) {
+        $sm_id = $surveys[$value]->sm_id;
+        array_push($objectReturn, array('sm_id' => $sm_id, 'count'=>$max_count ));
+      }
+
+      return $objectReturn;
+      
+
     }
 }
