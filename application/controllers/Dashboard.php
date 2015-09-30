@@ -50,15 +50,20 @@ class Dashboard extends NZ_Controller {
 
     }
     public function view_state($sm_id){
+         $data['page'] = $this->page;
         $this->load->model('tb_survey_mapping');
-        $max_question = $this->tb_survey_mapping->max_question_that_user_doing($sm_id);
-        $max_answer = $this->tb_survey_mapping->max_answer_that_user_doing($sm_id,$max_question['aq_id']);
-        $max_survey = $this->tb_survey_mapping->count_survey_that_user_doing();
+        $max_questions = $this->tb_survey_mapping->max_question_that_user_doing($sm_id);
+        $i = 0;
+        foreach ($max_questions as $max_question) {
+           
+            $max_questions[$i]['max_answers'] = $this->tb_survey_mapping->max_answer_that_user_doing($sm_id,$max_question['aq_id']);
 
-        // print_r($max_question);
-        // print_r($max_answer);
-        // echo "<br>";
-        print_r($max_survey);
+            $i++;
+        }
+        $data['max_question_answer'] = $max_questions;
+        $data['max_surveys'] = $this->tb_survey_mapping->count_survey_that_user_doing();
+
+        $this->load->view('Dashboard/view_state',$data);
 
     }
     private function survery_result($sm_id){

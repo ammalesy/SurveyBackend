@@ -107,8 +107,7 @@
     </script>
 
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>
+    
 
     <div id="wrapper">
 

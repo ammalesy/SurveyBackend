@@ -4,27 +4,21 @@
     </div>
     <!-- /#wrapper -->
 
-    
- <script>
-     // $(document).ready(function() {
-     	// $('#color').colorpicker({
-      //           customClass: 'colorpicker-2x',
-      //           sliders: {
-      //               saturation: {
-      //                   maxLeft: 200,
-      //                   maxTop: 200
-      //               },
-      //               hue: {
-      //                   maxTop: 200
-      //               },
-      //               alpha: {
-      //                   maxTop: 200
-      //               }
-      //           }
-      //       });
-            
-      //   });
-    </script>
+
+ <!-- Bootstrap Core JavaScript -->
+    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>
+
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/raphael.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/morris.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/morris/morris-data.js"></script>
+
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/flot/jquery.flot.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/flot/jquery.flot.pie.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/plugins/flot/flot-data.js"></script>
+
+
 </body>
 
 </html>

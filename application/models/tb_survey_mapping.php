@@ -136,6 +136,7 @@ class Tb_survey_mapping extends CI_Model {
 
       $column_max = "";
       $curent_max = "";
+      $objectReturn = array();
       foreach ($colums as $column) {
         $column_objects = $this->fetch_all_on_column($column,$table_name);
 
@@ -150,13 +151,18 @@ class Tb_survey_mapping extends CI_Model {
            }
         }
 
-        if($count > $curent_max){
+        if($count >= $curent_max){
+          if($count > $curent_max){
+            $objectReturn = array();
+          }
           $curent_max = $count;
           $column_max = $current_column;
+
+          array_push($objectReturn, array('aq_id' => $column_max,'count'=>$curent_max,'table_name'=>$table_name ));
         }
       }
 
-      return array('aq_id' => $column_max,'count'=>$curent_max,'table_name'=>$table_name );
+      return $objectReturn;
 
     }
     function max_answer_that_user_doing($sm_id,$aq_id){
@@ -179,15 +185,20 @@ class Tb_survey_mapping extends CI_Model {
 
       $value_max = 0;
       $key_max = "";
+      $objectReturn = array();
       foreach ($group as $key => $value) {
-        if($value > $value_max){
+        if($value >= $value_max){
+          if($value > $value_max){
+            $objectReturn = array();
+          }
           $key_max = $key;
           $value_max = $value;
+          array_push($objectReturn, array('aa_id' => $key_max,'count'=>$value_max));
         }
       }
 
 
-      return array('aa_id' => $key_max,'count'=>$value_max);
+      return $objectReturn;
 
     }
     function count_survey_that_user_doing(){
@@ -204,6 +215,9 @@ class Tb_survey_mapping extends CI_Model {
       foreach ($surveys as $survey) {
         $count = $this->db->count_all_results($survey->sm_table_code);
         if($count >= $max_count){
+          if($count > $max_count){
+            $objectReturn = array();
+          }
           array_push($maxs_index, $i);
           $max_count = $count;
         }
