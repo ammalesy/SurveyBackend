@@ -45,6 +45,9 @@ class Dashboard extends NZ_Controller {
         $data['message_error'] = $this->message_error;
 
         $data['surveys'] = $this->tb_survey_mapping->fetchAll();
+        $data['max_surveys'] = $this->tb_survey_mapping->count_survey_that_user_doing();
+        $data['sm_db'] = $this->tb_survey_mapping;
+        //print_r($data['max_surveys']);
 
         $this->load->view('Dashboard/list',$data);
 
@@ -52,16 +55,20 @@ class Dashboard extends NZ_Controller {
     public function view_state($sm_id){
          $data['page'] = $this->page;
         $this->load->model('tb_survey_mapping');
+        $this->load->model('tb_all_question');
+        $this->load->model('tb_all_answer');
         $max_questions = $this->tb_survey_mapping->max_question_that_user_doing($sm_id);
         $i = 0;
         foreach ($max_questions as $max_question) {
            
             $max_questions[$i]['max_answers'] = $this->tb_survey_mapping->max_answer_that_user_doing($sm_id,$max_question['aq_id']);
-
+            $max_questions[$i]['aq_description'] = $this->tb_all_question->get($max_question['aq_id'])->aq_description;
             $i++;
         }
+        $data['answer_db'] = $this->tb_all_answer;
         $data['max_question_answer'] = $max_questions;
-        $data['max_surveys'] = $this->tb_survey_mapping->count_survey_that_user_doing();
+        //print_r($data['max_question_answer']);
+        
 
         $this->load->view('Dashboard/view_state',$data);
 

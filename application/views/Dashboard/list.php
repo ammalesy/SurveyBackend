@@ -2,6 +2,7 @@
 
 
 <div class="container-fluid">
+
     <!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
@@ -22,6 +23,7 @@
             </ol>
         </div>
     </div>
+
     <!-- /.row -->
 
     <table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">
@@ -59,7 +61,30 @@
             <?php endforeach; ?>    
         </tbody>
     </table>
-
+<div class="row">
+        <div class="col-lg-12">
+        <h1 class="page-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                       Height Score surveys
+                    </div>
+                </div>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12">
+    <ul class="list-group">
+    <? foreach ($max_surveys as $survey) : ?>
+        <!-- <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li> -->
+        <!-- <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li> -->
+        <li class="list-group-item list-group-item-warning"><?php echo $sm_db->get($survey['sm_id'])->sm_name; ?> <span class="badge"><?php echo $survey['count']; ?></span></li>
+        <!-- <li class="list-group-item list-group-item-danger">Vestibulum at eros</li> -->
+    <?php endforeach; ?>
+    </ul>
+    </div>
+    </div>
 </div>
 <!-- /.container-fluid -->
 <?php include("application/views/component/foot.php"); ?>

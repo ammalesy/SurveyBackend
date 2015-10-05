@@ -2,15 +2,15 @@
 
 <div id="page-wrapper">
 <div class="container-fluid">
-    <!-- Page Heading -->
+
+<!-- Page Heading -->
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
                 <div class="row">
                     <div class="col-lg-6">
-                        State
+                        Height Score
                     </div>
-                    
                 </div>
             </h1>
             <ol class="breadcrumb">
@@ -23,41 +23,61 @@
             </ol>
         </div>
     </div>
-    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+             <div class="panel panel-primary">
+              <div class="panel-heading">Question</div>
+              <div class="panel-body">
+                  
+                
+                <div class="panel-group" id="accordion">
+                <?php foreach ($max_question_answer as $object) : ?>
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                      <div class="row">
+                          <div class="col-lg-12">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            <?php echo $object['aq_description']; ?></a>
+                          </div>
+                      </div>
+                      </h4>
+                      <div class="row">
+                          <div class="col-lg-12">
+                          <br>
+                            <label>จำนวนผู้ตอบทั้งหมด : <span class="badge"><?php echo $object['count']; ?></span> คน</label>
+                          </div>
+                      </div>
+                      
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                              <ul class="list-group">
+                                <? foreach ($object['max_answers'] as $answer) : ?>
+                                  <li class="list-group-item list-group-item-warning"><label>ข้อที่ผู้ตอบมากที่สุด : <?php echo $answer_db->get_by_id($answer['aa_id'])->aa_description; ?></label></li>
+                                  <li class="list-group-item"><label>จำนวนทั้งหมด : <span class="badge"><?php echo $answer['count']; ?></span> คน</label></li>
+                                <?php endforeach; ?>
+                                </ul>
+                          </li>
+                          </ul>
+                                                  
 
-<div class="row">
-                    <div class="col-lg-4">
-                        <div class="panel panel-green">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Pie Chart Example with Tooltips</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-pie-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
+                      </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="panel panel-yellow">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Multiple Axes Line Graph Example with Tooltips and Raw Data</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-multiple-axes-chart"></div>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
+                  
+                  <?php endforeach; ?>
                 </div>
-                <!-- /.row -->
+                
+
+              </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- /.row -->
 
 <!-- /.container-fluid -->
 </div>

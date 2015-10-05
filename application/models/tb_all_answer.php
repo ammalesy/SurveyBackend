@@ -37,6 +37,18 @@ class Tb_all_answer extends CI_Model {
       $query = $this->db->query("select * from tb_all_answer where  aq_id_ref = '".$aq_id_ref."'".$where);
       return $query->result();
     }
+    function get_by_id($aa_id,$isActive=TRUE){
+
+      if ($isActive == TRUE) {
+         $where = " AND active = 'Y'";
+      }else{
+         $where = "";
+      }
+
+      $this->load->database();
+      $query = $this->db->query("select * from tb_all_answer where  aa_id = '".$aa_id."'".$where);
+      return $query->first_row();
+    }
     // function update($array,$user_id)
     // {
     //   $this->load->database();
