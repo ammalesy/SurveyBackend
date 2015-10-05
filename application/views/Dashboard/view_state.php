@@ -32,6 +32,7 @@
                 
                 <div class="panel-group" id="accordion">
                 <?php foreach ($max_question_answer as $object) : ?>
+                <?php if($object['count'] <= 0) continue; ?>
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <h4 class="panel-title">
