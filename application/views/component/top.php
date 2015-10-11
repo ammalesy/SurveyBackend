@@ -85,7 +85,7 @@
     <script src="<?php echo APP_PATH."assets/"; ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.min.js"></script>
-
+    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>
    
 
     <script>

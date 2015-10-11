@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2015 at 05:51 PM
+-- Generation Time: Oct 11, 2015 at 06:33 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -273,7 +273,14 @@ CREATE TABLE IF NOT EXISTS `SV19` (
   `25` varchar(100) NOT NULL,
   `26` varchar(100) NOT NULL,
   `31` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SV19`
+--
+
+INSERT INTO `SV19` (`id`, `1`, `18`, `15`, `12`, `14`, `13`, `21`, `20`, `16`, `19`, `17`, `24`, `23`, `30`, `29`, `22`, `28`, `25`, `26`, `31`) VALUES
+(3, '[{"aa_id":"102"},{"aa_id":"103"}]', '[{"aa_id":"142"}]', '[{"aa_id":"134"}]', '[{"aa_id":"97"},{"aa_id":"98"}]', '[{"aa_id":"130"}]', '[{"aa_id":"111"}]', '[{"aa_id":"145"}]', '[{"aa_id":"144"}]', '[{"aa_id":"139"}]', '[{"aa_id":"143"}]', '[{"aa_id":"140"}]', '[{"aa_id":"150"}]', '[]', '[]', '[{"aa_id":"155"}]', '[{"aa_id":"148"}]', '[{"aa_id":"154"}]', '[]', '[{"aa_id":"152"}]', '[{"aa_id":"157"}]');
 
 -- --------------------------------------------------------
 
@@ -284,14 +291,16 @@ CREATE TABLE IF NOT EXISTS `SV19` (
 CREATE TABLE IF NOT EXISTS `SV20` (
   `id` int(10) NOT NULL,
   `35` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `SV20`
 --
 
 INSERT INTO `SV20` (`id`, `35`) VALUES
-(1, '[{"aa_id":"164","text":"test the system"},{"aa_id":"165"},{"aa_id":"166"}]');
+(1, '[{"aa_id":"164","text":"test the system"},{"aa_id":"165"},{"aa_id":"166"}]'),
+(2, '[{"text":"Test from ipad4","aa_id":"164"},{"aa_id":"166"}]'),
+(3, '[{"text":"test from ipad","aa_id":"164"},{"aa_id":"165"},{"aa_id":"166"}]');
 
 -- --------------------------------------------------------
 
@@ -302,14 +311,66 @@ INSERT INTO `SV20` (`id`, `35`) VALUES
 CREATE TABLE IF NOT EXISTS `SV21` (
   `id` int(10) NOT NULL,
   `35` varchar(250) NOT NULL DEFAULT '[]'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `SV21`
 --
 
 INSERT INTO `SV21` (`id`, `35`) VALUES
+(1, '[]'),
+(2, '[{"aa_id":"164","text":"testTextBox"},{"aa_id":"166"}]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV22`
+--
+
+CREATE TABLE IF NOT EXISTS `SV22` (
+  `id` int(10) NOT NULL,
+  `1` varchar(250) NOT NULL DEFAULT '[]'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `SV22`
+--
+
+INSERT INTO `SV22` (`id`, `1`) VALUES
 (1, '[]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV23`
+--
+
+CREATE TABLE IF NOT EXISTS `SV23` (
+  `id` int(10) NOT NULL,
+  `1` varchar(250) NOT NULL DEFAULT '[]'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV24`
+--
+
+CREATE TABLE IF NOT EXISTS `SV24` (
+  `id` int(10) NOT NULL,
+  `23` varchar(250) NOT NULL DEFAULT '[]'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `SV25`
+--
+
+CREATE TABLE IF NOT EXISTS `SV25` (
+  `id` int(10) NOT NULL,
+  `44` varchar(250) NOT NULL DEFAULT '[]'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -345,7 +406,7 @@ CREATE TABLE IF NOT EXISTS `tb_all_answer` (
   `type` int(2) NOT NULL,
   `active` varchar(1) NOT NULL DEFAULT 'Y',
   `aa_color` varchar(10) NOT NULL DEFAULT '#000000'
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_answer`
@@ -407,7 +468,10 @@ INSERT INTO `tb_all_answer` (`aa_id`, `aa_description`, `aa_image`, `aq_id_ref`,
 (163, 'the test radio', NULL, 34, 2, 'Y', '#000000'),
 (164, 'testcheckbox', NULL, 35, 1, 'Y', '#363499'),
 (165, 'heckbox', NULL, 35, 0, 'Y', '#DD8899'),
-(166, 'radiotest', NULL, 35, 2, 'Y', '#98877');
+(166, 'radiotest', NULL, 35, 2, 'Y', '#98877'),
+(188, 'radio1', NULL, 44, 2, 'Y', '#000000'),
+(189, 'radio2', NULL, 44, 2, 'Y', '#000000'),
+(190, 'radio3', NULL, 44, 2, 'Y', '#000000');
 
 -- --------------------------------------------------------
 
@@ -420,7 +484,7 @@ CREATE TABLE IF NOT EXISTS `tb_all_question` (
   `aq_description` text NOT NULL,
   `aq_image` varchar(100) DEFAULT ' ',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_all_question`
@@ -450,7 +514,8 @@ INSERT INTO `tb_all_question` (`aq_id`, `aq_description`, `aq_image`, `active`) 
 (31, 'qrt', ' ', 'Y'),
 (32, 'testq', ' ', 'Y'),
 (34, 'question_test', ' ', 'Y'),
-(35, 'component test', ' ', 'Y');
+(35, 'component test', ' ', 'Y'),
+(44, 'question radio', ' ', 'Y');
 
 -- --------------------------------------------------------
 
@@ -464,30 +529,35 @@ CREATE TABLE IF NOT EXISTS `tb_survey_mapping` (
   `sm_description` text CHARACTER SET utf8,
   `sm_table_code` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `sm_order_column` text NOT NULL,
-  `sm_update_at` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  `sm_update_at` datetime NOT NULL,
+  `sm_image` varchar(200) NOT NULL DEFAULT 'default.png'
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_survey_mapping`
 --
 
-INSERT INTO `tb_survey_mapping` (`sm_id`, `sm_name`, `sm_description`, `sm_table_code`, `sm_order_column`, `sm_update_at`) VALUES
-(5, 'Survey No. 4', 'description of survay no. 4', 'SV5', '12,1,13', '2015-09-07 23:58:51'),
-(6, 'Survey No. 4', 'description of survay no. 4', 'SV6', '12,1,13', '2015-09-07 23:58:51'),
-(7, 'Survey No. 4', 'description of survay no. 4', 'SV7', '12,13', '2015-09-09 00:49:35'),
-(8, 'Survey No. 4', 'description of survay no. 4', 'SV8', '12,1', '2015-09-07 23:59:31'),
-(9, 'Survey No. 4', 'description of survay no. 4', 'SV9', '12,1', '2015-09-08 22:36:54'),
-(10, 'test_tonight4', 'test_tonight_detail4', 'SV10', '1,12,13,14', '2015-09-09 22:22:36'),
-(12, 'gg', '', 'SV12', '12', '2015-09-09 09:05:38'),
-(13, 'Test On Mobile1', 'Test On Mobile1 description 1', 'SV13', '1', '2015-09-14 02:14:22'),
-(14, 'Test On Mobile2', 'Test On Mobile2 des', 'SV14', '12', '2015-09-14 02:14:36'),
-(15, 'Test On Mobile3', 'Test On Mobile3', 'SV15', '15,13', '2015-09-14 02:14:50'),
-(16, 'Test On Mobile4', 'Test On Mobile4 des', 'SV16', '17', '2015-09-14 02:15:08'),
-(17, 'testsurvey', 'The survey', 'SV17', '1', '2015-09-19 18:21:25'),
-(18, 'testsurvey2', 'testsurvey2', 'SV18', '12', '2015-09-19 19:31:16'),
-(19, 'testOverflow', 'testOverflow', 'SV19', '1,18,15,12,14,13,21,20,16,19,17,24,23,30,29,22,28,25,26,31', '2015-09-19 21:39:05'),
-(20, 'test multiple type', 'multiple type', 'SV20', '35', '2015-09-27 15:01:20'),
-(21, 'TestSurvey_component', 'TestSurvey_component', 'SV21', '35', '2015-09-27 21:02:16');
+INSERT INTO `tb_survey_mapping` (`sm_id`, `sm_name`, `sm_description`, `sm_table_code`, `sm_order_column`, `sm_update_at`, `sm_image`) VALUES
+(5, 'Survey No. 4', 'description of survay no. 4', 'SV5', '12,1,13', '2015-09-07 23:58:51', 'default.png'),
+(6, 'Survey No. 4', 'description of survay no. 4', 'SV6', '12,1,13', '2015-09-07 23:58:51', 'default.png'),
+(7, 'Survey No. 4', 'description of survay no. 4', 'SV7', '12,13', '2015-09-09 00:49:35', 'default.png'),
+(8, 'Survey No. 4', 'description of survay no. 4', 'SV8', '12,1', '2015-09-07 23:59:31', 'default.png'),
+(9, 'Survey No. 4', 'description of survay no. 4', 'SV9', '12,1', '2015-09-08 22:36:54', 'default.png'),
+(10, 'test_tonight4', 'test_tonight_detail4', 'SV10', '1,12,13,14', '2015-09-09 22:22:36', 'default.png'),
+(12, 'gg', '', 'SV12', '12', '2015-09-09 09:05:38', 'default.png'),
+(13, 'Test On Mobile1', 'Test On Mobile1 description 1', 'SV13', '1', '2015-09-14 02:14:22', 'default.png'),
+(14, 'Test On Mobile2', 'Test On Mobile2 des', 'SV14', '12', '2015-09-14 02:14:36', 'default.png'),
+(15, 'Test On Mobile3', 'Test On Mobile3', 'SV15', '15,13', '2015-09-14 02:14:50', 'default.png'),
+(16, 'Test On Mobile4', 'Test On Mobile4 des', 'SV16', '17', '2015-09-14 02:15:08', 'default.png'),
+(17, 'testsurvey', 'The survey', 'SV17', '1', '2015-09-19 18:21:25', 'default.png'),
+(18, 'testsurvey2', 'testsurvey2', 'SV18', '12', '2015-09-19 19:31:16', 'default.png'),
+(19, 'testOverflow', 'Christopher Jonathan James Nolan (/ˈnoʊlən/; born 30 July 1970)[1] is an English-American film director, screenwriter, and producer. His nine films have grossed over US$4.2 billion worldwide and garnered a total of 26 Oscar nominations and seven awards.\r\n\r\nHaving made his directorial debut with Following (1998), Nolan gained considerable attention for his second feature, Memento (2000). The acclaim of these independent films gave Nolan the opportunity to make the big-budget thriller Insomnia (2002), and the mystery drama The Prestige (2006). He found further popular and critical success with the The Dark Knight Trilogy (2005–2012), Inception (2010) and Interstellar (2014). Nolan has co-written several of his films with his brother, Jonathan Nolan, and runs the production company Syncopy Inc. with his wife Emma Thomas.\r\n\r\nNolan''s films are rooted in philosophical, sociological and ethical concepts, exploring human morality, the construction of time, and the malleable nature of memory and personal identity. His body of work is permeated by metafictive elements, temporal shifts, solipsistic perspectives, nonlinear storytelling, practical special effects, and analogous relationships between visual language and narrative elements.', 'SV19', '1,18,15,12,14,13,21,20,16,19,17,24,23,30,29,22,28,25,26,31', '2015-10-10 23:48:22', 'default.png'),
+(20, 'test multiple type', 'multiple type', 'SV20', '35', '2015-09-27 15:01:20', 'default.png'),
+(21, 'TestSurvey_component', 'TestSurvey_component', 'SV21', '35', '2015-10-11 14:32:26', '1444548746.png'),
+(22, 'TestOverflow', 'Test', 'SV22', '1', '2015-10-11 13:00:20', '1444543220.png'),
+(23, 'TestOverflow', 'Test', 'SV23', '1', '2015-10-11 13:02:34', '1444543354.png'),
+(24, 'TestAgain', 'TestAgain', 'SV24', '23', '2015-10-11 13:02:22', '1444543342.png'),
+(25, 'TestRadio', 'TestRadio', 'SV25', '44', '2015-10-11 22:05:47', '1444575947.png');
 
 -- --------------------------------------------------------
 
@@ -501,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_history` (
   `sm_id_ref` int(11) NOT NULL,
   `s_id_ref` int(10) NOT NULL,
   `h_timestamp` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user_history`
@@ -530,7 +600,12 @@ INSERT INTO `tb_user_history` (`h_id`, `u_id_ref`, `sm_id_ref`, `s_id_ref`, `h_t
 (20, 9, 17, 4, '2015-09-19 19:52:08'),
 (23, 12, 10, 4, '2015-09-20 12:23:30'),
 (24, 1, 20, 1, '2015-09-22 00:00:00'),
-(25, 1, 21, 1, '2015-09-02 00:00:00');
+(25, 1, 21, 1, '2015-09-02 00:00:00'),
+(26, 13, 21, 2, '2015-10-11 21:26:22'),
+(27, 13, 19, 3, '2015-10-11 21:51:14'),
+(28, 13, 22, 1, '2015-10-11 22:40:42'),
+(29, 13, 20, 2, '2015-10-11 23:26:02'),
+(30, 13, 20, 3, '2015-10-11 23:28:56');
 
 -- --------------------------------------------------------
 
@@ -546,7 +621,7 @@ CREATE TABLE IF NOT EXISTS `tb_user_info` (
   `u_age` int(3) NOT NULL,
   `u_email` varchar(50) DEFAULT NULL,
   `u_tel` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_user_info`
@@ -564,7 +639,8 @@ INSERT INTO `tb_user_info` (`u_id`, `u_firstname`, `u_surname`, `u_sex`, `u_age`
 (9, 'Test', 'Test', 0, 0, '', ''),
 (10, 'อัมเรศ', 'แย้มสมพงษ์', 0, 16, 'amm@email.com', '0824382318'),
 (11, 'ทดสอบ', 'ทดลอง', 0, 100, '', '0824382318'),
-(12, 'aaa', 'aaaaa', 0, 0, '', '');
+(12, 'aaa', 'aaaaa', 0, 0, '', ''),
+(13, 'dummy', 'dummy', 0, 23, 'dummy', 'dummy');
 
 --
 -- Indexes for dumped tables
@@ -670,6 +746,30 @@ ALTER TABLE `SV20`
 -- Indexes for table `SV21`
 --
 ALTER TABLE `SV21`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV22`
+--
+ALTER TABLE `SV22`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV23`
+--
+ALTER TABLE `SV23`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV24`
+--
+ALTER TABLE `SV24`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `SV25`
+--
+ALTER TABLE `SV25`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -791,17 +891,37 @@ ALTER TABLE `SV18`
 -- AUTO_INCREMENT for table `SV19`
 --
 ALTER TABLE `SV19`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `SV20`
 --
 ALTER TABLE `SV20`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `SV21`
 --
 ALTER TABLE `SV21`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `SV22`
+--
+ALTER TABLE `SV22`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `SV23`
+--
+ALTER TABLE `SV23`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `SV24`
+--
+ALTER TABLE `SV24`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `SV25`
+--
+ALTER TABLE `SV25`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_admin`
 --
@@ -811,27 +931,27 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_all_answer`
 --
 ALTER TABLE `tb_all_answer`
-  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=188;
+  MODIFY `aa_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=191;
 --
 -- AUTO_INCREMENT for table `tb_all_question`
 --
 ALTER TABLE `tb_all_question`
-  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+  MODIFY `aq_id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `tb_survey_mapping`
 --
 ALTER TABLE `tb_survey_mapping`
-  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `sm_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tb_user_history`
 --
 ALTER TABLE `tb_user_history`
-  MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `tb_user_info`
 --
 ALTER TABLE `tb_user_info`
-  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

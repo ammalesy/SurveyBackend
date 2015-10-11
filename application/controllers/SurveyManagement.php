@@ -106,6 +106,14 @@ class SurveyManagement extends NZ_Controller {
             }
             return;
         }
+
+        $sm_image = "default.png";
+        $this->load->library('upload', $this->upload_survey_config(time("his")));
+        if ($this->upload->do_upload('sm_image'))
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $sm_image = $data['upload_data']['file_name'];
+        }
         
 
 		$this->db->trans_start();
@@ -115,17 +123,35 @@ class SurveyManagement extends NZ_Controller {
 	    	$sm_id = $this->tb_survey_mapping->record(array('sm_name' => $sm_name,
 	    													'sm_description' => $sm_description,
 	    													'sm_order_column' => implode(",",$question_group),
-	    													'sm_update_at' => date("Y-m-d H:i:s")));
+	    													'sm_update_at' => date("Y-m-d H:i:s"),
+                                                            'sm_image' => $sm_image));
 	    	$this->tb_survey_mapping->update(array('sm_table_code' => "SV".$sm_id),$sm_id);
 	    	$this->tb_survey_mapping->create_table_survey($this->prefix_table_name.$sm_id,$question_group);
     	}
     	else if($type == 'edited')
     	{
+            $upload_data = $this->upload->data();
+            $isUpload = ($upload_data['file_size'] > 0)?TRUE:FALSE;
+
     		$msg_err = "Update";
-    		$this->tb_survey_mapping->update(array('sm_name' => $sm_name,
-    											   'sm_description' => $sm_description,
-    											   'sm_order_column' => implode(",",$question_group),
-    											   'sm_update_at' => date("Y-m-d H:i:s")),$sm_id);
+
+            if(!$isUpload){
+
+                $this->tb_survey_mapping->update(array('sm_name' => $sm_name,
+                                                   'sm_description' => $sm_description,
+                                                   'sm_order_column' => implode(",",$question_group),
+                                                   'sm_update_at' => date("Y-m-d H:i:s")),$sm_id);
+
+            }else{
+
+                $this->tb_survey_mapping->update(array('sm_name' => $sm_name,
+                                                   'sm_description' => $sm_description,
+                                                   'sm_order_column' => implode(",",$question_group),
+                                                   'sm_update_at' => date("Y-m-d H:i:s"),
+                                                   'sm_image' => $sm_image),$sm_id);
+
+            }
+    		
     		$this->tb_survey_mapping->update_table_survey($this->prefix_table_name.$sm_id,$question_group);
     	}
     	/*==================================*/

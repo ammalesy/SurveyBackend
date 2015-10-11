@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                <?php echo $ci->nullableTextIfEmptyData($survey->sm_description); ?>.
+                <?php echo $ci->nullableTextIfEmptyData($survey->sm_name); ?>.
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -188,7 +188,7 @@
                                 if(type == "0"){
                                     checked = 'checked'
                                 }else if(type == "1"){
-                                    checked = 'value='+list_ans_exist[c].text
+                                    checked = 'value="'+list_ans_exist[c].text+'"'
                                 }else if(type == "2"){
                                     checked = 'checked'
                                 }

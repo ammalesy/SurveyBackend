@@ -64,7 +64,8 @@ class Database extends CI_Model {
 							  `sm_description` text CHARACTER SET utf8,
 							  `sm_table_code` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
 							  `sm_order_column` text NOT NULL,
-							  `sm_update_at` datetime NOT NULL
+							  `sm_update_at` datetime NOT NULL,
+                `sm_image` varchar(200) NOT NULL DEFAULT 'default.png'
 							) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;";
           $base->query($tb_survey_mapping);
 

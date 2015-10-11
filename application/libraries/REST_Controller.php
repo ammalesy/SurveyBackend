@@ -2108,7 +2108,11 @@ abstract class REST_Controller extends CI_Controller {
     }
     protected function initDB(){
         $this->request_type = REQUEST_FROM_MOBILE;
-        $this->db_name = $this->get('project_name'); 
+        $pn = $this->get('project_name'); 
+        $this->db_name = $pn;
+        if($pn == NULL || $pn == ""){
+            $this->db_name = $this->post("project_name");
+        }
     }
 
 }

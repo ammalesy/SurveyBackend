@@ -207,4 +207,13 @@ class NZ_Controller extends CI_Controller{
         $config['file_name'] = $file_name;
         return $config;
     }
+    public function upload_survey_config($file_name){
+        $config['upload_path'] = 'images_upload_surveys/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2048';
+        $config['max_width']  = '200';
+        $config['max_height']  = '200';
+        $config['file_name'] = $file_name;
+        return $config;
+    }
 }

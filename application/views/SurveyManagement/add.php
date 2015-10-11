@@ -21,7 +21,7 @@
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-12">
-            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH; ?>SurveyManagement/submit/null/added">
+            <form id="surveyForm" role="form" method="post" action="<?php echo APP_PATH; ?>SurveyManagement/submit/null/added" enctype="multipart/form-data">
                 <label>STEP 1. Defind survey defination.</label>
                 <div class="row">
                     <div class="col-lg-12">
@@ -34,6 +34,14 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <textarea name="sm_description" class="form-control" rows="5" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <label>Survey Image</label>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                             <input type="file" name="sm_image" size="20" />
                         </div>
                     </div>
                 </div>
@@ -52,6 +60,7 @@
                     </div>
                     </div>
                 </div>
+
                 <div class="space_add_more">
                     
                     <!-- <div class="row" style="padding-top: 13px">
