@@ -108,6 +108,7 @@
                     <?php } ?>
                 </div>
                 <!-- /.row -->
+                <!-- 
                 <?php if(check_permission("SurveyResult","r") || check_permission("SurveyResult","rw")) { ?>
                 <h1 class="page-header">
                 <div class="row">
@@ -116,6 +117,7 @@
                     </div>
                 </div>
                 </h1>
+                
                 <div class="row">
                     <?php foreach ($surveys as $survey): ?>
                     <?php $results = $survey->result_info;
@@ -145,6 +147,7 @@
                     <?php endforeach; ?>
                 </div>
                 <?php } ?>
+            -->
 </div>
 
 <!-- /.container-fluid -->

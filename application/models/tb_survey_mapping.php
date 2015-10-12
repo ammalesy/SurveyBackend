@@ -34,6 +34,7 @@ class Tb_survey_mapping extends CI_Model {
       return $query->result();
     }
     function count(){
+      $this->load->database();
       return $this->db->count_all_results('tb_survey_mapping');
     }
     function get($sm_id){

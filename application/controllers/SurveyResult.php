@@ -22,6 +22,7 @@ class SurveyResult extends NZ_Controller {
     	$data['page'] = $this->page;
 
     	$this->load->model('tb_survey_mapping');
+        $this->load->model('tb_user_history');
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
     	$data['surveys'] = $this->tb_survey_mapping->fetchAll();
@@ -29,24 +30,21 @@ class SurveyResult extends NZ_Controller {
     	$this->load->view('SurveyResult/list',$data);
     }
     function view($sm_id){
-        $data['page'] = $this->page;
-        $data['message_error_type'] = $this->message_error_type;
-        $data['message_error'] = $this->message_error;
+        // $data['page'] = $this->page;
+        // $data['message_error_type'] = $this->message_error_type;
+        // $data['message_error'] = $this->message_error;
 
-        $this->load->model('tb_survey_mapping');
-        $this->load->model('tb_user_history');
-        $this->load->model('tb_user_info');
+        // $this->load->model('tb_survey_mapping');
+        // $this->load->model('tb_user_history');
         
-        $data['survey'] = $this->tb_survey_mapping->get($sm_id);
-        $user_histories = $this->tb_user_history->fetch_by_sm_id($sm_id,"h_timestamp ASC");
-        foreach ($user_histories as $user_history) {
-            $user_history->user_info = $this->tb_user_info->get($user_history->u_id_ref);
-            $sm_obj = $this->tb_survey_mapping->get($user_history->sm_id_ref);
-            $table_name = $sm_obj->sm_table_code;
-            $user_history->ans_info = $this->tb_survey_mapping->get_on_table($table_name,$user_history->s_id_ref);
-        }
-        $data['user_histories'] = $user_histories;
-
-        $this->load->view('SurveyResult/view',$data);
+        // $data['survey'] = $this->tb_survey_mapping->get($sm_id);
+        // $user_histories = $this->tb_user_history->fetch_by_sm_id($sm_id,"h_timestamp ASC");
+        // foreach ($user_histories as $user_history) {
+        //     $sm_obj = $this->tb_survey_mapping->get($user_history->sm_id_ref);
+        //     $table_name = $sm_obj->sm_table_code;
+        //     $user_history->ans_info = $this->tb_survey_mapping->get_on_table($table_name,$user_history->s_id_ref);
+        // }
+        // $data['user_histories'] = $user_histories;
+        // $this->load->view('SurveyResult/view',$data);
     }
 }

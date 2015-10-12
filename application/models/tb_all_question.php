@@ -21,6 +21,7 @@ class Tb_all_question extends CI_Model {
       $this->db->update('tb_all_question', $array); 
     }
     function count(){
+      $this->load->database();
       return $this->db->count_all_results('tb_all_question');
     }
     function fetchAll($isActive=TRUE){

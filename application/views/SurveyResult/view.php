@@ -26,10 +26,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Since date</th>
-                    <th>Name</th>
-                    <th>Sex</th>
-                    <th>Tel</th>
-                    <th>Email</th>
                     <th class="dt-head-right">Command</th>
                 </tr>
             </thead>
@@ -38,10 +34,6 @@
             <tr>
                 <td><?php echo $user_history->h_id;?></td>
                 <td><span class="badge"><?php echo $ci->time_elapsed_string($user_history->h_timestamp); ?></span></td>
-                <td><?php echo $user_history->user_info->u_firstname." ".$user_history->user_info->u_surname; ?></td>
-                <td><?php echo $ci->sex($user_history->user_info->u_sex,'th'); ?></td>
-                <td><?php echo $ci->nullableTextIfEmptyData($user_history->user_info->u_tel); ?></td>
-                <td><?php echo $ci->nullableTextIfEmptyData($user_history->user_info->u_email); ?></td>
                 <?php
                     $list_aa_id = '';
                     foreach ($user_history->ans_info as $key => $value) {
@@ -63,6 +55,8 @@
     </div><!-- /.end col-lg-8 -->
 </row><!-- /.end row -->
 </div>
+
+
 
 <!-- Modal -->
 <div id="list_answer_modal" data-seq="" class="modal fade modal-wide-mini" role="dialog">

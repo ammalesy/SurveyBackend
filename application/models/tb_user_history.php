@@ -27,6 +27,7 @@ class Tb_user_history extends CI_Model {
       return $query->result();
     }
     function count(){
+      $this->load->database();
       return $this->db->count_all_results('tb_user_history');
     }
     function fetch_by_sm_id($sm_id_ref,$orderby = "h_timestamp DESC"){
