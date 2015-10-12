@@ -15,7 +15,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li class="active">
-                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>Dashboard/state">Show all</a>
+                    <i class="fa fa-table"></i>  <a href="<?php echo APP_PATH; ?>Dashboard/">Dashboard</a>
                 </li>
                 <!-- <li class="active">
                     <i class="fa fa-edit"></i> Forms

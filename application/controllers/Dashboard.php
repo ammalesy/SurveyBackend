@@ -34,6 +34,9 @@ class Dashboard extends NZ_Controller {
         $data['history_count'] = $this->tb_user_history->count();
         $data['question_count'] = $this->tb_all_question->count();
         $data['survey_count'] = $this->tb_survey_mapping->count();
+        $data['surveys'] = $this->tb_survey_mapping->fetchAll();
+        $data['max_surveys'] = $this->tb_survey_mapping->count_survey_that_user_doing();
+        $data['sm_db'] = $this->tb_survey_mapping;
         //$data['surveys'] = $surveys;
     	$this->load->view('Dashboard/all',$data);
     }

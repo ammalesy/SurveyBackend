@@ -53,7 +53,7 @@ class SurveyResult extends REST_Controller {
         /*======= TRANSACTION START ==============*/
         /*========================================*/
         $this->db->trans_start();
-
+        $survey = $this->tb_survey_mapping->get($sm_id);
         $user_histories = $this->tb_user_history->fetch_by_sm_id($sm_id,"h_timestamp ASC");
         foreach ($user_histories as $user_history) {
             $sm_obj = $this->tb_survey_mapping->get($user_history->sm_id_ref);
@@ -62,15 +62,16 @@ class SurveyResult extends REST_Controller {
         }
 
         //TABLE
-        $html ='<table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">'.
-            '<thead>'.
-                '<tr>'.
-                    '<th>ID</th>'.
-                    '<th>Since date</th>'.
-                    '<th class="dt-head-right">Command</th>'.
-                '</tr>'.
-            '</thead>'.
-            '<tbody>';
+        // $html ='<table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">'.
+        //     '<thead>'.
+        //         '<tr>'.
+        //             '<th>ID</th>'.
+        //             '<th>Since date</th>'.
+        //             '<th class="dt-head-right">Command</th>'.
+        //         '</tr>'.
+        //     '</thead>'.
+        //     '<tbody>';
+        $html = "";
             foreach ($user_histories as $user_history) {
         $html .='<tr>'.
                 '<td>'.$user_history->h_id.'</td>'.
@@ -85,14 +86,17 @@ class SurveyResult extends REST_Controller {
     
         $html .= '<td class="dt-body-right">'.
                         '<input type="hidden" id="h_id" data-h-id="'.$user_history->h_id.'" value="'.$list_aa_id.'">'.
-                        '<button type="button" id="view_button" data-h-id="'.$user_history->h_id.'" data-sm-name="'.$survey->sm_name.'" data-sm-id="'.$survey->sm_id.'" data-toggle="modal" data-target="#list_answer_modal" class="btn btn-sm btn-primary">'.
+                        '<div class="space-button"><button type="button" id="view_button" data-h-id="'.$user_history->h_id.'" data-sm-name="'.$survey->sm_name.'" data-sm-id="'.$survey->sm_id.'" data-toggle="modal" data-target="#list_answer_modal" class="btn btn-sm btn-primary">'.
                             '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> View answers'.
-                        '</button>'.
+                        '</button></div>'.
                 '</td>'.
             '</tr>';
             }   
-        $html .= '</tbody>'.
-            '</table>';
+        if($html == ""){
+            $html = "<tr><td colspan=3 class='dt-body-center dataTables_empty'>No data available in table</td></tr>";
+        }
+        // $html .= '</tbody>'.
+        //     '</table>';
         ///////
         
         /*==================================*/

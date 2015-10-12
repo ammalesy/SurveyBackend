@@ -94,6 +94,10 @@
                 "pagingType": "full_numbers",
                  "order": [[ 0, "desc" ]]
             });
+            $('#questionTable2').DataTable({
+                "pagingType": "full_numbers",
+                 "order": [[ 0, "desc" ]]
+            });
             // $(function(){
             //     $('.demo1').colorpicker();
             // });

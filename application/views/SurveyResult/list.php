@@ -52,12 +52,12 @@
                 <td><?php echo $survey->sm_name; ?></td>
                 <td><?php echo $ci->nullableTextIfEmptyData($survey->sm_description); ?></td>
                 <td class="dt-body-right">
-                    <a href="<?php echo APP_PATH; ?>SurveyResult/view/<?php echo $survey->sm_id; ?>">
+<!--                     <a href="<?php echo APP_PATH; ?>SurveyResult/view/<?php echo $survey->sm_id; ?>">
                     <button type="button" class="btn btn-sm btn-success">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span> View result
-                    </button></a>
-                    <button type="button" id="view_button_show_result" data-sm-name="<?php echo $survey->sm_name; ?>" data-sm-id="<?php echo $survey->sm_id; ?>" data-toggle="modal" data-target="#list_result_modal" class="btn btn-sm btn-primary">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button></a> -->
+                    <button type="button" id="view_button_show_result" data-sm-name="<?php echo $survey->sm_name; ?>" data-sm-id="<?php echo $survey->sm_id; ?>" data-toggle="modal" data-target="#list_result_modal" class="btn btn-sm btn-success">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> View result
                     </button>
                 </td>
             </tr> 
@@ -65,6 +65,7 @@
         </tbody>
     </table>
 </div>
+
 
 <!-- Modal -->
 <div id="list_result_modal" class="modal fade modal-wide" role="dialog">
@@ -74,17 +75,29 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" id="sm_name"></h4>
+        <h4 class="modal-title" id="sm_name">Question list.</h4>
       </div>
       <div class="modal-body">
-        <p id="show_detail_result_survey_modal">
-            <div id="space-preload">
+        <p>
+        <div id="space-preload-result">
             <label>Please wait..</label>
             <div class="progress">
                 <div id="preload" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                 </div>
             </div>
-        </div>
+        	</div>
+        <table id="questionTable2" class="table table-striped compact hover" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Since date</th>
+                    <th class="dt-head-right">Command</th>
+                </tr>
+            </thead>
+            <tbody id="table_detail">
+               
+            </tbody>
+        </table>
         </p>
       </div>
       <div class="modal-footer">
@@ -94,79 +107,23 @@
 
   </div>
 </div>
+
 <script>
     /*========================================*/
     /*==== VIEWRESULT  BUTTON ACTION =========*/
     /*========================================*/
-    /*[
-    {
-        "h_id": "25",
-        "sm_id_ref": "21",
-        "s_id_ref": "1",
-        "h_timestamp": "2015-09-02 00:00:00",
-        "ans_info": {
-            "id": "1",
-            "q_35": "[]"
-        }
-    },
-    {
-        "h_id": "26",
-        "sm_id_ref": "21",
-        "s_id_ref": "2",
-        "h_timestamp": "2015-10-11 21:26:22",
-        "ans_info": {
-            "id": "2",
-            "q_35": "[{\"aa_id\":\"164\",\"text\":\"testTextBox\"},{\"aa_id\":\"166\"}]"
-        }
-    }
-]*/
     $("button#view_button_show_result").click(function(){
-        $("div#space-list-survey").html('');
-        $("div#space-preload").css("display","inline");
+        $("div#space-preload-result").css("display","inline");
 
         var sm_id = $(this).attr("data-sm-id");
         var sm_name = $(this).attr("data-sm-name");
         $("h4#sm_name").html(sm_name);
 
-        $.get("<?php echo APP_PATH; ?>api/SurveyResult/survey?sm_id="+sm_id+"&project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
-           var list_survey_html = 
-            '<table id="questionTable" class="table table-striped compact hover" cellspacing="0" width="100%">'+
-            '<thead>'+
-            '    <tr>'+
-            '        <th>ID</th>'+
-            '        <th>Since date</th>'+
-            '        <th class="dt-head-right">Command</th>'+
-            '    </tr>'+
-            '</thead>'+
-            '<tbody>';
-            for(var j = 0; j < data.length; j++){
-
-            list_survey_html +='<tr>'+
-            '   <td>'+data[j].h_id+'</td>'+
-            '    <td><span class="badge">'+data[j].h_timestamp+'</span></td>'+
-                <?php
-                    $list_aa_id = '';
-                    foreach ($user_history->ans_info as $key => $value) {
-                       if ($key == "id") continue;
-                       $list_aa_id .= substr($key,2)."->".str_replace('"', "'", $value)."|";
-                    }
-                    $list_aa_id = rtrim($list_aa_id, "|");
-                ?>
-                <td class="dt-body-right">
-                        <input type="hidden" id="h_id" data-h-id="<?php echo $user_history->h_id; ?>" value="<?php echo $list_aa_id; ?>">
-                        <button type="button" id="view_button" data-h-id="<?php echo $user_history->h_id; ?>" data-sm-name="<?php echo $survey->sm_name; ?>" data-sm-id="<?php echo $survey->sm_id; ?>" data-toggle="modal" data-target="#list_answer_modal" class="btn btn-sm btn-primary">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> View answers
-                        </button>
-                </td>
-            </tr> 
-            }  
-        </tbody>
-            for (var i = 0; i < data.length; i++) {
-               
-            }
-            var html = "";
-            $("div#space-preload").css("display","none");
-            $("p#show_detail_survey_modal").html(html); 
+        $.get("<?php echo APP_PATH; ?>api/SurveyResult/survey_html_table?sm_id="+sm_id+"&project_name=<?php echo get_instance()->get_session()->database_selected; ?>", function(data, status){
+           
+            var html = data;
+            $("div#space-preload-result").css("display","none");
+            $("tbody#table_detail").html(html); 
         });
     });
 </script>
@@ -230,8 +187,9 @@
     /*=================================*/
     /*==== VIEW BUTTON ACTION =========*/
     /*=================================*/
-    $("button#view_button").click(function(){
-        $("div#space-list-survey").html('');
+
+    $(document).on("click", "button#view_button", function(e) {
+    	$("div#space-list-survey").html('');
         $("div#space-preload").css("display","inline");
 
         var sm_id = $(this).attr("data-sm-id");
@@ -350,7 +308,8 @@
         });
         $("button#refresh").attr("data-sm-id",sm_id);
         $("button#refresh").attr("data-h-id",h_id);
-    });
+  	});
+
 /*=================================*/
 /*==== REFRESH BUTTON ACTION ======*/
 /*=================================*/
