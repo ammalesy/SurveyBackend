@@ -104,6 +104,13 @@ class QuestionManagement extends NZ_Controller {
     	$aa_actives = $this->input->post('aa_active');
         $colors = $this->input->post('color');
         $types = $this->input->post('type');
+        $aq_auto_display_result = $this->input->post('aq_auto_display');
+        if($aq_auto_display_result == NULL){
+            $aq_auto_display_result = 0;
+        }else{
+            $aq_auto_display_result = 1;
+        }
+
 
     	/*============================*/
     	/*======= ADD SUBMITED =======*/
@@ -124,7 +131,8 @@ class QuestionManagement extends NZ_Controller {
 				return;
     		}
     		$aq_id = $this->tb_all_question->record(array('aq_description' => $aq_description,
-    											 		  'active' => 'Y'));
+    											 		  'active' => 'Y',
+                                                          'aq_auto_display' => $aq_auto_display_result));
     		$i = 0;
     		foreach ($aa_descriptions as $aa_description) {
     			$this->tb_all_answer->record(array('aa_description' => $aa_description,
@@ -155,7 +163,8 @@ class QuestionManagement extends NZ_Controller {
     		}
 
     		$this->tb_all_question->update(array('aq_description' => $aq_description,
-    											 'active' => 'Y' ),$aq_id);
+    											 'active' => 'Y',
+                                                 'aq_auto_display' => $aq_auto_display_result),$aq_id);
 
     		//UPDATE EXIST ANSWERS
     		$aa_ids = $this->input->post('aa_id');

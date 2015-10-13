@@ -38,6 +38,7 @@ class SurveyManagement extends NZ_Controller {
     	$data['message_error'] = $this->message_error;
     	$data['questions'] = $this->tb_all_question->fetchAll();
     	$data['page'] = $this->page;
+        $data['questions'] = $this->tb_all_question->fetchAllAutoDisplayOnly();
     	$this->load->view('SurveyManagement/add',$data);
    
     }

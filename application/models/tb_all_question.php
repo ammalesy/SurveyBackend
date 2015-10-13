@@ -23,6 +23,18 @@ class Tb_all_question extends CI_Model {
     function count(){
       $this->load->database();
       return $this->db->count_all_results('tb_all_question');
+    }//
+    function fetchAllAutoDisplayOnly($isActive=TRUE){
+
+      if ($isActive == TRUE) {
+         $where = " WHERE active = 'Y' AND aq_auto_display = '1' ORDER BY aq_id DESC";
+      }else{
+         $where = " WHERE aq_auto_display = '1' ORDER BY aq_id DESC";
+      }
+
+      $this->load->database();
+      $query = $this->db->query("select * from tb_all_question".$where);
+      return $query->result();
     }
     function fetchAll($isActive=TRUE){
 

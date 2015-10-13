@@ -54,7 +54,8 @@ class Database extends CI_Model {
 							`aq_id` int(5) NOT NULL,
 							  `aq_description` text NOT NULL,
 							  `aq_image` varchar(100) DEFAULT ' ',
-							  `active` varchar(1) NOT NULL DEFAULT 'Y'
+							  `active` varchar(1) NOT NULL DEFAULT 'Y',
+                `aq_auto_display` int(1) NOT NULL
 							) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;";
           $base->query($tb_all_question);
 
@@ -71,23 +72,23 @@ class Database extends CI_Model {
 
           $tb_user_history = "CREATE TABLE IF NOT EXISTS `tb_user_history` (
 							`h_id` int(10) NOT NULL,
-							  `u_id_ref` int(10) NOT NULL,
+							  -- `u_id_ref` int(10) NOT NULL,
 							  `sm_id_ref` int(11) NOT NULL,
 							  `s_id_ref` int(10) NOT NULL,
 							  `h_timestamp` datetime NOT NULL
 							) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;";
           $base->query($tb_user_history);
 
-          $tb_user_info = "CREATE TABLE IF NOT EXISTS `tb_user_info` (
-							`u_id` int(10) NOT NULL,
-							  `u_firstname` text NOT NULL,
-							  `u_surname` text NOT NULL,
-							  `u_sex` int(1) NOT NULL,
-							  `u_age` int(3) NOT NULL,
-							  `u_email` varchar(50) DEFAULT NULL,
-							  `u_tel` varchar(20) DEFAULT NULL
-							) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;";
-          $base->query($tb_user_info);
+       //    $tb_user_info = "CREATE TABLE IF NOT EXISTS `tb_user_info` (
+							// `u_id` int(10) NOT NULL,
+							//   `u_firstname` text NOT NULL,
+							//   `u_surname` text NOT NULL,
+							//   `u_sex` int(1) NOT NULL,
+							//   `u_age` int(3) NOT NULL,
+							//   `u_email` varchar(50) DEFAULT NULL,
+							//   `u_tel` varchar(20) DEFAULT NULL
+							// ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;";
+       //    $base->query($tb_user_info);
 
           /*==========================*/
           /*===== ADD PRIME KEY ======*/
@@ -105,13 +106,10 @@ class Database extends CI_Model {
           $base->query($tb_survey_mapping_key);
 
           $tb_user_history_key = "ALTER TABLE `tb_user_history`
- 								ADD PRIMARY KEY (`h_id`), ADD KEY `u_id_ref` (`u_id_ref`), 
+ 								ADD PRIMARY KEY (`h_id`),  
  								ADD KEY `sm_id_ref` (`sm_id_ref`), ADD KEY `s_id_ref` (`s_id_ref`);";
           $base->query($tb_user_history_key);
 
-          $tb_user_info_key = "ALTER TABLE `tb_user_info`
- 									ADD PRIMARY KEY (`u_id`);";
-          $base->query($tb_user_info_key);
 
           /*===============================*/
           /*===== DEFIND INCREATMENT ======*/
@@ -132,10 +130,6 @@ class Database extends CI_Model {
           $tb_user_history_inc = "ALTER TABLE `tb_user_history`
 								MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;";
           $base->query($tb_user_history_inc);
-
-          $tb_user_info_inc = "ALTER TABLE `tb_user_info`
-								MODIFY `u_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;";
-          $base->query($tb_user_info_inc);
 
           return TRUE;
       }else{

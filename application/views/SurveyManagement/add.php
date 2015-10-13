@@ -46,6 +46,22 @@
                     </div>
                 </div>
                 <label>STEP 2. Add the questions.</label>
+                <br>
+                <label>* default question</label>
+                <div class="row" id="questionObject">'+
+
+
+        <input type="hidden" value="" id="question_group" name="question_group[]" data-seq="'+(question_group_count+1)+'">'+ //HIDDEN FEILD question_group [POST]
+        <div class="col-lg-10">
+           <div class="form-group">
+                <div class="form-group input-group">'+
+                    <span class="input-group-addon" data-seq="'+(question_group_count+1)+'">'+(question_group_count+1)+'</span>'+
+                    <input disabled id="question_message" data-seq="'+(question_group_count+1)+'" class="form-control" placeholder="Please select a question.">'+
+                </div>
+            </div>
+        </div>
+
+        </div>
                 
                 <div class="row">
                     <div class="col-lg-12">

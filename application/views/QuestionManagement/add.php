@@ -26,6 +26,11 @@
                     <label>Question</label>
                     <input name="aq_description" class="form-control" placeholder="Question text" value="">
                     <p class="help-block">Question message text text here.</p>
+
+                    <label>Auto Display</label><br>
+                    <label class="checkbox-inline">
+                            <input type="checkbox" name="aq_auto_display" data-toggle="toggle">
+                    </label>
                 </div>
                 <label>Answer list</label>
                 <div class="row">

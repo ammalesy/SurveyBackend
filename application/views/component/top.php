@@ -34,6 +34,8 @@
     <![endif]-->
     <link href="<?php echo APP_PATH."assets/"; ?>css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo APP_PATH."assets/"; ?>css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="<?php echo APP_PATH."assets/" ?>css/bootstrap-toggle.min.css" rel="stylesheet">
+
 
 
     <!-- <link rel="stylesheet" href="<?php echo APP_PATH."assets/"; ?>css/pick-a-color-1.2.3.min.css"> -->
@@ -86,6 +88,7 @@
     <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>module/colorpicker/js/bootstrap-colorpicker.min.js"></script>
     <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo APP_PATH."assets/"; ?>js/bootstrap-toggle.min.js"></script>
    
 
     <script>

@@ -46,6 +46,17 @@
                     <label>Question</label>
                     <input name="aq_description" class="form-control" placeholder="Question text" value="<?php echo $question->aq_description; ?>">
                     <p class="help-block">Question message text text here.</p>
+
+                    <label>Auto Display</label><br>
+                    <label class="checkbox-inline">
+                            <?php
+                            $isDisplay = "";
+                                if($question->aq_auto_display == 1){
+                                    $isDisplay = "checked";
+                                }
+                            ?>
+                            <input type="checkbox" name="aq_auto_display" <?php echo $isDisplay; ?>  data-toggle="toggle">
+                    </label>
                 </div>
                 <label>Answer list</label>
                 <input type="hidden" name="count_answers" value="<?php echo count($answers); ?>">

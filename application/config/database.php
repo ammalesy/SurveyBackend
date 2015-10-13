@@ -114,7 +114,7 @@ $db['common'] = array(
 	// 'database' => 'homesc_common_survey',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'CommonSurvey',
+	'database' => 'CommonSurvey2',
 	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -26,53 +26,53 @@ class SyncDataManager extends REST_Controller {
 
         $json_filter = array();
         foreach ($json as $aJson) {
-            $firstname = $aJson['u_firstname'];
-            $surname = $aJson['u_surname'];
-            $sex = $aJson['u_sex'];
-            $age = $aJson['u_age'];
-            $email = $aJson['u_email'];
-            $tel = $aJson['u_tel'];
+            // $firstname = $aJson['u_firstname'];
+            // $surname = $aJson['u_surname'];
+            // $sex = $aJson['u_sex'];
+            // $age = $aJson['u_age'];
+            // $email = $aJson['u_email'];
+            // $tel = $aJson['u_tel'];
             $sm_id_ref = $aJson['sm_id_ref'];
             $h_timestamp = $aJson['h_timestamp'];
             $result = $aJson['result'];
 
             $survey = $this->tb_survey_mapping->get($sm_id_ref);
 
-            $exist = $this->tb_user_info->is_exist_user($firstname,$surname);
-            if($exist == FALSE){
-                $u_id = $this->tb_user_info->record(array('u_firstname' => $firstname,
-                                                          'u_surname' => $surname,
-                                                          'u_sex' => $sex,
-                                                          'u_age' => $age,
-                                                          'u_email' => $email,
-                                                          'u_tel' => $tel));
-            }else{
-                $u_id = $exist->u_id;
-                $shouldUpdate = FALSE;
-                $infoUpdate = array();
-                if($sex != NULL && $sex != ""){
-                	$shouldUpdate = TRUE;
-                	$infoUpdate['u_sex'] = $sex;
-                }
-                if($age != NULL && $age != ""){
-                	$shouldUpdate = TRUE;
-                	$infoUpdate['u_age'] = $age;
-                }
-                if($email != NULL && $email != ""){
-                	$shouldUpdate = TRUE;
-                	$infoUpdate['u_email'] = $email;
-                }
-                if($tel != NULL && $tel != ""){
-                	$shouldUpdate = TRUE;
-                	$infoUpdate['u_tel'] = $tel;
-                }
+            // $exist = $this->tb_user_info->is_exist_user($firstname,$surname);
+            // if($exist == FALSE){
+            //     $u_id = $this->tb_user_info->record(array('u_firstname' => $firstname,
+            //                                               'u_surname' => $surname,
+            //                                               'u_sex' => $sex,
+            //                                               'u_age' => $age,
+            //                                               'u_email' => $email,
+            //                                               'u_tel' => $tel));
+            // }else{
+                // $u_id = $exist->u_id;
+                // $shouldUpdate = FALSE;
+                // $infoUpdate = array();
+                // if($sex != NULL && $sex != ""){
+                // 	$shouldUpdate = TRUE;
+                // 	$infoUpdate['u_sex'] = $sex;
+                // }
+                // if($age != NULL && $age != ""){
+                // 	$shouldUpdate = TRUE;
+                // 	$infoUpdate['u_age'] = $age;
+                // }
+                // if($email != NULL && $email != ""){
+                // 	$shouldUpdate = TRUE;
+                // 	$infoUpdate['u_email'] = $email;
+                // }
+                // if($tel != NULL && $tel != ""){
+                // 	$shouldUpdate = TRUE;
+                // 	$infoUpdate['u_tel'] = $tel;
+                // }
                 
-                if($shouldUpdate == TRUE){
-                	$this->load->model('tb_user_info');
-                	$this->tb_user_info->update($infoUpdate,$u_id);
-                }
+                // if($shouldUpdate == TRUE){
+                // 	$this->load->model('tb_user_info');
+                // 	$this->tb_user_info->update($infoUpdate,$u_id);
+                // }
                 
-            }
+            // }
 
             $result_filter = array();
                 foreach ($result as $key=> $value) {
@@ -81,8 +81,7 @@ class SyncDataManager extends REST_Controller {
                     $result_filter[$key_c] = $value;
                 }
             $s_id_ref = $this->tb_survey_mapping->record_survey_table($survey->sm_table_code,$result_filter);
-            $this->tb_user_history->record(array('u_id_ref' => $u_id,
-                                                 'sm_id_ref' => $sm_id_ref,
+            $this->tb_user_history->record(array('sm_id_ref' => $sm_id_ref,
                                                  's_id_ref' => $s_id_ref,
                                                  'h_timestamp' => $h_timestamp ));
         }
