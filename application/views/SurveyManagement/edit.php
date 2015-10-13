@@ -61,7 +61,9 @@
 
                     </div>
                     <div class="col-lg-1" >
+                    <?php if($question->aq_auto_display == 0){ ?>
                     <button type="button" onclick="onclick_delete_question(this);" id="delete" data-seq="<?php echo $seq; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                    <?php }else{} ?>
                     </div>
                 </div>
                 <?php $seq++; endforeach; ?>

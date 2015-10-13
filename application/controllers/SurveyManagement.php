@@ -36,9 +36,9 @@ class SurveyManagement extends NZ_Controller {
     	$this->load->model('tb_all_answer');
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
-    	$data['questions'] = $this->tb_all_question->fetchAll();
+    	$data['questions'] = $this->tb_all_question->fetchAllWithOutAutoDisplay();
     	$data['page'] = $this->page;
-        $data['questions'] = $this->tb_all_question->fetchAllAutoDisplayOnly();
+        $data['questions_auto'] = $this->tb_all_question->fetchAllAutoDisplayOnly();
     	$this->load->view('SurveyManagement/add',$data);
    
     }
@@ -51,7 +51,7 @@ class SurveyManagement extends NZ_Controller {
         $this->load->model('tb_survey_mapping');
         $data['message_error_type'] = $this->message_error_type;
         $data['message_error'] = $this->message_error;
-        $data['questions'] = $this->tb_all_question->fetchAll();
+        $data['questions'] = $this->tb_all_question->fetchAllWithOutAutoDisplay();
         $survey = $this->tb_survey_mapping->get($sm_id);
         $data['survey'] = $survey;
 
@@ -89,6 +89,7 @@ class SurveyManagement extends NZ_Controller {
         $ff = $this->input->post('question_group');
 
 	   	$question_group = @array_filter(@array_unique($this->input->post('question_group')));
+        
 	   	/*========================================*/
 	    /*======= TRANSACTION START ==============*/
 	   	/*========================================*/

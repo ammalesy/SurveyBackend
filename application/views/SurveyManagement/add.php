@@ -46,22 +46,23 @@
                     </div>
                 </div>
                 <label>STEP 2. Add the questions.</label>
-                <br>
-                <label>* default question</label>
-                <div class="row" id="questionObject">'+
+     
+                <?php $i = 0; foreach ($questions_auto as $question) : ?>
+                <div class="row" id="questionObject">
+		        <input type="hidden" value="<?php echo $question->aq_id; ?>" id="question_group" name="question_group[]" data-seq="<?php echo $i+1; ?>">
+		        <div class="col-sm-12">
+		           <div class="form-group">
+		                <div class="form-group input-group">
+		                    <span class="input-group-addon" data-seq="<?php echo $i+1; ?>"><?php echo $i+1; ?></span>
+		                    <input disabled id="question_message" value="<?php echo $question->aq_description; ?>" data-seq="<?php echo $i+1; ?>" class="form-control" placeholder="Please select a question.">
+		                </div>
+		            </div>
+		        </div>
+		        </div>
+		        <?php $i++; endforeach; ?>
 
 
-        <input type="hidden" value="" id="question_group" name="question_group[]" data-seq="'+(question_group_count+1)+'">'+ //HIDDEN FEILD question_group [POST]
-        <div class="col-lg-10">
-           <div class="form-group">
-                <div class="form-group input-group">'+
-                    <span class="input-group-addon" data-seq="'+(question_group_count+1)+'">'+(question_group_count+1)+'</span>'+
-                    <input disabled id="question_message" data-seq="'+(question_group_count+1)+'" class="form-control" placeholder="Please select a question.">'+
-                </div>
-            </div>
-        </div>
-
-        </div>
+      
                 
                 <div class="row">
                     <div class="col-lg-12">
