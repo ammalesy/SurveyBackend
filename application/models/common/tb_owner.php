@@ -40,5 +40,10 @@ class Tb_owner extends CI_Model {
 
       $query = $this->db->query("select * from tb_owner where pj_id_ref = ".$pj_id_ref."");
       return $query->result();
-    }    
+    }
+    function fetch_by_a_id($a_id){
+
+      $query = $this->db->query("select * from tb_owner where a_id_ref = ".$a_id."");
+      return $query->result();
+    }  
 }
