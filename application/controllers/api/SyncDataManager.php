@@ -11,7 +11,7 @@ class SyncDataManager extends REST_Controller {
         $this->initDB(); 
     }
     public function sync_post(){
-        $this->load->model('tb_user_info');
+        //$this->load->model('tb_user_info');
         $this->load->model('tb_user_history');
         $this->load->model('tb_survey_mapping');
 

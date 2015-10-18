@@ -52,7 +52,7 @@ class SurveyManagement extends REST_Controller {
 
     		$this->response($surveys);
     	}else{
-    		$this->response(array('Error' => 'Survey not found.'));
+    		$this->response(array('Error' => 'Survey not found.'),REST_Controller::HTTP_NOT_FOUND);
     	}
     }
 	public function survey_get($sm_id){
