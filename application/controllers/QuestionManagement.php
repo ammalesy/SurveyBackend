@@ -40,16 +40,18 @@ class QuestionManagement extends NZ_Controller {
     public function add(){
 
         parent::add();
+        $this->load->model('tb_answer_style');
 
     	$data['message_error_type'] = $this->message_error_type;
     	$data['message_error'] = $this->message_error;
     	$data['page'] = $this->page;
+        $data['answers_style'] = $this->tb_answer_style->fetchAll();
     	$this->load->view('QuestionManagement/add',$data);
     }
     public function edit($aq_id){
 
         parent::edit($aq_id);
-
+        $this->load->model('tb_answer_style');
     	$this->load->model('tb_all_question');
     	$this->load->model('tb_all_answer');
 
@@ -58,6 +60,7 @@ class QuestionManagement extends NZ_Controller {
     	$data['page'] = $this->page;
     	$data['question'] = $this->tb_all_question->get($aq_id,FALSE);
     	$data['answers'] = $this->tb_all_answer->get($aq_id,FALSE);
+        $data['answers_style'] = $this->tb_answer_style->fetchAll();
     	$this->load->view('QuestionManagement/edit',$data);
     }
     public function change_status_question($status,$aq_id){
@@ -102,7 +105,7 @@ class QuestionManagement extends NZ_Controller {
     	$aq_description = $this->input->post('aq_description');
     	$aa_descriptions = $this->input->post('aa_description');//array_filter($this->input->post('aa_description'));
     	$aa_actives = $this->input->post('aa_active');
-        $colors = $this->input->post('color');
+        $colors = "#000000";
         $types = $this->input->post('type');
         $aq_auto_display_result = $this->input->post('aq_auto_display');
         if($aq_auto_display_result == NULL){

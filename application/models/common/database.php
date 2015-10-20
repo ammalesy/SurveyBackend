@@ -79,6 +79,24 @@ class Database extends CI_Model {
 							) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;";
           $base->query($tb_user_history);
 
+          $tb_answer_style = "CREATE TABLE IF NOT EXISTS `tb_answer_style` (
+                `as_id` int(10) NOT NULL,
+                `as_name` varchar(100) NOT NULL,
+                `as_description` varchar(200) NOT NULL,
+                `as_text_color` varchar(10) NOT NULL,
+                `as_identifier` varchar(50) NOT NULL
+              ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;";
+          $base->query($tb_answer_style);
+
+          $tb_answer_style_common_data_insert = "
+              INSERT INTO `tb_answer_style` (`as_id`, `as_name`, `as_description`, `as_text_color`, `as_identifier`) VALUES
+              (1, 'Checkbox', 'Checkbox', '#000000', '0'),
+              (2, 'TextBox', 'TextBox', '#000000', '1'),
+              (3, 'Radio button', 'Radio button', '#000000', '2'),
+              (4, 'CheckBox with Textbox', 'CheckBox with Textbox', '#000000', '3'),
+              (5, 'Radio button with Textbox', 'Radio button with Textbox', '#000000', '4');";
+          $base->query($tb_answer_style_common_data_insert);
+
        //    $tb_user_info = "CREATE TABLE IF NOT EXISTS `tb_user_info` (
 							// `u_id` int(10) NOT NULL,
 							//   `u_firstname` text NOT NULL,
@@ -110,6 +128,10 @@ class Database extends CI_Model {
  								ADD KEY `sm_id_ref` (`sm_id_ref`), ADD KEY `s_id_ref` (`s_id_ref`);";
           $base->query($tb_user_history_key);
 
+          $tb_answer_style_key = "ALTER TABLE `tb_answer_style`
+                ADD PRIMARY KEY (`as_id`);";
+          $base->query($tb_answer_style_key);
+
 
           /*===============================*/
           /*===== DEFIND INCREATMENT ======*/
@@ -130,6 +152,10 @@ class Database extends CI_Model {
           $tb_user_history_inc = "ALTER TABLE `tb_user_history`
 								MODIFY `h_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;";
           $base->query($tb_user_history_inc);
+
+          $tb_answer_style_inc = "ALTER TABLE `tb_answer_style`
+                MODIFY `as_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;";
+          $base->query($tb_answer_style_inc);
 
           return TRUE;
       }else{

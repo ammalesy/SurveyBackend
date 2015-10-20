@@ -80,8 +80,8 @@
                     </div>
                 </div> -->
                 <div class="row">
-                <div class="col-lg-8">
-                <div class="panel panel-success">
+                <div class="col-lg-6">
+                <div class="panel panel-primary">
                 <div class="panel-heading">Answer : <?php echo $seq; ?></div>
                 <div class="panel-body">
 
@@ -106,65 +106,22 @@
 
                 <label>Answer style.</label>
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-12">
                         <select class="form-control" name="type[]" id="type" data-event="<?php echo $seq-1; ?>">
-                            <option value='0' <?php echo ($answer->type == "0")?'selected':''; ?>>checkbox</option>
-                            <option value='1' <?php echo ($answer->type == "1")?'selected':''; ?>>Text box</option>
-                            <option value='2' <?php echo ($answer->type == "2")?'selected':''; ?>>Radio button</option>
-                        </select>
-                        </div>
-                        <div class="col-lg-3">
-                            <input type="text" class="form-control colorpicker-element" id="color" name="color[]" value="<?php echo $answer->aa_color; ?>" data-event="<?php echo $seq-1; ?>" />
+
+                        <?php foreach ($answers_style as $answer_style) { ?>
+                            <option value='<?php echo $answer_style->as_id; ?>' <?php echo ($answer->type == $answer_style->as_id)?'selected':''; ?>><?php echo $answer_style->as_name; ?></option>
+                        <?php }?>
+
                             
-                        </div>
-                        </div>
+                        </select>
                     </div>
                 </div>
-
-                                    
                 </div>
-
-                <div class="col-lg-4">
-                <div class="panel panel-info">
-                <div class="panel-heading">Preview</div>
-                <div class="panel-body">
-                <div class="space_preview<?php echo ($seq-1); ?>">
-                <div class="row">
-                <div class="col-lg-1">
-                <div id="component">
-
-                <?php 
-                    if($answer->type == 0) { 
-                        echo "<input id=checkbox type=checkbox>";
-                    }else if($answer->type == 1){
-                        echo "<input type=text id=text placeholder=' ".$answer->aa_description."' style='color:".$answer->aa_color."'>";
-                    }else if($answer->type == 2){
-                        echo "<input id=radio type=radio>";
-                    }
-
-                ?>
-                
+                </div>                 
                 </div>
-
-                </div>
-
-                <div class="col-lg-6">
-                <div id="label" style="color:<?php if($answer->aa_color=="#FFFFFF"){echo "#000000"; } echo $answer->aa_color; ?>">
-                    <?php
-                        if($answer->type != 1) {
-                            echo " ".$answer->aa_description;
-                        }
-                    ?>
-                </div>
-                </div>
-
-                </div>
-             
-                </div>
-                </div>
-                </div>
-                </div>
-                </div>
+                </div>                 
+         
                 <?php $seq++; endforeach; ?>
                 <div class="row">
                     <div class="col-lg-12">
@@ -224,8 +181,8 @@
 
                                 var html = 
                                 '<div class="row" id="answerObject">'+
-                                '<div class="col-lg-8">'+
-                                    '<div class="panel panel-success">'+
+                                '<div class="col-lg-6">'+
+                                    '<div class="panel panel-primary">'+
                                     '<div class="panel-heading">Answer : '+(aa_description_count+1)+'</div>'+
                                     '<div class="panel-body">'+
 
@@ -249,38 +206,42 @@
 
                                     '<label>Answer style.</label>'+
                                     '<div class="row">'+
-                                    '<div class="col-lg-9">'+
+                                    '<div class="col-lg-12">'+
                                     '<select class="form-control" id="type" name="type[]" data-event='+aa_description_count+'>'+
-                                    '    <option value=0 selected>checkbox</option>'+
-                                    '    <option value=1>Text box</option>'+
-                                    '    <option value=2>Radio button</option>'+
+                                    <?php $i = 0; foreach ($answers_style as $answer_style) {
+                                        if($i == 0){$selected = "selected";}else{$selected="";}
+                                        echo "'<option value=".$answer_style->as_identifier." ".$selected.">".$answer_style->as_name."</option>'+";
+                                    $i++; }?>
+                                    // '    <option value=0 selected>checkbox</option>'+
+                                    // '    <option value=1>Text box</option>'+
+                                    // '    <option value=2>Radio button</option>'+
                                     '</select>'+
                                     '</div>'+
-                                    '<div class="col-lg-3">'+
-                                    '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
-                                    '</div>'+
+                                    // '<div class="col-lg-3">'+
+                                    // '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
+                                    // '</div>'+
                                     '</div>'+
 
                                     '</div>'+
                                     '</div>'+
                                 '</div>'+
 
-                                '<div class="col-lg-4">'+
-                                '<div class="panel panel-info">'+
-                                '<div class="panel-heading">Preview</div>'+
-                                '<div class="panel-body">'+
-                                '<div class="space_preview'+aa_description_count+'">'+
+                                // '<div class="col-lg-4">'+
+                                // '<div class="panel panel-info">'+
+                                // '<div class="panel-heading">Preview</div>'+
+                                // '<div class="panel-body">'+
+                                // '<div class="space_preview'+aa_description_count+'">'+
 
-                                '<div class="row">'+
-                                '<div class="col-lg-1">'+
-                                '<div id="component"><input type="checkbox"></div>'+
-                                '</div>'+
+                                // '<div class="row">'+
+                                // '<div class="col-lg-1">'+
+                                // '<div id="component"><input type="checkbox"></div>'+
+                                // '</div>'+
 
-                                '<div class="col-lg-6">'+
-                                '<div id="label"> example</div>'+
-                                '</div>'+
+                                // '<div class="col-lg-6">'+
+                                // '<div id="label"> example</div>'+
+                                // '</div>'+
 
-                                '</div>'+
+                                // '</div>'+
              
                                 '</div>'+
                                 '</div>'+

@@ -93,8 +93,8 @@
 
                                var html = 
                                 '<div class="row" id="answerObject">'+
-                                '<div class="col-lg-8">'+
-                                    '<div class="panel panel-success">'+
+                                '<div class="col-lg-6">'+
+                                    '<div class="panel panel-primary">'+
                                     '<div class="panel-heading">Answer : '+(aa_description_count+1)+'</div>'+
                                     '<div class="panel-body">'+
 
@@ -118,39 +118,45 @@
 
                                     '<label>Answer style.</label>'+
                                     '<div class="row">'+
-                                    '<div class="col-lg-9">'+
+                                    '<div class="col-lg-12">'+
                                     '<select class="form-control" id="type" name="type[]" data-event='+aa_description_count+'>'+
-                                    '    <option value=0 selected>checkbox</option>'+
-                                    '    <option value=1>Text box</option>'+
-                                    '    <option value=2>Radio button</option>'+
+                                    <?php $i = 0; foreach ($answers_style as $answer_style) {
+                                        if($i == 0){$selected = "selected";}else{$selected="";}
+                                        echo "'<option value=".$answer_style->as_id." ".$selected.">".$answer_style->as_name."</option>'+";
+                                    $i++; }?>
+                                    
+                                    // '    <option value=1>Text box</option>'+
+                                    // '    <option value=2>Radio button</option>'+
+                                    // '    <option value=3>Checkbox + Textbox</option>'+
+                                    // '    <option value=4>Radio button + Textbox</option>'+
                                     '</select>'+
                                     '</div>'+
-                                    '<div class="col-lg-3">'+
-                                    '<input type="text" data-event='+aa_description_count+' id="color" name="color[]" value="#ffaa00" class="form-control demo colorpicker-element" />'+
-                                    // '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
-                                    '</div>'+
+                                    // '<div class="col-lg-3">'+
+                                    // '<input type="text" data-event='+aa_description_count+' id="color" name="color[]" value="#000000" class="form-control demo colorpicker-element" />'+
+                                    // // '<input type="text" id="color" class="form-control" name="color[]" value="#FFFFFF" data-event='+aa_description_count+' />'+
+                                    // '</div>'+
                                     '</div>'+
 
                                     '</div>'+
                                     '</div>'+
                                 '</div>'+
 
-                                '<div class="col-lg-4">'+
-                                '<div class="panel panel-info">'+
-                                '<div class="panel-heading">Preview</div>'+
-                                '<div class="panel-body">'+
-                                '<div class="space_preview'+aa_description_count+'">'+
+                                // '<div class="col-lg-4">'+
+                                // '<div class="panel panel-info">'+
+                                // '<div class="panel-heading">Preview</div>'+
+                                // '<div class="panel-body">'+
+                                // '<div class="space_preview'+aa_description_count+'">'+
 
-                                '<div class="row">'+
-                                '<div class="col-lg-1">'+
-                                '<div id="component"><input type="checkbox"></div>'+
-                                '</div>'+
+                                // '<div class="row">'+
+                                // '<div class="col-lg-1">'+
+                                // '<div id="component"><input type="checkbox"></div>'+
+                                // '</div>'+
 
-                                '<div class="col-lg-6">'+
-                                '<div id="label"> example</div>'+
-                                '</div>'+
+                                // '<div class="col-lg-6">'+
+                                // '<div id="label"> example</div>'+
+                                // '</div>'+
 
-                                '</div>'+
+                                // '</div>'+
              
                                 '</div>'+
                                 '</div>'+
@@ -179,6 +185,8 @@
                                 var checkbox_identifier = "0";
                                 var textbox_identifier = "1";
                                 var radio_identifier = "2";
+                                var checkbox_textbox__identifier = "3";
+                                var radio_textbox_identifier = "4";
 
                                 $('div.space_add_more').on('keyup', 'input#aa_description', function () { 
                                     var seq = $(this).attr("data-event");
@@ -198,7 +206,7 @@
                                 $('div.space_add_more').on('change', 'select#type', function () { 
                                      var seq = $(this).attr("data-event");
                                      var text = $(this).val();
-                                     if(text === "0")
+                                     if(text === checkbox_identifier)
                                      {
                                         $('.space_preview'+seq+' div#component').html("<input id=checkbox type=checkbox>");
                                         var val = $('.space_preview'+seq+' div#label').html();
@@ -220,6 +228,18 @@
                                         if(val === ""){
                                             $('.space_preview'+seq+' div#label').html("example");
                                         }
+                                     }
+                                     else if(text === checkbox_textbox__identifier)
+                                     {
+                                        $('.space_preview'+seq+' div#component').html("<input id=checkbox type=checkbox>");
+                                        var val = $('.space_preview'+seq+' div#label').html();
+                                        if(val === ""){
+                                            $('.space_preview'+seq+' div#label').html("example <input type=text id=text  placeholder=' example'>");
+                                        }
+                                     }
+                                     else if(text === radio_textbox_identifier)
+                                     {
+                                        
                                      }
                                      $('space_preview'+seq).html('type');
                                 });

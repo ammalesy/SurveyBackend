@@ -60,6 +60,8 @@
                 <p><?php echo $project->pj_description; ?></p>
             </div>
             <?php
+            	if((count($projects) == 1) && ($i == 1)) { echo '</div>'; }
+            	if((count($projects) == 2) && ($i == 2)) { echo '</div>'; }
                 if(($i % 3 == 0)){
                     echo '</div>';
                 }

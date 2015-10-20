@@ -16,6 +16,10 @@
                         <button type="button" class="btn btn-sm btn-primary">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Question
                         </button></a>
+                        <a href="AnswerStyleManagement">
+                        <button type="button" class="btn btn-sm btn-success">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Answer style 
+                        </button></a>
                     <?php } ?>
                     </div>
                 </div>
