@@ -210,7 +210,7 @@
                                     '<select class="form-control" id="type" name="type[]" data-event='+aa_description_count+'>'+
                                     <?php $i = 0; foreach ($answers_style as $answer_style) {
                                         if($i == 0){$selected = "selected";}else{$selected="";}
-                                        echo "'<option value=".$answer_style->as_identifier." ".$selected.">".$answer_style->as_name."</option>'+";
+                                        echo "'<option value=".$answer_style->as_id." ".$selected.">".$answer_style->as_name."</option>'+";
                                     $i++; }?>
                                     // '    <option value=0 selected>checkbox</option>'+
                                     // '    <option value=1>Text box</option>'+

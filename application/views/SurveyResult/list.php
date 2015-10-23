@@ -254,29 +254,28 @@
                         for(var c = 0; c < list_ans_exist.length; c++){
                             if(answers[j].aa_id === list_ans_exist[c].aa_id){
 
-                                <?php $script = ''; ?>
 
                                 if(type == <?php echo CHECKBOX_IDENTIFIER; ?>)
                                 {
-                                    checked = 'checked'
+                                    checked = 'checked';
                                 }
                                 else if(type == <?php echo TEXTBOX_IDENTIFIER; ?>)
                                 {
-                                    checked = 'value="'+list_ans_exist[c].text+'"'
+                                    checked = 'value="'+list_ans_exist[c].text+'"';
                                 }
                                 else if(type == <?php echo RADIO_IDENTIFIER; ?>)
                                 {
-                                    checked = 'checked'
+                                    checked = 'checked';
                                 }
                                 else if(type == <?php echo CHECKBOX_TEXTBOX_IDENTIFIER; ?>)
                                 {
-                                    checked = 'checked'
-                                    value = 'value="'+list_ans_exist[c].text+'"'
+                                    checked = 'checked';
+                                    value = 'value="'+list_ans_exist[c].text+'"';
                                 }
                                 else if(type == <?php echo RADIO_TEXTBOX_IDENTIFIER; ?>)
                                 {
-                                    checked = 'checked'
-                                    value = 'value="'+list_ans_exist[c].text+'"'
+                                    checked = 'checked';
+                                    value = 'value="'+list_ans_exist[c].text+'"';
                                 }
                                 green = 'list-group-item-success';
                                 break;
@@ -393,20 +392,36 @@ $("button#refresh").click(function(){
                 for(var j = 0; j < answers.length; j++){
 
                     var green = '';
-                    var type = answers[j].type;
+                    var type = answers[j].style.as_identifier;
                     var color = answers[j].aa_color;
                     var checked = '';
+                    var value = '';
 
                      if(bypass === false){
                         for(var c = 0; c < list_ans_exist.length; c++){
                             if(answers[j].aa_id === list_ans_exist[c].aa_id){
 
-                                if(type == "0"){
-                                    checked = 'checked'
-                                }else if(type == "1"){
-                                    checked = 'value='+list_ans_exist[c].text
-                                }else if(type == "2"){
-                                    checked = 'checked'
+                                if(type == <?php echo CHECKBOX_IDENTIFIER; ?>)
+                                {
+                                    checked = 'checked';
+                                }
+                                else if(type == <?php echo TEXTBOX_IDENTIFIER; ?>)
+                                {
+                                    checked = 'value="'+list_ans_exist[c].text+'"';
+                                }
+                                else if(type == <?php echo RADIO_IDENTIFIER; ?>)
+                                {
+                                    checked = 'checked';
+                                }
+                                else if(type == <?php echo CHECKBOX_TEXTBOX_IDENTIFIER; ?>)
+                                {
+                                    checked = 'checked';
+                                    value = 'value="'+list_ans_exist[c].text+'"';
+                                }
+                                else if(type == <?php echo RADIO_TEXTBOX_IDENTIFIER; ?>)
+                                {
+                                    checked = 'checked';
+                                    value = 'value="'+list_ans_exist[c].text+'"';
                                 }
                                 green = 'list-group-item-success';
                                 break;
@@ -415,19 +430,35 @@ $("button#refresh").click(function(){
                     }
 
                     
-                    if(type == "0"){
+                    if(type == <?php echo CHECKBOX_IDENTIFIER; ?>)
+                    {
 
                         list_answer_html += '<li class="list-group-item '+green+' " ><b>'+(j+1)+'.</b> '+'<input type="checkbox" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
 
-                    }else if(type == "1"){
+                    }
+                    else if(type == <?php echo TEXTBOX_IDENTIFIER; ?>)
+                    {
 
                         list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="text" '+checked+' placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
 
-                    }else if(type == "2"){
+                    }
+                    else if(type == <?php echo RADIO_IDENTIFIER; ?>)
+                    {
 
                         list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="radio" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
                     }
-                    // list_answer_html += '<li class="list-group-item '+green+'"">'+'<b>('+(j+1)+') </b>'+answers[j].aa_description+'</li>';
+                    else if(type == <?php echo CHECKBOX_TEXTBOX_IDENTIFIER; ?>)
+                    {
+
+                        list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="checkbox" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font><br>';
+                        list_answer_html += '<input type="text" '+value+'></li>';
+                    }
+                    else if(type == <?php echo RADIO_TEXTBOX_IDENTIFIER; ?>)
+                    {
+
+                        list_answer_html += '<li class="list-group-item '+green+' "><b>'+(j+1)+'.</b> '+'<input type="radio" '+checked+'> <font color='+color+'>'+answers[j].aa_description+'</font><br>';
+                        list_answer_html += '<input type="text" '+value+'></li>';
+                    }
                 }
                 list_survey_html += 
                 '<div class="panel panel-default">'+

@@ -42,7 +42,7 @@ class SurveyManagement extends REST_Controller {
 				}
 				$_questions = array();
 				foreach ($sm_order_column as $column) {
-					$question = $this->tb_all_question->get($column);
+					$question = $this->tb_all_question->get($column,FALSE);
     				$answers = $this->tb_all_answer->get($column);
     				foreach ($answers as $answer) {
     					$style = $this->tb_answer_style->get($answer->type);

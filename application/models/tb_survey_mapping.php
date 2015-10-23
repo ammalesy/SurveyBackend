@@ -110,7 +110,7 @@ class Tb_survey_mapping extends CI_Model {
       //DETECT ADD COLUMN
       for($i = 0; $i < count($columns); $i++){
         if (!in_array($columns[$i], $exist_columns_r)) {
-          $this->db->query("ALTER TABLE `".$sm_table_code."` ADD `".$columns[$i]."` varchar(100) NOT NULL ;");
+          $this->db->query("ALTER TABLE `".$sm_table_code."` ADD `".$columns[$i]."` varchar(2000) NOT NULL DEFAULT '[]';");
         }
       }
 
