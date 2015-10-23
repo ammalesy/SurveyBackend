@@ -79,7 +79,7 @@ class Tb_survey_mapping extends CI_Model {
       $sql = "CREATE TABLE IF NOT EXISTS `".$sm_table_code."` (";
       $sql .= "`id` int(10) NOT NULL";
       foreach ($columns as $column) {
-        $sql .= ",`".$column."` varchar(250) NOT NULL  DEFAULT '[]'";
+        $sql .= ",`".$column."` varchar(2000) NOT NULL  DEFAULT '[]'";
       }
       $sql .= ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
       $this->db->query($sql);

@@ -136,6 +136,9 @@ var cache_questions = new Array();
 /*==== VIEW BUTTON ACTION =========*/
 /*=================================*/
 $("button#view_button").click(function(){
+
+        var USE_CACHE = false;
+
         $("div#space-list-answer").html('');
         $("div#space-preload").css("display","inline");
 
@@ -143,7 +146,7 @@ $("button#view_button").click(function(){
         var aq_description = $(this).attr("data-aq-description");
         $("h4#aq_description").html(aq_description);
 
-        var obj_question = search_question_in_cache(aq_id);
+        var obj_question = (USE_CACHE)?search_question_in_cache(aq_id):null;
         if (obj_question != null) {
             
             $("div#space-preload").css("display","none");
@@ -159,18 +162,21 @@ $("button#view_button").click(function(){
 
                 var type = answers[i].type;
                 var color = answers[i].aa_color;
-                if(type == "0"){
 
-                    list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
+                list_q_html  += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+answers[i].style.html+'</li>';
 
-                }else if(type == "1"){
+                // if(type == "0"){
 
-                    list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[i].aa_description+'" style="color:'+color+'"></li>';
+                //     list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
 
-                }else if(type == "2"){
+                // }else if(type == "1"){
 
-                    list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
-                }
+                //     list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[i].aa_description+'" style="color:'+color+'"></li>';
+
+                // }else if(type == "2"){
+
+                //     list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
+                // }
         
                   
 
@@ -204,18 +210,19 @@ $("button#refresh").click(function(){
         
                 var type = answers[i].type;
                 var color = answers[i].aa_color;
-                if(type == "0"){
+                list_q_html  += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+answers[i].style.html+'</li>';
+                // if(type == "0"){
 
-                    list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
+                //     list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
 
-                }else if(type == "1"){
+                // }else if(type == "1"){
 
-                    list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[i].aa_description+'" style="color:'+color+'"></li>';
+                //     list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[i].aa_description+'" style="color:'+color+'"></li>';
 
-                }else if(type == "2"){
+                // }else if(type == "2"){
 
-                    list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
-                } 
+                //     list_q_html += '<li class="list-group-item "><b>'+(i+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[i].aa_description+'</font></li>';
+                // } 
             }
             var html = 
             '<div id="space-list-answer">'+

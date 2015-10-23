@@ -38,11 +38,12 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <select class="form-control" id="as_identifier" name="as_identifier" >
-                                        <option value=0 <?php echo ($answer_style->as_identifier == '0')?"selected":""; ?>>checkbox</option>
-                                        <option value=1 <?php echo ($answer_style->as_identifier == '1')?"selected":""; ?>>Text box</option>
-                                        <option value=2 <?php echo ($answer_style->as_identifier == '2')?"selected":""; ?>>Radio button</option>
-                                        <option value=3 <?php echo ($answer_style->as_identifier == '3')?"selected":""; ?>>Checkbox + Textbox</option>
-                                        <option value=4 <?php echo ($answer_style->as_identifier == '4')?"selected":""; ?>>Radio button + Textbox</option>
+                            <?php for ($i=0; $i < AnswerStyle::numberOfcomponent(); $i++) { ?>
+
+                                        <option value=<?php echo $i; ?> <?php echo ($answer_style->as_identifier == $i)?"selected":""; ?>><?php echo AnswerStyle::getName($i); ?></option>
+            
+                            <?php } ?>
+                                  
                             </select>
                         </div>
                     </div>

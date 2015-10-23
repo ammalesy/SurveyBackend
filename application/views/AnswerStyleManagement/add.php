@@ -38,11 +38,11 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <select class="form-control" id="as_identifier" name="as_identifier" >
-                                        <option value=0 selected>checkbox</option>
-                                        <option value=1>Text box</option>
-                                        <option value=2>Radio button</option>
-                                        <option value=3>Checkbox + Textbox</option>
-                                        <option value=4>Radio button + Textbox</option>
+                            <?php for ($i=0; $i < AnswerStyle::numberOfcomponent(); $i++) { ?>
+
+                                        <option value=<?php echo $i; ?> <?php if($i == 0){echo "selected";} ?>><?php echo AnswerStyle::getName($i); ?></option>
+            
+                            <?php } ?>
                             </select>
                         </div>
                     </div>

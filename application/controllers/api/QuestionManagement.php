@@ -22,16 +22,33 @@ class QuestionManagement extends REST_Controller {
 	public function question_get($aq_id){
     	$this->load->model('tb_all_question');
     	$this->load->model('tb_all_answer');
+    	$this->load->model('tb_answer_style');
 
     	$question = $this->tb_all_question->get($aq_id);
     	$answers = $this->tb_all_answer->get($aq_id);
+
+    	foreach ($answers as $answer) {
+    		$answer->style = $this->tb_answer_style->get($answer->type);
+    		$answerStyle = AnswerStyle::get($answer->style->as_identifier,$answer->aa_description,$answer->style->as_text_color);
+    		$answer->style->html = $answerStyle->html;
+    		
+    	}
     	$question->answers = $answers;
 
     	$this->response($question,REST_Controller::HTTP_OK);
     }
 	public function answers_get($aq_id_ref){
 		$this->load->model('tb_all_answer');
+        $this->load->model('tb_answer_style');
 		$result = $this->tb_all_answer->get($aq_id_ref);
+        foreach ($result as $answer) {
+            $answer->style = $this->tb_answer_style->get($answer->type);
+            $answerStyle = AnswerStyle::get($answer->style->as_identifier,$answer->aa_description,$answer->style->as_text_color);
+            $answer->style->html = $answerStyle->html;
+            
+        }
+
+
 		$this->response($result,REST_Controller::HTTP_OK);
 	}
 }

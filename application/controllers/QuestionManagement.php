@@ -141,7 +141,6 @@ class QuestionManagement extends NZ_Controller {
     			$this->tb_all_answer->record(array('aa_description' => $aa_description,
     											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N',
                                                    'type' => $types[$i],
-                                                   'aa_color' => $colors[$i],
     											   'aq_id_ref' => $aq_id));
     			$i++;
     		}
@@ -175,8 +174,7 @@ class QuestionManagement extends NZ_Controller {
     		for($i = 0; $i < $count_answers; $i++){
     			$this->tb_all_answer->update(array('aa_description' => $aa_descriptions[$i],
     											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N',
-                                                   'type' => $types[$i],
-                                                   'aa_color' => $colors[$i]),$aa_ids[$i]);
+                                                   'type' => $types[$i]),$aa_ids[$i]);
     		}
 
     		//INSERT NEW ANSWERS
@@ -184,7 +182,6 @@ class QuestionManagement extends NZ_Controller {
     			$this->tb_all_answer->record(array('aa_description' => $aa_descriptions[$i],
     											   'active' => ($aa_actives[$i] == 'Active')?'Y':'N',
                                                    'type' => $types[$i],
-                                                   'aa_color' => $colors[$i],
     											   'aq_id_ref' => $aq_id));
     		}
 	    }

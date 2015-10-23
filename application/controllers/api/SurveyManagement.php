@@ -15,6 +15,7 @@ class SurveyManagement extends REST_Controller {
     	$this->load->model('tb_all_question');
 		$this->load->model('tb_all_answer');
     	$this->load->model('tb_survey_mapping');
+    	$this->load->model('tb_answer_style');
     	$surveys = $this->tb_survey_mapping->fetchAll();
     	if(count($surveys) > 0){
 
@@ -43,6 +44,14 @@ class SurveyManagement extends REST_Controller {
 				foreach ($sm_order_column as $column) {
 					$question = $this->tb_all_question->get($column);
     				$answers = $this->tb_all_answer->get($column);
+    				foreach ($answers as $answer) {
+    					$style = $this->tb_answer_style->get($answer->type);
+    					$answer->style = $style;
+
+				    	$answerStyle = AnswerStyle::get($answer->style->as_identifier,$answer->aa_description,$answer->style->as_text_color);
+				    	$answer->style->html = $answerStyle->html;
+
+    				}
     				@$question->answers = $answers;
     				array_push($_questions, $question);
 				}
@@ -59,6 +68,7 @@ class SurveyManagement extends REST_Controller {
 		$this->load->model('tb_all_question');
 		$this->load->model('tb_all_answer');
 		$this->load->model('tb_survey_mapping');
+		$this->load->model('tb_answer_style');
 
 
 		$survey = $this->tb_survey_mapping->get($sm_id);
@@ -69,6 +79,15 @@ class SurveyManagement extends REST_Controller {
 		$questions = $this->tb_all_question->fetch_by_multiple_id($survey->sm_order_column);
 		foreach ($questions as $question) {
 			$question->answers = $this->tb_all_answer->get($question->aq_id);
+			foreach ($question->answers as $answer) {
+    			$style = $this->tb_answer_style->get($answer->type);
+    			$answer->style = $style;
+
+		    	$answerStyle = AnswerStyle::get($answer->style->as_identifier,$answer->aa_description,$answer->style->as_text_color);
+		    	$answer->style->html = $answerStyle->html;
+
+    		}
+
 		}
 		///SOERTING
 		$sorted = array();

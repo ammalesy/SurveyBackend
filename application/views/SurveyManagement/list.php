@@ -127,6 +127,9 @@
     /*==== VIEW BUTTON ACTION =========*/
     /*=================================*/
     $("button#view_button").click(function(){
+
+        var USE_CACHE = false;
+
         $("div#space-list-survey").html('');
         $("div#space-preload").css("display","inline");
 
@@ -134,7 +137,7 @@
         var sm_name = $(this).attr("data-sm-name");
         $("h4#sm_name").html(sm_name);
 
-        var obj_survey= search_survey_in_cache(sm_id);
+        var obj_survey= (USE_CACHE)?search_survey_in_cache(sm_id):null;
         if (obj_survey != null) {
             $("div#space-preload").css("display","none");
             $("p#show_detail_survey_modal").html(obj_survey); 
@@ -150,18 +153,21 @@
                 for(var j = 0; j < answers.length; j++){
                     var type = answers[j].type;
                     var color = answers[j].aa_color;
-                    if(type == "0"){
 
-                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    list_answer_html  += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+answers[j].style.html+'</li>';
 
-                    }else if(type == "1"){
+                    // if(type == "0"){
 
-                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+                    //     list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
 
-                    }else if(type == "2"){
+                    // }else if(type == "1"){
 
-                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
-                    }
+                    //     list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+
+                    // }else if(type == "2"){
+
+                    //     list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    // }
                 }
                 list_survey_html += 
                 '<div class="panel panel-default">'+
@@ -210,18 +216,19 @@ $("button#refresh").click(function(){
 
                     var type = answers[j].type;
                     var color = answers[j].aa_color;
-                    if(type == "0"){
+                    list_answer_html  += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+answers[j].style.html+'</li>';
+                    // if(type == "0"){
 
-                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    //     list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="checkbox"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
 
-                    }else if(type == "1"){
+                    // }else if(type == "1"){
 
-                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
+                    //     list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="text" placeholder="'+' '+answers[j].aa_description+'" style="color:'+color+'"></li>';
 
-                    }else if(type == "2"){
+                    // }else if(type == "2"){
 
-                        list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
-                    }
+                    //     list_answer_html += '<li class="list-group-item "><b>'+(j+1)+'.</b> '+'<input type="radio"> <font color='+color+'>'+answers[j].aa_description+'</font></li>';
+                    // }
 
                    
                 }

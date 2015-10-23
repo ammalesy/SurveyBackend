@@ -1,12 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-define("CHECKBOX_IDENTIFIER", "0");
-define("TEXTBOX_IDENTIFIER", "1");
-define("RADIO_IDENTIFIER", "2");
-define("CHECKBOX_TEXTBOX_IDENTIFIER", "3");
-define("RADIO_TEXTBOX_IDENTIFIER", "4");
-
 class AnswerStyleManagement extends NZ_Controller {
 
 	function __construct()
@@ -121,3 +115,4 @@ class AnswerStyleManagement extends NZ_Controller {
 		}
     }
 }
+
