@@ -131,6 +131,10 @@
 
             var table = $('#listSurveyResult').DataTable();
             
+            table
+                .clear()
+                .draw();
+            
             for (i = 0; i < data.length; i++) { 
 
                 var rowNode = table
