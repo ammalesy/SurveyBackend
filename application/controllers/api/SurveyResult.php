@@ -71,30 +71,45 @@ class SurveyResult extends REST_Controller {
         //         '</tr>'.
         //     '</thead>'.
         //     '<tbody>';
+        $arrayReturn = array();
         $html = "";
-            foreach ($user_histories as $user_history) {
-        $html .='<tr>'.
-                '<td>'.$user_history->h_id.'</td>'.
-                '<td><span class="badge">'.$this->time_elapsed_string($user_history->h_timestamp).'</span></td>';
-                
-                    $list_aa_id = '';
+            foreach ($user_histories as $user_history) :
+                $data[0] = $user_history->h_id;
+                $data[1] = "<span class=badge>".$this->time_elapsed_string($user_history->h_timestamp)."</span>";
+                $list_aa_id = '';
                     foreach ($user_history->ans_info as $key => $value) {
                        if ($key == "id") continue;
                        $list_aa_id .= substr($key,2)."->".str_replace('"', "'", $value)."|";
                     }
                     $list_aa_id = rtrim($list_aa_id, "|");
-    
-        $html .= '<td class="dt-body-right">'.
-                        '<input type="hidden" id="h_id" data-h-id="'.$user_history->h_id.'" value="'.$list_aa_id.'">'.
-                        '<div class="space-button"><button type="button" id="view_button" data-h-id="'.$user_history->h_id.'" data-sm-name="'.$survey->sm_name.'" data-sm-id="'.$survey->sm_id.'" data-toggle="modal" data-target="#list_answer_modal" class="btn btn-sm btn-primary">'.
-                            '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> View answers'.
-                        '</button></div>'.
-                '</td>'.
-            '</tr>';
-            }   
-        if($html == ""){
-            $html = "<tr><td colspan=3 class='dt-body-center dataTables_empty'>No data available in table</td></tr>";
-        }
+                $data[2] =  '<input type="hidden" id="h_id" data-h-id="'.$user_history->h_id.'" value="'.$list_aa_id.'">'.
+                                    '<div class="space-button"><button type="button" id="view_button" data-h-id="'.$user_history->h_id.'" data-sm-name="'.$survey->sm_name.'" data-sm-id="'.$survey->sm_id.'" data-toggle="modal" data-target="#list_answer_modal" class="btn btn-sm btn-primary">'.
+                                    '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> View answers'.
+                                    '</button></div>';
+                array_push($arrayReturn , $data);
+
+                // $html .='<tr role="row">'.
+                //         '<td>'.$user_history->h_id.'</td>'.
+                //         '<td><span class="badge">'.$this->time_elapsed_string($user_history->h_timestamp).'</span></td>';
+                        
+                //             $list_aa_id = '';
+                //             foreach ($user_history->ans_info as $key => $value) {
+                //                if ($key == "id") continue;
+                //                $list_aa_id .= substr($key,2)."->".str_replace('"', "'", $value)."|";
+                //             }
+                //             $list_aa_id = rtrim($list_aa_id, "|");
+            
+                // $html .= '<td class="dt-body-right">'.
+                //                 '<input type="hidden" id="h_id" data-h-id="'.$user_history->h_id.'" value="'.$list_aa_id.'">'.
+                //                 '<div class="space-button"><button type="button" id="view_button" data-h-id="'.$user_history->h_id.'" data-sm-name="'.$survey->sm_name.'" data-sm-id="'.$survey->sm_id.'" data-toggle="modal" data-target="#list_answer_modal" class="btn btn-sm btn-primary">'.
+                //                     '<span class="glyphicon glyphicon-search" aria-hidden="true"></span> View answers'.
+                //                 '</button></div>'.
+                //         '</td>'.
+                //     '</tr>';
+            endforeach;  
+        // if(count($arrayReturn)==0){
+        //     $html = "<tr><td colspan=3 class='dt-body-center dataTables_empty'>No data available in table</td></tr>";
+        // }
         // $html .= '</tbody>'.
         //     '</table>';
         ///////
@@ -107,8 +122,8 @@ class SurveyResult extends REST_Controller {
         {
            $this->response(array('Error' => 'Retrive fail'),REST_Controller::HTTP_NOT_FOUND);
         }else{
-            //$this->response($html,REST_Controller::HTTP_OK);
-            echo $html;
+            $this->response($arrayReturn,REST_Controller::HTTP_OK);
+            //echo $html;
         }
     }
 }

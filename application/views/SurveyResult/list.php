@@ -67,6 +67,7 @@
 </div>
 
 
+
 <!-- Modal -->
 <div id="list_result_modal" class="modal fade modal-wide" role="dialog">
   <div class="modal-dialog">
@@ -86,18 +87,21 @@
                 </div>
             </div>
         	</div>
-        <table id="questionTable2" class="table table-striped compact hover" cellspacing="0" width="100%">
+            <div id="table_space">
+            <!-- <table id="listSurveyTable" class="display table table-striped compact hover" cellspacing="0" width="100%"> -->
+            <table id="listSurveyResult" class="table table-striped compact hover" cellspacing="0" width="100%">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Since date</th>
-                    <th class="dt-head-right">Command</th>
-                </tr>
-            </thead>
-            <tbody id="table_detail">
-               
-            </tbody>
-        </table>
+            <tr>
+                <th>ID</th>
+                <th>Since date</th>
+                                 <th class="dt-head-right">Command</th>
+                             </tr>
+                             </thead>
+                             <tbody id="table_detail">
+                             
+                             </tbody>
+                             </table>
+            </div>
         </p>
       </div>
       <div class="modal-footer">
@@ -109,6 +113,7 @@
 </div>
 
 <script>
+
     /*========================================*/
     /*==== VIEWRESULT  BUTTON ACTION =========*/
     /*========================================*/
@@ -123,13 +128,23 @@
            
             var html = data;
             $("div#space-preload-result").css("display","none");
-            $("tbody#table_detail").html(html); 
+
+            var table = $('#listSurveyResult').DataTable();
+            
+            for (i = 0; i < data.length; i++) { 
+
+                var rowNode = table
+                .row.add( data[i] )
+                .draw()
+                .node();
+            }
+
+            
+            
+
         });
     });
 </script>
-
-
-
 <!-- Modal -->
 <div id="list_answer_modal" data-seq="" class="modal fade modal-wide-mini" role="dialog">
   <div class="modal-dialog">
@@ -163,6 +178,9 @@
 
   </div>
 </div>
+
+
+
 
 <script>
     

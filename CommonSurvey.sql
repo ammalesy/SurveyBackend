@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2015 at 05:51 PM
+-- Generation Time: Oct 24, 2015 at 03:48 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -54,27 +54,28 @@ CREATE TABLE IF NOT EXISTS `tb_owner` (
   `w_id` int(10) NOT NULL,
   `a_id_ref` int(10) NOT NULL,
   `pj_id_ref` int(10) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_owner`
 --
 
 INSERT INTO `tb_owner` (`w_id`, `a_id_ref`, `pj_id_ref`) VALUES
-(1, 1, 1),
-(13, 2, 1),
-(14, 3, 1),
-(15, 4, 1),
-(22, 1, 16),
-(23, 2, 16),
-(24, 3, 16),
-(25, 1, 15),
-(26, 2, 15),
-(27, 4, 15),
-(28, 4, 14),
-(29, 1, 14),
-(30, 2, 14),
-(31, 3, 14);
+(46, 2, 21),
+(47, 1, 18),
+(48, 2, 18),
+(49, 3, 18),
+(50, 4, 18),
+(51, 1, 20),
+(52, 2, 20),
+(53, 3, 20),
+(54, 1, 19),
+(55, 2, 19),
+(56, 3, 19),
+(57, 4, 19),
+(58, 1, 21),
+(59, 3, 21),
+(60, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -114,18 +115,18 @@ CREATE TABLE IF NOT EXISTS `tb_project` (
   `pj_db_ref` varchar(32) NOT NULL,
   `pj_image` varchar(100) DEFAULT 'default.png',
   `active` varchar(1) NOT NULL DEFAULT 'Y'
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tb_project`
 --
 
 INSERT INTO `tb_project` (`pj_id`, `pj_name`, `pj_description`, `pj_db_ref`, `pj_image`, `active`) VALUES
-(1, 'The real condo', 'The real condo survey. if you are manager you can manages the role user and add some question.', 'SurveyNew', 'banner_1.png', 'Y'),
-(14, 'Batman condo', 'The batman condo is a super hero to be protect persons that want to help.', 'batman_condo', 'batman_condo1443274487.jpg', 'Y'),
-(15, 'The Jocker condo', 'The dark condo is a smile only. but it has a lot of murdor.', 'the_k_condo', 'the_k_condo1443274608.jpg', 'Y'),
-(16, 'The sukumvit condo', 'The five star premium condo . such as free drive a lambroghini , wave 125. ', 'the_sk_condo', '1443292795.jpg', 'Y'),
-(17, 'test_performance', 'test_performance', 'test_performance', 'test_performance1443292060.jpg', 'Y');
+(18, 'Than living', 'Than living Rama9-Airport link', 'thanliving', 'thanliving1445269058.jpg', 'Y'),
+(19, 'Lumpini ville', 'คอนโดในชุมชนน่าอยู่ ย่านประชาชื่น', 'lumpiniville', 'lumpiniville1445269582.jpg', 'Y'),
+(20, 'Sansiri', 'คอนโดคุณภาพแสนสิริ', 'sansiri', '1445269978.jpg', 'Y'),
+(21, 'AP Condo', 'คอนโด ริทึ่ม สุขุมวิท 42 RHYTHM SUKHUMVIT 42', 'apcondo', 'apcondo1445270113.jpg', 'Y'),
+(22, 'dummy', 'dummy', 'dummy', 'default.png', 'Y');
 
 --
 -- Indexes for dumped tables
@@ -168,7 +169,7 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT for table `tb_owner`
 --
 ALTER TABLE `tb_owner`
-  MODIFY `w_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `w_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `tb_permission`
 --
@@ -178,7 +179,7 @@ ALTER TABLE `tb_permission`
 -- AUTO_INCREMENT for table `tb_project`
 --
 ALTER TABLE `tb_project`
-  MODIFY `pj_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `pj_id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

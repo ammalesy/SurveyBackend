@@ -21,6 +21,8 @@ class PreviewSurvey extends NZ_Controller {
         $project = $this->tb_project->get($pj_id);
         $this->selectProject($project->pj_db_ref);
 
+        $this->session->set_userdata(array('project_name_selected' => $project->pj_name));
+
         redirect("Dashboard");
     }
 }

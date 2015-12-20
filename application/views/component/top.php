@@ -99,7 +99,17 @@
             });
             $('#questionTable2').DataTable({
                 "pagingType": "full_numbers",
-                 "order": [[ 0, "desc" ]]
+                 "order": [[ 0, "desc" ]],
+            });
+            $('#listSurveyResult').DataTable({
+                "pagingType": "full_numbers",
+                 "order": [[ 0, "desc" ]],
+                 'columnDefs': [{
+							         'targets': 2,
+							     
+							         'className': 'dt-body-right'
+							         
+							    }],
             });
             // $(function(){
             //     $('.demo1').colorpicker();
@@ -180,6 +190,16 @@
             <?php if($page != "PreviewSurvey" && $page != "ProjectManagement" && $page != "AssignProject") { ?>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
+
+                	<li> 
+                	<a href="#" style="background-color:#000000; color:#8b8b8b; :hover {background-color: #FFFFFF;}">
+                		<?php
+                			$ci =& get_instance();
+                			$projectName = $ci->session->userdata('project_name_selected');
+                		?>
+                		<i class="fa fa-fw fa-home"></i><?php echo $projectName; ?>
+                	</a>
+                	</li>
 
                     <li <?php echo ($page == "Dashboard")?"class=active":""; ?>>
                         <a href="<?php echo APP_PATH; ?>Dashboard"><i class="fa fa-fw fa-dashboard"></i>Dashboard</a>
